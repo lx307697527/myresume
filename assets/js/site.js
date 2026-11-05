@@ -75,9 +75,16 @@
   var currentLang = 'en';
 
   try {
-    if (localStorage.getItem('lang') === 'zh') currentLang = 'zh';
+    var saved = localStorage.getItem('lang');
+    if (saved === 'zh' || saved === 'en') {
+      currentLang = saved;
+    } else if (navigator.language && navigator.language.toLowerCase().indexOf('zh') === 0) {
+      currentLang = 'zh';
+    }
   } catch (e) {
-    currentLang = 'en';
+    if (navigator.language && navigator.language.toLowerCase().indexOf('zh') === 0) {
+      currentLang = 'zh';
+    }
   }
 
   function applyLang(lang, persist) {
