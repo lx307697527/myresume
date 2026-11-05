@@ -18,23 +18,32 @@
 <header class="nav" id="top">
   <div class="nav__inner">
     <a class="brand" href="#top">[Your Name]</a>
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="nav__links" data-lang="en" aria-label="Primary">
       <a class="nav-link" href="#services">Services</a>
       <a class="nav-link" href="#work">Work</a>
       <a class="nav-link" href="#about">About</a>
       <a class="nav-link" href="#insights">Insights</a>
       <a class="nav-link" href="#faq">FAQ</a>
     </nav>
+    <nav class="nav__links" data-lang="zh" aria-label="主导航" hidden>
+      <a class="nav-link" href="#zh-services">服务</a>
+      <a class="nav-link" href="#zh-work">案例</a>
+      <a class="nav-link" href="#zh-about">关于</a>
+      <a class="nav-link" href="#zh-insights">洞察</a>
+      <a class="nav-link" href="#zh-faq">常见问题</a>
+    </nav>
     <div class="nav__actions">
-      <a class="btn btn--primary btn--sm" href="#book">Book a call</a>
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <a class="btn btn--primary btn--sm" data-lang="en" href="#book">Book a call</a>
+      <a class="btn btn--primary btn--sm" data-lang="zh" href="#zh-book" hidden>预约通话</a>
+      <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch to Chinese">中文</button>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu mobile-menu-zh">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
   </div>
-  <div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu" data-lang="en" id="mobile-menu">
     <a href="#services">Services</a>
     <a href="#work">Work</a>
     <a href="#about">About</a>
@@ -42,9 +51,19 @@
     <a href="#faq">FAQ</a>
     <a class="btn btn--primary" href="#book">Book a call</a>
   </div>
+  <div class="mobile-menu" data-lang="zh" id="mobile-menu-zh" hidden>
+    <a href="#zh-services">服务</a>
+    <a href="#zh-work">案例</a>
+    <a href="#zh-about">关于</a>
+    <a href="#zh-insights">洞察</a>
+    <a href="#zh-faq">常见问题</a>
+    <a class="btn btn--primary" href="#zh-book">预约通话</a>
+  </div>
 </header>
 
 <main>
+
+  <div data-lang="en">
 
   <section class="hero">
     <div class="container hero__grid">
@@ -494,13 +513,13 @@
         <p class="magnet-copy">20 questions to decide whether your team needs a private model, an agent, or neither yet — before you spend anything.</p>
       </div>
       <div>
-        <form class="magnet-form" id="checklist-form">
+        <form class="magnet-form checklist-form" id="checklist-form">
           <label class="visually-hidden" for="work-email">Work email</label>
           <input id="work-email" name="email" type="email" placeholder="Work email" autocomplete="email" required>
           <button type="submit">Send me the checklist</button>
         </form>
         <p class="magnet-note">One email with the PDF. No spam.</p>
-        <p class="magnet-status" id="checklist-status" hidden></p>
+        <p class="magnet-status" hidden></p>
       </div>
     </div>
   </section>
@@ -581,6 +600,548 @@
       <p class="cta-note">[Your booking link]</p>
     </div>
   </section>
+
+  </div>
+
+  <div data-lang="zh" hidden>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <span class="label">AI 落地实施 · 全栈工程</span>
+        <h1 class="hero-title">我让 AI 走进你的业务——私密部署，接入现有工具。</h1>
+        <p class="hero-sub">14 年生产级软件开发经验。我帮助中小型团队部署私有 AI、构建内部智能体，并交付支撑其日常运营的自定义系统。</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#zh-book">预约 30 分钟免费通话</a>
+          <a class="btn btn--secondary" href="#zh-work">查看近期案例</a>
+        </div>
+        <ul class="trust">
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            固定报价，开工前确认
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            代码全部归你所有
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            数据始终私密
+          </li>
+        </ul>
+      </div>
+
+      <aside class="ship" aria-label="近期交付">
+        <div class="ship__head">
+          <span class="label">近期交付</span>
+        </div>
+        <div class="ship-item">
+          <div class="ship-num">01</div>
+          <div>
+            <div class="ship-title">本地 LLM 服务器</div>
+            <p class="ship-desc">运行我们 AI 编码智能体的私有模型，数据不出办公室</p>
+          </div>
+        </div>
+        <div class="ship-item">
+          <div class="ship-num">02</div>
+          <div>
+            <div class="ship-title">开发流程中的 AI 编码智能体</div>
+            <p class="ship-desc">它的 134 个 PR 中有 129 个被合并</p>
+          </div>
+        </div>
+        <div class="ship-item">
+          <div class="ship-num">03</div>
+          <div>
+            <div class="ship-title">运营平台</div>
+            <p class="ship-desc">员工端、客户门户与官网运行在同一套系统上</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="工程履历">
+    <div class="container strip__inner">
+      <span class="strip-label">工程履历</span>
+      <div class="strip-names">
+        <span>Manulife</span>
+        <span>EMC</span>
+        <span>龙湖集团</span>
+        <span>新浪支付</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="zh-numbers">
+    <div class="container numbers">
+      <span class="label">AllyOS 数据一览</span>
+      <div class="numbers-grid">
+        <div class="stat">
+          <div class="stat-value">4,000+</div>
+          <p class="stat-desc">自 2026 年 7 月以来合并的 PR</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3,300+</div>
+          <p class="stat-desc">已关闭的 issue</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1,200+</div>
+          <p class="stat-desc">过去 30 天合并的 PR</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">96%</div>
+          <p class="stat-desc">AI 智能体的 PR 合并率</p>
+        </div>
+      </div>
+      <p class="stats-note">数据来自 AllyOS GitHub 仓库，截至 2026 年 11 月。</p>
+    </div>
+  </section>
+
+  <section class="section" id="zh-pain">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">是不是很熟悉？</span>
+        <h2 class="section-title">大多数小团队都知道 AI 能帮忙，却不知道从哪里开始。</h2>
+      </div>
+      <div class="pain-grid">
+        <div class="pain">
+          <p class="pain-quote">“我们不能把客户数据放进 ChatGPT。”</p>
+          <p class="pain-desc">法律、金融和医疗相关团队，需要让 AI 运行在数据本来所在的地方。</p>
+        </div>
+        <div class="pain">
+          <p class="pain-quote">“我们的运营全靠表格。”</p>
+          <p class="pain-desc">订单、发票和客户更新，要在五个不同工具之间手工复制。</p>
+        </div>
+        <div class="pain">
+          <p class="pain-quote">“我们试过 AI 工具，但没人用。”</p>
+          <p class="pain-desc">放在一边的聊天机器人，不等于把 AI 放进团队每天工作的地方。</p>
+        </div>
+        <div class="pain">
+          <p class="pain-quote">“代理商报价六位数。”</p>
+          <p class="pain-desc">你需要一位资深工程师做聚焦的项目，而不是十二人团队和长期服务费。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-services">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">服务</span>
+        <h2 class="section-title">固定范围的交付包，开工前就知道价格。</h2>
+        <p class="section-lead">多数客户从一次简短的诊断开始。它把模糊的“我们该用 AI 了”，变成一份有明确价格的落地计划。</p>
+      </div>
+      <div class="services">
+
+        <article class="service service--start">
+          <span class="service-tag">从这里开始</span>
+          <h3 class="service-title">AI 就绪诊断</h3>
+          <p class="service-desc">我梳理你的工作流程，找出 AI 真正能节省时间的地方，并交给你一份带固定报价的构建计划。</p>
+          <ul class="service-list">
+            <li>两次与团队的深入工作会</li>
+            <li>按价值排序的机会评估报告</li>
+            <li>每项建议方案的固定报价</li>
+          </ul>
+          <div class="service-meta">1–2 周 · $1,500 起</div>
+        </article>
+
+        <article class="service">
+          <h3 class="service-title">内部 AI 助手</h3>
+          <p class="service-desc">一个住在 Slack 或 Teams 里的智能体，了解你的文档，也能在你的工具中执行操作——回答问题、起草内容、归档资料。</p>
+          <ul class="service-list">
+            <li>接入你的文档、CRM 或服务台</li>
+            <li>权限与组织架构一致</li>
+            <li>用量看板与团队培训</li>
+          </ul>
+          <div class="service-meta">3–6 周 · $5,000 起</div>
+        </article>
+
+        <article class="service">
+          <h3 class="service-title">私有 AI 部署</h3>
+          <p class="service-desc">开源模型运行在你自己的硬件或私有云上。按团队隔离，数据永远不离开你的办公场所。</p>
+          <ul class="service-list">
+            <li>硬件选型与模型选择</li>
+            <li>带访问层级的容器化服务</li>
+            <li>让你的团队能独立运维的操作手册</li>
+          </ul>
+          <div class="service-meta">4–8 周 · $8,000 起</div>
+        </article>
+
+        <article class="service">
+          <h3 class="service-title">自定义业务系统</h3>
+          <p class="service-desc">订单、客户、库存和财务集中在一套内部应用里——连接 QuickBooks、HubSpot 以及你现有的其他系统。</p>
+          <ul class="service-list">
+            <li>员工端应用，可选客户门户</li>
+            <li>与现有工具双向同步</li>
+            <li>测试环境与安全的发布流程</li>
+          </ul>
+          <div class="service-meta">2–4 个月 · $15,000 起</div>
+        </article>
+
+        <article class="service">
+          <h3 class="service-title">支持与顾问</h3>
+          <p class="service-desc">维护、随业务增长开发新功能，以及为团队提供实操型 AI 培训。</p>
+          <ul class="service-list">
+            <li>监控、修复与更新</li>
+            <li>每月固定构建工时</li>
+            <li>每月一次员工 AI 培训</li>
+          </ul>
+          <div class="service-meta">按月 · $1,000/月起</div>
+        </article>
+
+        <article class="service service--soft">
+          <h3 class="service-title">不确定哪种适合？</h3>
+          <p class="service-desc">告诉我是什么拖慢了你的团队。我会诚实地说，AI 是否真的是合适的工具。</p>
+          <a class="service-link" href="#zh-book">预约通话 →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-privacy">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">私有 AI 如何运作</span>
+        <h2 class="section-title">团队在 Slack 里提问，其余一切留在你的防火墙内。</h2>
+        <p class="section-lead">一个典型配置。除非你主动选择，这条链路不会调用任何公共 AI 服务。</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <h3 class="flow-title">Slack 或 Teams</h3>
+          <p class="flow-desc">员工像给同事发消息一样，向助手提问。</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <h3 class="flow-title">任务智能体</h3>
+          <p class="flow-desc">每个智能体在自己的容器中运行，拥有独立权限。</p>
+        </div>
+        <div class="flow-step flow-step--active">
+          <span class="flow-num">03</span>
+          <h3 class="flow-title">你的 AI 服务器</h3>
+          <p class="flow-desc">运行在你自己的 GPU 或私有云上的开源模型。</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">04</span>
+          <h3 class="flow-title">文档、CRM、财务系统</h3>
+          <p class="flow-desc">通过限定范围的连接读取与更新。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-work">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">精选案例</span>
+        <h2 class="section-title">真实系统，正在生产环境中运行。</h2>
+        <p class="section-lead">这三个项目都属于 AllyOS——我和团队为 Ally Nutra（一家美国膳食补充剂制造商）构建的内部运营系统。</p>
+      </div>
+      <div class="work-list">
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">私有 AI · AllyOS</span>
+              <h3 class="case-title">一台永不离开办公室的私有 AI 服务器</h3>
+            </div>
+            <div class="case-stack">SGLang · Docker · WSL2 · RTX Pro 6000</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>问题</h4>
+              <p class="case-text">团队想要 AI 辅助，但不能把客户和生产数据发到公共云。</p>
+            </div>
+            <div class="case-block">
+              <h4>我做了什么</h4>
+              <p class="case-text">在一张工作站 GPU 上运行量化开源模型，通过容器化的 SGLang 提供服务，并设计面向 Slack 智能体的分级访问权限。</p>
+            </div>
+            <div class="case-block">
+              <h4>结果</h4>
+              <p class="case-text">它现在运行着 AllyOS 的 AI 编码智能体——生成了 134 个 PR，没有一行代码发送给外部 AI 提供商。下一步：通过 Slack 向全公司开放。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">AI 工程 · AllyOS</span>
+              <h3 class="case-title">把 issue 变成 PR 的 AI 编码智能体</h3>
+            </div>
+            <div class="case-stack">Local LLM · GitHub · CI</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>问题</h4>
+              <p class="case-text">小型开发团队的 feature request 远多于人力。</p>
+            </div>
+            <div class="case-block">
+              <h4>我做了什么</h4>
+              <p class="case-text">“Agent Coder”，一个由本地模型驱动的 GitHub 账号。把 issue 分配给它，它会构建功能并创建 PR，流程包含分支、CI 和独立测试环境。</p>
+            </div>
+            <div class="case-block">
+              <h4>结果</h4>
+              <p class="case-text">自 2026 年 9 月以来，它创建了 134 个 PR，其中 129 个被合并——通过率 96%。AllyOS 每两天发布一次生产版本，未通过评审的发布批次会自动回滚。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">业务系统 · AllyOS</span>
+              <h3 class="case-title">用一套运营平台取代表格</h3>
+            </div>
+            <div class="case-stack">QuickBooks · Ramp · HubSpot</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>问题</h4>
+              <p class="case-text">订单、客户更新和付款跟踪分散在邮箱与表格中。</p>
+            </div>
+            <div class="case-block">
+              <h4>我做了什么</h4>
+              <p class="case-text">员工端、客户门户和公开网站基于同一套代码库，并集成 QuickBooks、Ramp 和 HubSpot。</p>
+            </div>
+            <div class="case-block">
+              <h4>结果</h4>
+              <p class="case-text">自 2026 年 7 月以来合并 4,000+ 个 PR、关闭 3,300+ 个 issue。员工、客户和网站共用一套系统；客户回款通过 Ramp 提前标记，QuickBooks 仍是账务记录来源。</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-compare">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">为什么选择我</span>
+        <h2 class="section-title">资深经验，没有代理商的管理开销。</h2>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">与我合作</th>
+              <th scope="col">典型代理商</th>
+              <th scope="col">内部招聘</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>由谁构建</td>
+              <td data-label="与我合作">和你直接沟通的资深工程师</td>
+              <td data-label="典型代理商">往往是你从未见过的团队</td>
+              <td data-label="内部招聘">一名员工，一种技能</td>
+            </tr>
+            <tr>
+              <td>启动时间</td>
+              <td data-label="与我合作">两周内</td>
+              <td data-label="典型代理商">提案和签约之后</td>
+              <td data-label="内部招聘">招聘和入职之后</td>
+            </tr>
+            <tr>
+              <td>价格</td>
+              <td data-label="与我合作">按交付包固定报价</td>
+              <td data-label="典型代理商">通常按工时计费</td>
+              <td data-label="内部招聘">薪资、福利、设备</td>
+            </tr>
+            <tr>
+              <td>AI 与系统一体</td>
+              <td data-label="与我合作">是——模型、智能体及其周边应用</td>
+              <td data-label="典型代理商">通常由不同专家分工</td>
+              <td data-label="内部招聘">取决于招聘的人</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-testimonials">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">客户评价</span>
+        <h2 class="section-title">和我合作是什么体验。</h2>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <p class="quote-text">[Real quote 1]</p>
+          <p class="quote-attr">— [Name], [Title, Company]</p>
+        </div>
+        <div class="quote">
+          <p class="quote-text">[Real quote 2]</p>
+          <p class="quote-attr">— [Name], [Title, Company]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-about">
+    <div class="container about">
+      <div class="about-photo">[Your photo]</div>
+      <div class="about-body">
+        <span class="label">关于</span>
+        <h2 class="section-title">是资深工程师，不是代理商。</h2>
+        <p>我在软件行业做了 14 年：10 年前端，4 年全栈，曾任职于 Manulife、EMC、龙湖集团和新浪支付。</p>
+        <p>现在，我把 AI 融入日常运营——私有模型服务器、住在 Slack 里的智能体，以及把业务串联起来的内部系统。在 Ally Nutra，我负责 AllyOS；如今 AI 智能体已经承担了相当一部分生产代码。和我合作，你直接和真正动手实现的人沟通。</p>
+        <p>我常驻 UTC+8 时区远程工作，通话安排在美国下午。</p>
+        <div class="about-stats">
+          <span>14 年软件经验</span>
+          <span>10 年前端</span>
+          <span>4 年全栈</span>
+        </div>
+        <div class="tag-chips">
+          <span class="tag-chip">TypeScript</span>
+          <span class="tag-chip">React</span>
+          <span class="tag-chip">Node.js</span>
+          <span class="tag-chip">Docker</span>
+          <span class="tag-chip">Self-hosted LLMs</span>
+          <span class="tag-chip">Slack agents</span>
+          <span class="tag-chip">QuickBooks &amp; HubSpot APIs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-process">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">我们会如何合作</span>
+        <h2 class="section-title">五个步骤，没有意外。</h2>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3 class="step-title">诊断</h3>
+          <p class="step-desc">一次简短通话，然后是一份书面计划：做什么、为什么。</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3 class="step-title">报价</h3>
+          <p class="step-desc">固定范围、固定价格，开工前达成一致。</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3 class="step-title">构建</h3>
+          <p class="step-desc">每周在可点击的测试环境上演示。</p>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <h3 class="step-title">交付</h3>
+          <p class="step-desc">代码、文档和账号都归你所有。</p>
+        </div>
+        <div class="step">
+          <span class="step-num">05</span>
+          <h3 class="step-title">支持</h3>
+          <p class="step-desc">可选的月度计划：修复、更新与培训。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="magnet" id="zh-checklist">
+    <div class="container magnet__inner">
+      <div>
+        <span class="label label--light">免费指南</span>
+        <h2 class="section-title">《私有 AI 就绪清单》</h2>
+        <p class="magnet-copy">20 个问题，帮你在花钱之前判断：团队现在需要私有模型、智能体，还是暂时都不需要。</p>
+      </div>
+      <div>
+        <form class="magnet-form checklist-form" id="checklist-form-zh">
+          <label class="visually-hidden" for="work-email-zh">工作邮箱</label>
+          <input id="work-email-zh" name="email" type="email" placeholder="工作邮箱" autocomplete="email" required>
+          <button type="submit">把清单发给我</button>
+        </form>
+        <p class="magnet-note">只发一封含 PDF 的邮件。不发垃圾邮件。</p>
+        <p class="magnet-status" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-insights">
+    <div class="container">
+      <div class="section-head head-row">
+        <div>
+          <span class="label">洞察</span>
+          <h2 class="section-title">来自真实部署的记录。</h2>
+        </div>
+        <a class="link-arrow" href="#zh-insights">全部文章 →</a>
+      </div>
+      <div class="insights">
+        <article class="insight">
+          <span class="insight-meta"><em>私有 AI</em> · 8 分钟阅读</span>
+          <h3 class="insight-title">在一台办公工作站上运行 LLM，真正需要什么</h3>
+          <p class="insight-desc">硬件、量化，以及没人提起的权衡。</p>
+        </article>
+        <article class="insight">
+          <span class="insight-meta"><em>智能体</em> · 6 分钟阅读</span>
+          <h3 class="insight-title">为什么你的 AI 助手应该住在 Slack，而不是一个新应用</h3>
+          <p class="insight-desc">采用率，跟着人们每天已经打开的工具走。</p>
+        </article>
+        <article class="insight">
+          <span class="insight-meta"><em>工程</em> · 7 分钟阅读</span>
+          <h3 class="insight-title">129 个已合并 PR：让 AI 智能体写生产代码，我们学到了什么</h3>
+          <p class="insight-desc">分支、测试环境和自动回滚作为护栏。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zh-faq">
+    <div class="container faq-layout">
+      <div>
+        <span class="label">常见问题</span>
+        <h2 class="section-title">客户最先问的问题。</h2>
+        <p class="faq-side">还有别的疑问？<a href="#zh-book">直接问我。</a></p>
+      </div>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>你在 UTC+8，跨时区合作怎么进行？<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">通话安排在你的下午。你睡觉时工作继续推进，醒来往往就能看到进展。所有更新都有书面记录，不依赖双方同时在线。</p>
+        </details>
+        <details class="faq-item">
+          <summary>私有 AI 需要购买特殊硬件吗？<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">不一定。诊断会告诉你，一张工作站 GPU、一个私有云实例，还是带有严格数据条款的托管 API，更符合你的需求和预算。</p>
+        </details>
+        <details class="faq-item">
+          <summary>代码和账号归谁所有？<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">归你。所有内容从第一天起就在你的仓库和你的云账号里，并配有文档，方便后续维护者接手。</p>
+        </details>
+        <details class="faq-item">
+          <summary>付款方式是怎样的？<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">固定价格项目按里程碑拆分，每完成一个阶段支付一次。[Add accepted payment methods.]</p>
+        </details>
+        <details class="faq-item">
+          <summary>如果项目需要不止一个人怎么办？<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">我主导构建，并在项目需要时引入可靠的专家。你会提前知情，价格不变。</p>
+        </details>
+        <details class="faq-item">
+          <summary>你会签 NDA 吗？<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">会，在讨论任何敏感信息之前。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="zh-book">
+    <div class="container">
+      <h2 class="cta-title">告诉我，是什么拖慢了你的团队。</h2>
+      <p class="cta-text">一次免费的 30 分钟通话。无论最终是否合作，你都会带走至少一个能用的想法。</p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href="[Your booking link]">预约 30 分钟免费通话 →</a>
+        <a class="btn btn--ghost-dark" href="mailto:[your@email.com]">[your@email.com]</a>
+      </div>
+      <p class="cta-note">[Your booking link]</p>
+    </div>
+  </section>
+
+  </div>
 
 </main>
 
