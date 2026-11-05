@@ -1,66 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="页面走丢了 — LX" data-en="Page not found — LX">页面走丢了 — LX</title>
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#05060a">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/site.css">
-<script src="assets/js/site.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — [Your Name]</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f7f6f2">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="LX home">
-      <span class="brand-mark">LX</span>
-      <span class="brand-text">
-        <span class="brand-name">LX</span>
-        <span class="brand-role" data-zh="全栈 · AI AGENT" data-en="FULL-STACK · AI AGENT">全栈 · AI AGENT</span>
-      </span>
-    </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a class="nav-link" href="work.html" data-zh="案例" data-en="Work">案例</a>
-      <a class="nav-link" href="services.html" data-zh="服务与报价" data-en="Services">服务与报价</a>
-      <a class="nav-link" href="about.html" data-zh="关于" data-en="About">关于</a>
-      <a class="nav-link" href="contact.html" data-zh="联系" data-en="Contact">联系</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="lang-switch" type="button" data-lang-toggle aria-label="Switch language">
-        <svg class="globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c1.8 1.9 2.7 4 2.7 6.2s-.9 4.3-2.7 6.2C6.2 14.3 5.3 12.2 5.3 8s.9-4.3 2.7-6.2z"/></svg>
-        <span data-zh="EN" data-en="中文">EN</span>
-      </button>
-      <a class="btn btn-primary btn-sm" href="contact.html" data-zh="预约免费诊断" data-en="Book a free audit">预约免费诊断</a>
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><i></i><i></i><i></i></button>
-    </div>
-  </div>
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="work.html" data-zh="案例" data-en="Work">案例</a>
-    <a href="services.html" data-zh="服务与报价" data-en="Services &amp; pricing">服务与报价</a>
-    <a href="about.html" data-zh="关于我" data-en="About">关于我</a>
-    <a href="contact.html" data-zh="联系与预约" data-en="Contact">联系与预约</a>
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a class="brand" href="/">[Your Name]</a>
   </div>
 </header>
 
-<main class="notfound">
-  <div class="container">
-    <div class="code">404</div>
-    <h1 data-zh="这个页面不在了。" data-en="This page isn't here.">这个页面不在了。</h1>
-    <p data-zh="可能是链接写错了，或者它已经被合并到别的页面。回首页看看，或者直接找我。" data-en="The link may be wrong, or the page has moved. Head back home, or just reach out.">可能是链接写错了，或者它已经被合并到别的页面。回首页看看，或者直接找我。</p>
-    <div class="cta-actions cta-actions--center">
-      <a class="btn btn-primary" href="index.html" data-zh="回首页" data-en="Back home">回首页</a>
-      <a class="btn btn-ghost" href="contact.html" data-zh="联系我" data-en="Contact me">联系我</a>
-    </div>
+<main class="nf">
+  <div class="container nf-inner">
+    <span class="label">404</span>
+    <h1>This page isn't here.</h1>
+    <p>The link may be old, or the page has moved. Head back to the home page.</p>
+    <a class="btn btn--primary" href="/">Back to home</a>
   </div>
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-bottom footer-bottom--bare">
-      <span>© <span data-year>2026</span> LX</span>
-      <span data-zh="托管于 Cloudflare" data-en="Hosted on Cloudflare">托管于 Cloudflare</span>
+  <div class="container footer__inner">
+    <span>© 2026 [Your Name]</span>
+    <div>
+      <a href="#">[LinkedIn]</a> · <a href="https://github.com/lx307697527">GitHub</a>
     </div>
   </div>
 </footer>

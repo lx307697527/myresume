@@ -1,488 +1,598 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="LX — 全栈工程师 · AI Agent 交付" data-en="LX — Full-stack engineer · AI agent delivery">LX — 全栈工程师 · AI Agent 交付</title>
-<meta name="description" content="LX 为国内与海外中小企业交付全栈产品、官网与 AI Agent 自动化。固定报价、2–4 周上线、源码 100% 交付。" data-zh="LX 为国内与海外中小企业交付全栈产品、官网与 AI Agent 自动化。固定报价、2–4 周上线、源码 100% 交付。免费 30 分钟诊断。" data-en="LX builds web products, websites and AI-agent automations for SMBs in China and abroad. Fixed scope, 2–4 week delivery, 100% source ownership.">
-<meta name="theme-color" content="#05060a">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/site.css">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="LX">
-<meta property="og:title" data-zh="LX — 全栈工程师 · AI Agent 交付" data-en="LX — Full-stack engineer · AI agent delivery" content="LX — 全栈工程师 · AI Agent 交付">
-<meta property="og:description" data-zh="把 AI 变成你生意里真正能干活的系统。固定报价、2–4 周上线、源码 100% 归你。" data-en="Turn AI into a system that actually does the work. Fixed scope, shipped in 2–4 weeks, 100% of the code yours." content="把 AI 变成你生意里真正能干活的系统。">
-<meta property="og:url" content="https://lx.dev/">
-<link rel="canonical" href="https://lx.dev/">
-<script src="assets/js/site.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Your Name] — AI implementation for small and mid-sized businesses</title>
+  <meta name="description" content="I put AI to work inside your business — privately, and wired into the tools you already use. Private AI, internal agents and custom systems for teams of 10–200.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="[Your Name] — AI implementation for small and mid-sized businesses">
+  <meta property="og:description" content="14 years building production software. Private AI, internal agents and custom systems, with fixed prices agreed up front.">
+  <meta property="og:site_name" content="[Your Name]">
+  <meta name="theme-color" content="#f7f6f2">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="LX home">
-      <span class="brand-mark">LX</span>
-      <span class="brand-text">
-        <span class="brand-name">LX</span>
-        <span class="brand-role" data-zh="全栈 · AI AGENT" data-en="FULL-STACK · AI AGENT">全栈 · AI AGENT</span>
-      </span>
-    </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a class="nav-link" href="work.html" data-zh="案例" data-en="Work">案例</a>
-      <a class="nav-link" href="services.html" data-zh="服务与报价" data-en="Services">服务与报价</a>
-      <a class="nav-link" href="about.html" data-zh="关于" data-en="About">关于</a>
-      <a class="nav-link" href="contact.html" data-zh="联系" data-en="Contact">联系</a>
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a class="brand" href="#top">[Your Name]</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="#work">Work</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#insights">Insights</a>
+      <a class="nav-link" href="#faq">FAQ</a>
     </nav>
-    <div class="nav-actions">
-      <button class="lang-switch" type="button" data-lang-toggle aria-label="Switch language">
-        <svg class="globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c1.8 1.9 2.7 4 2.7 6.2s-.9 4.3-2.7 6.2C6.2 14.3 5.3 12.2 5.3 8s.9-4.3 2.7-6.2z"/></svg>
-        <span data-zh="EN" data-en="中文">EN</span>
+    <div class="nav__actions">
+      <a class="btn btn--primary btn--sm" href="#book">Book a call</a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <a class="btn btn-primary btn-sm" href="contact.html" data-zh="预约免费诊断" data-en="Book a free audit">预约免费诊断</a>
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><i></i><i></i><i></i></button>
     </div>
   </div>
   <div class="mobile-menu" id="mobile-menu">
-    <a href="work.html" data-zh="案例" data-en="Work">案例</a>
-    <a href="services.html" data-zh="服务与报价" data-en="Services &amp; pricing">服务与报价</a>
-    <a href="about.html" data-zh="关于我" data-en="About">关于我</a>
-    <a href="contact.html" data-zh="联系与预约" data-en="Contact">联系与预约</a>
-    <a class="btn btn-primary" href="contact.html" data-zh="预约免费 30 分钟诊断" data-en="Book a free 30-min audit">预约免费 30 分钟诊断</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#insights">Insights</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn--primary" href="#book">Book a call</a>
   </div>
 </header>
 
 <main>
 
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="pill"><span class="pill-dot"></span><span data-zh="2026 Q4 · 开放 2 个新项目名额" data-en="2026 Q4 · 2 project slots open">2026 Q4 · 开放 2 个新项目名额</span></span>
-          <h1 class="hero-title">
-            <span data-zh="把 AI 变成你生意里<br><span class=&quot;grad&quot;>真正能干活的系统</span>。" data-en="Turn AI into a system that<br><span class=&quot;grad&quot;>actually does the work</span>.">把 AI 变成你生意里<br><span class="grad">真正能干活的系统</span>。</span>
-          </h1>
-          <p class="hero-sub" data-zh="我是 LX，全栈工程师与 AI Agent 实践者。为国内与海外中小企业交付全栈产品、官网与智能体自动化——固定报价、2 周内出可上线版本、源码 100% 归你。" data-en="I'm LX, a full-stack engineer and AI-agent practitioner working with SMBs in China and abroad. I ship web products, sites and agent automations — fixed scope, a shippable release in two weeks, and 100% of the source code in your hands.">我是 LX，全栈工程师与 AI Agent 实践者。为国内与海外中小企业交付全栈产品、官网与智能体自动化——固定报价、2 周内出可上线版本、源码 100% 归你。</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="contact.html" data-zh="预约免费 30 分钟诊断" data-en="Book a free 30-min audit">预约免费 30 分钟诊断</a>
-            <a class="btn btn-ghost" href="work.html" data-zh="看看我做了什么" data-en="See the work">看看我做了什么</a>
-          </div>
-          <div class="hero-note">
-            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8.5l3.4 3.4L13 4.8"/></svg><span data-zh="中英双语" data-en="Bilingual CN / EN">中英双语</span></span>
-            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8.5l3.4 3.4L13 4.8"/></svg><span data-zh="直接对接工程师" data-en="Talk to the engineer">直接对接工程师</span></span>
-            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8.5l3.4 3.4L13 4.8"/></svg><span data-zh="可签 NDA" data-en="NDA-friendly">可签 NDA</span></span>
-            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8.5l3.4 3.4L13 4.8"/></svg><span data-zh="人民币 / 美元结算" data-en="CNY / USD">人民币 / 美元结算</span></span>
-          </div>
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <span class="label">AI implementation · Full-stack engineering</span>
+        <h1 class="hero-title">I put AI to work inside your business — privately, and wired into the tools you already use.</h1>
+        <p class="hero-sub">14 years building production software. I help small and mid-sized teams deploy private AI, build internal agents, and ship the custom systems their operations actually run on.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#book">Book a free 30-min call</a>
+          <a class="btn btn--secondary" href="#work">See recent work</a>
         </div>
+        <ul class="trust">
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Fixed prices, agreed up front
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You own all the code
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Your data stays private
+          </li>
+        </ul>
+      </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-glow"></div>
-          <div class="code-card">
-            <div class="window-bar">
-              <div class="window-dots"><i></i><i></i><i></i></div>
-              <div class="window-file"><b>lx</b> · agent-run.log</div>
-            </div>
-            <div class="code-body">
-              <div class="code-line"><span class="cm"># task: put a support agent to work</span></div>
-              <div class="code-line"><span class="kw">$</span> lx agent run <span class="str">--scope "support"</span></div>
-              <div class="code-line"><span class="ok">◇ plan</span>    3 steps · scoped by impact</div>
-              <div class="code-line"><span class="ok">◇ build</span>   14 files · tests passing</div>
-              <div class="code-line"><span class="ok">◇ verify</span>  240 eval cases · 94% pass</div>
-              <div class="code-line"><span class="ok">◇ ship</span>    cloudflare · 42ms TTFB</div>
-              <div class="code-line"><span class="dimc">   handover: source, docs, runbook</span></div>
-              <div class="code-line"><span class="ok">✓ done</span>   41s · owner: you</div>
-            </div>
-          </div>
-          <div class="status-card">
-            <div class="status-title"><span data-zh="智能体运行" data-en="Agent run">智能体运行</span><span class="live">LIVE</span></div>
-            <div class="stat-row">
-              <div class="k"><span data-zh="自动解决" data-en="Auto-resolved">自动解决</span><b>68%</b></div>
-              <div class="bar"><i class="w-68"></i></div>
-            </div>
-            <div class="stat-row">
-              <div class="k"><span data-zh="首次响应" data-en="First reply">首次响应</span><b>1m 12s</b></div>
-              <div class="bar bar--alt"><i class="w-92"></i></div>
-            </div>
-            <div class="stat-row">
-              <div class="k"><span data-zh="每周省下人工" data-en="Hours saved / wk">每周省下人工</span><b>38h</b></div>
-              <div class="bar"><i class="w-45"></i></div>
-            </div>
+      <aside class="ship" aria-label="Recently shipped">
+        <div class="ship__head">
+          <span class="label">Recently shipped</span>
+        </div>
+        <div class="ship-item">
+          <div class="ship-num">01</div>
+          <div>
+            <div class="ship-title">On-premise LLM server</div>
+            <p class="ship-desc">A private model running our AI coding agent, with no data leaving the office</p>
           </div>
         </div>
+        <div class="ship-item">
+          <div class="ship-num">02</div>
+          <div>
+            <div class="ship-title">AI coding agent in the dev loop</div>
+            <p class="ship-desc">129 of its 134 pull requests merged</p>
+          </div>
+        </div>
+        <div class="ship-item">
+          <div class="ship-num">03</div>
+          <div>
+            <div class="ship-title">Operations platform</div>
+            <p class="ship-desc">Staff app, customer portal and website on one system</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="Engineering background">
+    <div class="container strip__inner">
+      <span class="strip-label">Engineering background at</span>
+      <div class="strip-names">
+        <span>Manulife</span>
+        <span>EMC</span>
+        <span>Longfor Group</span>
+        <span>Sina Payment</span>
       </div>
     </div>
   </section>
 
-  <section class="stats">
+  <section class="band" id="numbers">
+    <div class="container numbers">
+      <span class="label">AllyOS, by the numbers</span>
+      <div class="numbers-grid">
+        <div class="stat">
+          <div class="stat-value">4,000+</div>
+          <p class="stat-desc">pull requests merged since July 2026</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3,300+</div>
+          <p class="stat-desc">issues closed</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1,200+</div>
+          <p class="stat-desc">pull requests merged in the last 30 days</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">96%</div>
+          <p class="stat-desc">of the AI agent's pull requests merged</p>
+        </div>
+      </div>
+      <p class="stats-note">From the AllyOS GitHub repository, as of November 2026.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pain">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-value">48<small>h</small></div>
-          <div class="stat-label" data-zh="可点开就用的原型" data-en="Clickable prototype">可点开就用的原型</div>
+      <div class="section-head">
+        <span class="label">Sound familiar?</span>
+        <h2 class="section-title">Most small teams know AI could help. Few know where to start.</h2>
+      </div>
+      <div class="pain-grid">
+        <div class="pain">
+          <p class="pain-quote">"We can't put client data into ChatGPT."</p>
+          <p class="pain-desc">Legal, finance and health-adjacent teams need AI that runs where their data already lives.</p>
         </div>
-        <div class="stat">
-          <div class="stat-value">2–4<small data-zh="周" data-en="wks">周</small></div>
-          <div class="stat-label" data-zh="MVP 到上线" data-en="MVP to launch">MVP 到上线</div>
+        <div class="pain">
+          <p class="pain-quote">"Our operations run on spreadsheets."</p>
+          <p class="pain-desc">Orders, invoices and customer updates get copied by hand between five different tools.</p>
         </div>
-        <div class="stat">
-          <div class="stat-value">&lt;12<small>h</small></div>
-          <div class="stat-label" data-zh="工作时间内回复" data-en="Reply within a workday">工作时间内回复</div>
+        <div class="pain">
+          <p class="pain-quote">"We tried an AI tool. Nobody uses it."</p>
+          <p class="pain-desc">A chatbot on the side isn't the same as AI inside the place your team already works.</p>
         </div>
-        <div class="stat">
-          <div class="stat-value">100<small>%</small></div>
-          <div class="stat-label" data-zh="源码与账号归你" data-en="Code &amp; accounts yours">源码与账号归你</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">CN<small>/ EN</small></div>
-          <div class="stat-label" data-zh="双语沟通与交付" data-en="Bilingual delivery">双语沟通与交付</div>
+        <div class="pain">
+          <p class="pain-quote">"Agencies quote six figures."</p>
+          <p class="pain-desc">You need a senior engineer for a focused project, not a team of twelve and a long retainer.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="container">
-    <div class="stack-strip">
-      <span class="stack-label" data-zh="日常技术栈" data-en="Daily drivers">日常技术栈</span>
-      <div class="stack-items">
-        <span class="chip chip--accent">Next.js</span>
-        <span class="chip">React</span>
-        <span class="chip">TypeScript</span>
-        <span class="chip">Node.js</span>
-        <span class="chip">Python</span>
-        <span class="chip">FastAPI</span>
-        <span class="chip chip--accent">LangGraph</span>
-        <span class="chip">PostgreSQL</span>
-        <span class="chip">pgvector</span>
-        <span class="chip">Redis</span>
-        <span class="chip">Stripe</span>
-        <span class="chip chip--accent">Cloudflare</span>
-        <span class="chip">OpenAI</span>
-        <span class="chip">Claude</span>
-        <span class="chip" data-zh="企业微信" data-en="WeCom">企业微信</span>
-        <span class="chip" data-zh="飞书" data-en="Feishu">飞书</span>
-        <span class="chip">WhatsApp API</span>
-      </div>
-    </div>
-  </div>
 
   <section class="section" id="services">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-zh="服务 / SERVICES" data-en="SERVICES / 服务">服务 / SERVICES</span>
-        <h2 class="section-title" data-zh="我能替你做什么" data-en="What I can take off your plate">我能替你做什么</h2>
-        <p class="section-lead" data-zh="不按小时卖时间。你带着一个具体问题来，我交付一个能跑起来、能被衡量的结果。" data-en="I don't sell hours. You bring a concrete problem; I deliver something that runs — and something you can measure.">不按小时卖时间。你带着一个具体问题来，我交付一个能跑起来、能被衡量的结果。</p>
+      <div class="section-head">
+        <span class="label">Services</span>
+        <h2 class="section-title">Fixed-scope packages, so you know the cost before we start.</h2>
+        <p class="section-lead">Most clients begin with a short diagnostic. It turns a vague "we should use AI" into a concrete plan with a price.</p>
       </div>
+      <div class="services">
 
-      <div class="services-grid">
-        <article class="service reveal">
-          <div class="service-top">
-            <span class="service-num">01</span>
-            <span class="service-badge" data-zh="最受欢迎" data-en="Most requested">最受欢迎</span>
-          </div>
-          <h3 class="service-title" data-zh="AI Agent 与流程自动化" data-en="AI agents &amp; workflow automation">AI Agent 与流程自动化</h3>
-          <p class="service-desc" data-zh="把客服、线索跟进、报价、日报这些重复劳动，交给一个可观测、可人工接管的智能体。不是 PPT 里的 AI，是每天在跑的流程。" data-en="Hand customer replies, lead follow-ups, quoting and reporting to an agent you can observe and take over. Not AI in a slide deck — workflows that run every day.">把客服、线索跟进、报价、日报这些重复劳动，交给一个可观测、可人工接管的智能体。不是 PPT 里的 AI，是每天在跑的流程。</p>
-          <div class="service-tags">
-            <span class="tag" data-zh="RAG 知识库" data-en="RAG knowledge base">RAG 知识库</span>
-            <span class="tag" data-zh="多渠道接入" data-en="Multi-channel">多渠道接入</span>
-            <span class="tag" data-zh="人工兜底" data-en="Human handover">人工兜底</span>
-            <span class="tag" data-zh="评测与监控" data-en="Evals &amp; monitoring">评测与监控</span>
-          </div>
-          <div class="service-meta">
-            <div>
-              <div class="service-time" data-zh="2–4 周 · 2 次迭代" data-en="2–4 weeks · 2 iterations">2–4 周 · 2 次迭代</div>
-              <div class="service-price"><small data-zh="起价" data-en="from">起价</small>¥20,000 / $3,000</div>
-            </div>
-            <a class="btn-arrow" href="services.html#packages" data-zh="了解交付内容" data-en="See deliverables">了解交付内容 <span>→</span></a>
-          </div>
+        <article class="service service--start">
+          <span class="service-tag">Start here</span>
+          <h3 class="service-title">AI Readiness Diagnostic</h3>
+          <p class="service-desc">I map your workflows, find where AI saves real hours, and hand you a build plan with fixed quotes.</p>
+          <ul class="service-list">
+            <li>Two working sessions with your team</li>
+            <li>Written report ranking opportunities by value</li>
+            <li>Fixed quotes for each recommended build</li>
+          </ul>
+          <div class="service-meta">1–2 weeks · From $1,500</div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-top">
-            <span class="service-num">02</span>
-            <span class="service-badge" data-zh="固定报价" data-en="Fixed scope">固定报价</span>
-          </div>
-          <h3 class="service-title" data-zh="全栈产品与 SaaS MVP" data-en="Full-stack products &amp; SaaS MVPs">全栈产品与 SaaS MVP</h3>
-          <p class="service-desc" data-zh="从数据模型到支付订阅，一个人交付完整产品。适合要验证市场、又不想先养一个技术团队的你。" data-en="From data model to subscriptions, one person ships the whole product. Built for founders who need to validate a market before hiring a team.">从数据模型到支付订阅，一个人交付完整产品。适合要验证市场、又不想先养一个技术团队的你。</p>
-          <div class="service-tags">
-            <span class="tag">Next.js</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Stripe</span>
-            <span class="tag" data-zh="多租户 / 权限" data-en="Multi-tenant / RBAC">多租户 / 权限</span>
-          </div>
-          <div class="service-meta">
-            <div>
-              <div class="service-time" data-zh="2–6 周 · 每周可见" data-en="2–6 weeks · weekly demos">2–6 周 · 每周可见</div>
-              <div class="service-price"><small data-zh="起价" data-en="from">起价</small>¥30,000 / $4,500</div>
-            </div>
-            <a class="btn-arrow" href="services.html#packages" data-zh="了解交付内容" data-en="See deliverables">了解交付内容 <span>→</span></a>
-          </div>
+        <article class="service">
+          <h3 class="service-title">Internal AI Assistant</h3>
+          <p class="service-desc">An agent in Slack or Teams that knows your documents and can act in your tools — answering, drafting, filing.</p>
+          <ul class="service-list">
+            <li>Connected to your docs, CRM or helpdesk</li>
+            <li>Permissions that match your org chart</li>
+            <li>Usage dashboard and team onboarding</li>
+          </ul>
+          <div class="service-meta">3–6 weeks · From $5,000</div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-top">
-            <span class="service-num">03</span>
-            <span class="service-badge" data-zh="最快 1 周" data-en="Ship in a week">最快 1 周</span>
-          </div>
-          <h3 class="service-title" data-zh="官网 / 独立站 / 小程序" data-en="Websites, storefronts &amp; mini-programs">官网 / 独立站 / 小程序</h3>
-          <p class="service-desc" data-zh="快、稳、能被搜到的门面。跨境独立站、品牌官网、微信小程序，含支付、物流与多语言。" data-en="A front door that loads fast, ranks, and converts. Cross-border storefronts, brand sites and WeChat mini-programs — payments, shipping and languages included.">快、稳、能被搜到的门面。跨境独立站、品牌官网、微信小程序，含支付、物流与多语言。</p>
-          <div class="service-tags">
-            <span class="tag" data-zh="高转化落地页" data-en="Conversion-first">高转化落地页</span>
-            <span class="tag" data-zh="跨境支付" data-en="Global payments">跨境支付</span>
-            <span class="tag" data-zh="多语言 SEO" data-en="Multilingual SEO">多语言 SEO</span>
-            <span class="tag">Cloudflare</span>
-          </div>
-          <div class="service-meta">
-            <div>
-              <div class="service-time" data-zh="1–2 周 · 含部署" data-en="1–2 weeks · deployed">1–2 周 · 含部署</div>
-              <div class="service-price"><small data-zh="起价" data-en="from">起价</small>¥8,000 / $1,200</div>
-            </div>
-            <a class="btn-arrow" href="services.html#packages" data-zh="了解交付内容" data-en="See deliverables">了解交付内容 <span>→</span></a>
-          </div>
+        <article class="service">
+          <h3 class="service-title">Private AI Deployment</h3>
+          <p class="service-desc">Open models running on your own hardware or private cloud. Per-team isolation, and your data never leaves the building.</p>
+          <ul class="service-list">
+            <li>Hardware sizing and model selection</li>
+            <li>Containerized serving with access tiers</li>
+            <li>Runbook so your team can operate it</li>
+          </ul>
+          <div class="service-meta">4–8 weeks · From $8,000</div>
         </article>
 
-        <article class="service reveal">
-          <div class="service-top">
-            <span class="service-num">04</span>
-            <span class="service-badge" data-zh="低风险起点" data-en="Low-risk start">低风险起点</span>
-          </div>
-          <h3 class="service-title" data-zh="技术诊断与 AI 落地顾问" data-en="Technical audit &amp; AI advisory">技术诊断与 AI 落地顾问</h3>
-          <p class="service-desc" data-zh="一周看清你的技术债务与 AI 机会点，给一份能直接执行的路线图；需要时，我也可以做你的外部技术负责人。" data-en="One week to see your technical debt and your real AI opportunities, with a roadmap you can execute. I can also act as your fractional technical lead.">一周看清你的技术债务与 AI 机会点，给一份能直接执行的路线图；需要时，我也可以做你的外部技术负责人。</p>
-          <div class="service-tags">
-            <span class="tag" data-zh="架构评审" data-en="Architecture review">架构评审</span>
-            <span class="tag" data-zh="AI 可行性" data-en="AI feasibility">AI 可行性</span>
-            <span class="tag" data-zh="团队培训" data-en="Team training">团队培训</span>
-            <span class="tag">Fractional CTO</span>
-          </div>
-          <div class="service-meta">
-            <div>
-              <div class="service-time" data-zh="1 周 · 2 小时访谈起" data-en="1 week · from a 2h interview">1 周 · 2 小时访谈起</div>
-              <div class="service-price"><small data-zh="起价" data-en="from">起价</small>¥5,000 / $700</div>
-            </div>
-            <a class="btn-arrow" href="services.html#packages" data-zh="了解交付内容" data-en="See deliverables">了解交付内容 <span>→</span></a>
-          </div>
+        <article class="service">
+          <h3 class="service-title">Custom Business Systems</h3>
+          <p class="service-desc">Orders, customers, inventory and finance in one internal app — connected to QuickBooks, HubSpot and the rest of your stack.</p>
+          <ul class="service-list">
+            <li>Staff app and optional customer portal</li>
+            <li>Two-way sync with your existing tools</li>
+            <li>Test environment and safe release process</li>
+          </ul>
+          <div class="service-meta">2–4 months · From $15,000</div>
         </article>
-      </div>
 
-      <div class="services-foot reveal">
-        <span data-zh="以上为参考起价，最终按固定范围报价，不按小时计费。" data-en="Indicative starting prices. Final quotes are fixed-scope, never hourly.">以上为参考起价，最终按固定范围报价，不按小时计费。</span>
-        <a class="btn-arrow" href="services.html" data-zh="查看完整服务与常见问题" data-en="Full services &amp; FAQ">查看完整服务与常见问题 <span>→</span></a>
+        <article class="service">
+          <h3 class="service-title">Support and Advisory</h3>
+          <p class="service-desc">Maintenance, new features as you grow, and hands-on AI training for your team.</p>
+          <ul class="service-list">
+            <li>Monitoring, fixes and updates</li>
+            <li>A set number of build hours each month</li>
+            <li>Monthly AI training session for staff</li>
+          </ul>
+          <div class="service-meta">Monthly · From $1,000/mo</div>
+        </article>
+
+        <article class="service service--soft">
+          <h3 class="service-title">Not sure which fits?</h3>
+          <p class="service-desc">Tell me what's slowing your team down. I'll say honestly whether AI is the right tool for it.</p>
+          <a class="service-link" href="#book">Book a call →</a>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <section class="section section--flush" id="work">
+  <section class="section" id="privacy">
     <div class="container">
-      <div class="section-head section-head--row reveal">
+      <div class="section-head">
+        <span class="label">How private AI works</span>
+        <h2 class="section-title">Your team asks in Slack. Everything else stays inside your walls.</h2>
+        <p class="section-lead">A typical setup. Nothing in this chain calls a public AI service unless you choose to.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <h3 class="flow-title">Slack or Teams</h3>
+          <p class="flow-desc">Staff message an assistant like a colleague.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <h3 class="flow-title">Task agents</h3>
+          <p class="flow-desc">Each runs in its own container with its own permissions.</p>
+        </div>
+        <div class="flow-step flow-step--active">
+          <span class="flow-num">03</span>
+          <h3 class="flow-title">Your AI server</h3>
+          <p class="flow-desc">An open model on your own GPU or private cloud.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">04</span>
+          <h3 class="flow-title">Docs, CRM, accounting</h3>
+          <p class="flow-desc">Read and updated through scoped connections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">Selected work</span>
+        <h2 class="section-title">Real systems, running in production.</h2>
+        <p class="section-lead">All three are part of AllyOS, the internal operating system my team and I build for Ally Nutra, a US dietary-supplement manufacturer.</p>
+      </div>
+      <div class="work-list">
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">Private AI · AllyOS</span>
+              <h3 class="case-title">A private AI server that never leaves the office</h3>
+            </div>
+            <div class="case-stack">SGLang · Docker · WSL2 · RTX Pro 6000</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>Problem</h4>
+              <p class="case-text">The team wanted AI help, but couldn't send customer and production data to a public cloud.</p>
+            </div>
+            <div class="case-block">
+              <h4>What I built</h4>
+              <p class="case-text">A quantized open model on one workstation GPU, served through SGLang in containers, with tiered access designed for Slack agents.</p>
+            </div>
+            <div class="case-block">
+              <h4>Result</h4>
+              <p class="case-text">It runs AllyOS's AI coding agent today — 134 pull requests generated without sending a line of code to an outside AI provider. Next: company-wide access through Slack.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">AI engineering · AllyOS</span>
+              <h3 class="case-title">An AI coding agent that turns issues into pull requests</h3>
+            </div>
+            <div class="case-stack">Local LLM · GitHub · CI</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>Problem</h4>
+              <p class="case-text">A small dev team had more feature requests than hands to build them.</p>
+            </div>
+            <div class="case-block">
+              <h4>What I built</h4>
+              <p class="case-text">"Agent Coder", a GitHub account backed by our local model. Assign it an issue and it builds the feature and opens a pull request, inside a branch flow with CI and separate test environments.</p>
+            </div>
+            <div class="case-block">
+              <h4>Result</h4>
+              <p class="case-text">Since September 2026 it has opened 134 pull requests, and 129 were merged — a 96% acceptance rate. AllyOS ships to production every two days, and a release batch that fails review rolls back automatically.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">Business systems · AllyOS</span>
+              <h3 class="case-title">One operations platform instead of spreadsheets</h3>
+            </div>
+            <div class="case-stack">QuickBooks · Ramp · HubSpot</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>Problem</h4>
+              <p class="case-text">Orders, customer updates and payment tracking were spread across inboxes and spreadsheets.</p>
+            </div>
+            <div class="case-block">
+              <h4>What I built</h4>
+              <p class="case-text">A staff app, a customer portal and the public website on one codebase, integrated with QuickBooks, Ramp and HubSpot.</p>
+            </div>
+            <div class="case-block">
+              <h4>Result</h4>
+              <p class="case-text">4,000+ pull requests merged and 3,300+ issues closed since July 2026. Staff, customers and the website share one system, and incoming customer payments are flagged early through Ramp while QuickBooks stays the books of record.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">Why work with me</span>
+        <h2 class="section-title">Senior experience, without agency overhead.</h2>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Working with me</th>
+              <th scope="col">Typical agency</th>
+              <th scope="col">Hiring in-house</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Who builds it</td>
+              <td data-label="Working with me">The senior engineer you talk to</td>
+              <td data-label="Typical agency">Often a team you never meet</td>
+              <td data-label="Hiring in-house">One hire, one skill set</td>
+            </tr>
+            <tr>
+              <td>Time to start</td>
+              <td data-label="Working with me">Within two weeks</td>
+              <td data-label="Typical agency">After proposals and contracting</td>
+              <td data-label="Hiring in-house">After recruiting and onboarding</td>
+            </tr>
+            <tr>
+              <td>Pricing</td>
+              <td data-label="Working with me">Fixed per package</td>
+              <td data-label="Typical agency">Usually time and materials</td>
+              <td data-label="Hiring in-house">Salary, benefits, equipment</td>
+            </tr>
+            <tr>
+              <td>AI and systems in one</td>
+              <td data-label="Working with me">Yes — models, agents and the app around them</td>
+              <td data-label="Typical agency">Often split across specialists</td>
+              <td data-label="Hiring in-house">Depends on the hire</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">Client words</span>
+        <h2 class="section-title">What it's like to work together.</h2>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <p class="quote-text">[Real quote 1]</p>
+          <p class="quote-attr">— [Name], [Title, Company]</p>
+        </div>
+        <div class="quote">
+          <p class="quote-text">[Real quote 2]</p>
+          <p class="quote-attr">— [Name], [Title, Company]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container about">
+      <div class="about-photo">[Your photo]</div>
+      <div class="about-body">
+        <span class="label">About</span>
+        <h2 class="section-title">A senior engineer, not an agency.</h2>
+        <p>I've spent 14 years shipping software: ten in front-end and four across the full stack, at companies including Manulife, EMC, Longfor Group and Sina Payment.</p>
+        <p>Today I build AI into day-to-day operations — private model servers, agents that live in Slack, and the internal systems that tie a business together. At Ally Nutra, I lead AllyOS, where AI agents now write a real share of our production code. When you work with me, you talk directly to the person building it.</p>
+        <p>I work remotely from UTC+8 and schedule calls in US afternoons.</p>
+        <div class="about-stats">
+          <span>14 years in software</span>
+          <span>10 years front-end</span>
+          <span>4 years full-stack</span>
+        </div>
+        <div class="tag-chips">
+          <span class="tag-chip">TypeScript</span>
+          <span class="tag-chip">React</span>
+          <span class="tag-chip">Node.js</span>
+          <span class="tag-chip">Docker</span>
+          <span class="tag-chip">Self-hosted LLMs</span>
+          <span class="tag-chip">Slack agents</span>
+          <span class="tag-chip">QuickBooks &amp; HubSpot APIs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">How we'd work</span>
+        <h2 class="section-title">Five steps, no surprises.</h2>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3 class="step-title">Diagnose</h3>
+          <p class="step-desc">A short call, then a written plan of what to build and why.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3 class="step-title">Quote</h3>
+          <p class="step-desc">Fixed scope and fixed price, agreed before any work starts.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3 class="step-title">Build</h3>
+          <p class="step-desc">Weekly demos on a test environment you can click through.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <h3 class="step-title">Hand over</h3>
+          <p class="step-desc">You own the code, the docs and the accounts.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">05</span>
+          <h3 class="step-title">Support</h3>
+          <p class="step-desc">Optional monthly plan for fixes, updates and training.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="magnet" id="checklist">
+    <div class="container magnet__inner">
+      <div>
+        <span class="label label--light">Free guide</span>
+        <h2 class="section-title">The Private AI Readiness Checklist</h2>
+        <p class="magnet-copy">20 questions to decide whether your team needs a private model, an agent, or neither yet — before you spend anything.</p>
+      </div>
+      <div>
+        <form class="magnet-form" id="checklist-form">
+          <label class="visually-hidden" for="work-email">Work email</label>
+          <input id="work-email" name="email" type="email" placeholder="Work email" autocomplete="email" required>
+          <button type="submit">Send me the checklist</button>
+        </form>
+        <p class="magnet-note">One email with the PDF. No spam.</p>
+        <p class="magnet-status" id="checklist-status" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="insights">
+    <div class="container">
+      <div class="section-head head-row">
         <div>
-          <span class="eyebrow" data-zh="精选案例 / WORK" data-en="SELECTED WORK / 案例">精选案例 / WORK</span>
-          <h2 class="section-title" data-zh="最近在解决的问题" data-en="Problems I've been solving">最近在解决的问题</h2>
+          <span class="label">Insights</span>
+          <h2 class="section-title">Notes from real deployments.</h2>
         </div>
-        <a class="btn-arrow" href="work.html" data-zh="全部案例" data-en="All case studies">全部案例 <span>→</span></a>
+        <a class="link-arrow" href="#insights">All articles →</a>
       </div>
-
-      <div class="works-grid">
-        <a class="work-card reveal" href="work.html#case-1">
-          <div class="work-art art-chat" aria-hidden="true">
-            <div class="art-inner">
-              <div class="meta-line"><i></i>WhatsApp · inbound</div>
-              <div class="bubble">Do you ship to Germany? 12 units.</div>
-              <div class="bubble ai">Yes — 3–5 days, duties included. Want a quote with shipping?</div>
-              <div class="meta-line"><i></i>auto-replied · 1.9s · confidence 0.91</div>
-            </div>
-          </div>
-          <div class="work-body">
-            <div class="work-kicker">
-              <span data-zh="跨境电商" data-en="E-commerce">跨境电商</span>
-              <span>·</span>
-              <span data-zh="5 周上线" data-en="5 weeks">5 周上线</span>
-            </div>
-            <h3 class="work-title" data-zh="客服首响从 12 小时降到 2 分钟" data-en="First reply: from 12 hours to 2 minutes">客服首响从 12 小时降到 2 分钟</h3>
-            <p class="work-result" data-zh="三通道 AI 客服接管 68% 的重复咨询，人工只处理真正需要判断的那部分。" data-en="A three-channel support agent auto-resolves 68% of repeat questions; humans only handle what needs judgement.">三通道 AI 客服接管 68% 的重复咨询，人工只处理真正需要判断的那部分。</p>
-            <div class="work-foot"><span data-zh="AI Agent · 独立站" data-en="AI agent · storefront">AI Agent · 独立站</span><span class="btn-arrow"><span data-zh="查看" data-en="View">查看</span> <span>→</span></span></div>
-          </div>
-        </a>
-
-        <a class="work-card reveal" href="work.html#case-2">
-          <div class="work-art art-quote" aria-hidden="true">
-            <div class="art-inner">
-              <div class="art-quote">
-                <div class="q-head"><span>Quote #Q-2041</span><span>review</span></div>
-                <div class="q-row"><span>Material</span><span>¥ 3,240</span></div>
-                <div class="q-row"><span>Process</span><span>¥ 1,980</span></div>
-                <div class="q-row"><span>Overhead</span><span>¥ 620</span></div>
-                <div class="q-total"><span>Margin 24%</span><span>¥ 6,820</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="work-body">
-            <div class="work-kicker">
-              <span data-zh="制造业" data-en="Manufacturing">制造业</span>
-              <span>·</span>
-              <span data-zh="3 周上线" data-en="3 weeks">3 周上线</span>
-            </div>
-            <h3 class="work-title" data-zh="报价从 30 分钟到 3 分钟" data-en="Quoting: from 30 minutes to 3">报价从 30 分钟到 3 分钟</h3>
-            <p class="work-result" data-zh="把老师傅的经验变成规则与知识库，新人一周就能独立出单，毛利预警自动拦住亏本报价。" data-en="Tribal knowledge turned into rules and a knowledge base. New staff quote independently in a week; margin alerts stop loss-making quotes.">把老师傅的经验变成规则与知识库，新人一周就能独立出单，毛利预警自动拦住亏本报价。</p>
-            <div class="work-foot"><span data-zh="自动化 · 企业微信" data-en="Automation · WeCom">自动化 · 企业微信</span><span class="btn-arrow"><span data-zh="查看" data-en="View">查看</span> <span>→</span></span></div>
-          </div>
-        </a>
-
-        <a class="work-card reveal" href="work.html#case-3">
-          <div class="work-art art-dash" aria-hidden="true">
-            <div class="art-inner">
-              <div class="dash-top">
-                <div class="dash-val"><small>MRR</small>$1,842</div>
-                <div class="dash-trend">+38%</div>
-              </div>
-              <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
-          </div>
-          <div class="work-body">
-            <div class="work-kicker">
-              <span data-zh="B2B SaaS" data-en="B2B SaaS">B2B SaaS</span>
-              <span>·</span>
-              <span data-zh="6 周上线" data-en="6 weeks">6 周上线</span>
-            </div>
-            <h3 class="work-title" data-zh="6 周把想法变成能收费的产品" data-en="From idea to paid product in 6 weeks">6 周把想法变成能收费的产品</h3>
-            <p class="work-result" data-zh="多租户、订阅计费、邮件序列和使用看板全部到位，首月拿到 12 个付费试用。" data-en="Multi-tenancy, billing, email sequences and usage dashboards — with 12 paying trials in the first month.">多租户、订阅计费、邮件序列和使用看板全部到位，首月拿到 12 个付费试用。</p>
-            <div class="work-foot"><span data-zh="SaaS MVP · Stripe" data-en="SaaS MVP · Stripe">SaaS MVP · Stripe</span><span class="btn-arrow"><span data-zh="查看" data-en="View">查看</span> <span>→</span></span></div>
-          </div>
-        </a>
+      <div class="insights">
+        <article class="insight">
+          <span class="insight-meta"><em>Private AI</em> · 8 min read</span>
+          <h3 class="insight-title">What it actually takes to run an LLM on one office workstation</h3>
+          <p class="insight-desc">Hardware, quantization and the trade-offs nobody mentions.</p>
+        </article>
+        <article class="insight">
+          <span class="insight-meta"><em>Agents</em> · 6 min read</span>
+          <h3 class="insight-title">Why your AI assistant should live in Slack, not a new app</h3>
+          <p class="insight-desc">Adoption follows the tools people already open every day.</p>
+        </article>
+        <article class="insight">
+          <span class="insight-meta"><em>Engineering</em> · 7 min read</span>
+          <h3 class="insight-title">129 merged pull requests: what we learned letting an AI agent write production code</h3>
+          <p class="insight-desc">Branches, test environments and rollback as guardrails.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section section--flush" id="process">
+  <section class="section" id="faq">
+    <div class="container faq-layout">
+      <div>
+        <span class="label">FAQ</span>
+        <h2 class="section-title">Questions clients ask first.</h2>
+        <p class="faq-side">Something else on your mind? <a href="#book">Ask me directly.</a></p>
+      </div>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>You're in UTC+8. How does working across time zones go?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">Calls happen in your afternoon. Work moves forward while you sleep, so you often wake up to progress. Updates are written, so nothing depends on being online at the same time.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to buy special hardware for private AI?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">Not always. The diagnostic tells you whether one workstation GPU, a private cloud instance or a managed API with strict data terms fits your needs and budget.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who owns the code and the accounts?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">You do. Everything lives in your repositories and your cloud accounts from day one, with documentation for whoever maintains it next.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do payments work?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">Fixed-price projects are split into milestones, paid as each one is delivered. [Add accepted payment methods.]</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if the project needs more than one person?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">I lead the build and bring in trusted specialists when a project needs them, with you told up front and the price unchanged.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will you sign an NDA?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="faq-a">Yes, before we discuss anything sensitive.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="book">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-zh="合作方式 / PROCESS" data-en="HOW WE WORK / 流程">合作方式 / PROCESS</span>
-        <h2 class="section-title" data-zh="四次沟通，一条清晰的路径" data-en="Four conversations, one clear path">四次沟通，一条清晰的路径</h2>
-        <p class="section-lead" data-zh="没有销售、没有项目经理转述。每一步你都知道钱花在哪、什么时候能看到东西。" data-en="No sales layer, no project-manager relay. At every step you know where the money goes and when you'll see something working.">没有销售、没有项目经理转述。每一步你都知道钱花在哪、什么时候能看到东西。</p>
+      <h2 class="cta-title">Tell me what's slowing your team down.</h2>
+      <p class="cta-text">A free 30-minute call. You'll leave with at least one idea you can use, whether or not we work together.</p>
+      <div class="cta-actions">
+        <a class="btn btn--primary" href="[Your booking link]">Book a free 30-min call →</a>
+        <a class="btn btn--ghost-dark" href="mailto:[your@email.com]">[your@email.com]</a>
       </div>
-
-      <div class="process reveal">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3 class="step-title" data-zh="免费诊断" data-en="Free diagnosis">免费诊断</h3>
-          <div class="step-when" data-zh="30 分钟 · 线上" data-en="30 min · online">30 分钟 · 线上</div>
-          <p class="step-desc" data-zh="聊清目标、约束和预算。当天给你一个可行方向；项目不适合我，我也会直说。" data-en="We clarify the goal, constraints and budget. You get a direction the same day — and a straight no if it isn't a fit.">聊清目标、约束和预算。当天给你一个可行方向；项目不适合我，我也会直说。</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3 class="step-title" data-zh="范围与固定报价" data-en="Scope &amp; fixed quote">范围与固定报价</h3>
-          <div class="step-when" data-zh="2 个工作日" data-en="2 working days">2 个工作日</div>
-          <p class="step-desc" data-zh="一页纸写清交付物、里程碑、验收标准和价格。没有模糊的「按需求调整」。" data-en="One page with deliverables, milestones, acceptance criteria and price. No vague “it depends”.">一页纸写清交付物、里程碑、验收标准和价格。没有模糊的「按需求调整」。</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3 class="step-title" data-zh="冲刺交付" data-en="Sprint delivery">冲刺交付</h3>
-          <div class="step-when" data-zh="每周可见进度" data-en="Visible every week">每周可见进度</div>
-          <p class="step-desc" data-zh="每两周一个能点开就用的版本。你在群里随时看到进度，不用等到最后一天。" data-en="A clickable build every two weeks. You watch progress in a shared channel instead of waiting for a big reveal.">每两周一个能点开就用的版本。你在群里随时看到进度，不用等到最后一天。</p>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <h3 class="step-title" data-zh="上线与交接" data-en="Launch &amp; handover">上线与交接</h3>
-          <div class="step-when" data-zh="1 天 · 完全交权" data-en="1 day · full ownership">1 天 · 完全交权</div>
-          <p class="step-desc" data-zh="部署到你自己的账号，源码、文档、录屏培训一起交付。你随时可以换人接手，或者自己维护。" data-en="Deployed to your own accounts. Source, docs and recorded training included, so anyone can take over.">部署到你自己的账号，源码、文档、录屏培训一起交付。你随时可以换人接手，或者自己维护。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--flush">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-zh="承诺 / GUARANTEES" data-en="WHAT YOU CAN COUNT ON / 承诺">承诺 / GUARANTEES</span>
-        <h2 class="section-title" data-zh="合作前，你该知道的四件事" data-en="Four things to know before we start">合作前，你该知道的四件事</h2>
-      </div>
-      <div class="guarantees">
-        <div class="guarantee reveal">
-          <div class="g-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="5" r="2.4"/><path d="M3 13.5c.6-2.4 2.6-3.7 5-3.7s4.4 1.3 5 3.7"/></svg></div>
-          <div>
-            <div class="g-title" data-zh="工程师直接对话" data-en="You talk to the engineer">工程师直接对话</div>
-            <div class="g-desc" data-zh="从第一次沟通到最后交接，都是和我本人。需求不经过销售或 PM 转述，不会走样。" data-en="From the first call to the final handover, you deal with me. Nothing is lost in translation through a sales or PM layer.">从第一次沟通到最后交接，都是和我本人。需求不经过销售或 PM 转述，不会走样。</div>
-          </div>
-        </div>
-        <div class="guarantee reveal">
-          <div class="g-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 1.8l5 2v4.1c0 3.2-2.2 5.4-5 6.3-2.8-.9-5-3.1-5-6.3V3.8z"/><path d="M5.7 7.9l1.7 1.7 3-3.1"/></svg></div>
-          <div>
-            <div class="g-title" data-zh="固定范围，固定价格" data-en="Fixed scope, fixed price">固定范围，固定价格</div>
-            <div class="g-desc" data-zh="报价写死在一页纸里。真要加需求，先商量范围和价格，绝不先做完再谈钱。" data-en="The price is written on one page. If the scope genuinely grows, we agree on it first — never after the work is done.">报价写死在一页纸里。真要加需求，先商量范围和价格，绝不先做完再谈钱。</div>
-          </div>
-        </div>
-        <div class="guarantee reveal">
-          <div class="g-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5.5 4L2.2 8l3.3 4M10.5 4l3.3 4-3.3 4"/></svg></div>
-          <div>
-            <div class="g-title" data-zh="源码与账号 100% 归你" data-en="100% of code and accounts">源码与账号 100% 归你</div>
-            <div class="g-desc" data-zh="代码放在你的仓库，服务跑在你的云账号。我不做技术锁定，你随时可以换人接手。" data-en="Your repo, your cloud accounts. No lock-in — another developer can take over at any time.">代码放在你的仓库，服务跑在你的云账号。我不做技术锁定，你随时可以换人接手。</div>
-          </div>
-        </div>
-        <div class="guarantee reveal">
-          <div class="g-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2.2v11.6M2.2 8h11.6"/><circle cx="8" cy="8" r="6.2"/></svg></div>
-          <div>
-            <div class="g-title" data-zh="上线后 14 天免费质保" data-en="14 days of free warranty">上线后 14 天免费质保</div>
-            <div class="g-desc" data-zh="上线两周内，因交付范围产生的 bug 免费修。之后可以按需买维护，也可以完全自己接手。" data-en="Bugs inside the delivered scope are fixed free for two weeks. After that, maintenance is optional — or take it fully in-house.">上线两周内，因交付范围产生的 bug 免费修。之后可以按需买维护，也可以完全自己接手。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-band">
-    <div class="container cta-inner">
-      <div class="reveal">
-        <h2 class="cta-title" data-zh="先聊 30 分钟，不收费，也不推销。" data-en="Start with 30 minutes. Free, no pitch.">先聊 30 分钟，不收费，也不推销。</h2>
-        <p class="cta-sub" data-zh="把目标、卡点和预算说清楚。能做的我给方案；做不了的，我也会直说。" data-en="Bring the goal, the bottleneck and the budget. If I can help, you get a plan. If I can't, I'll tell you.">把目标、卡点和预算说清楚。能做的我给方案；做不了的，我也会直说。</p>
-      </div>
-      <div class="cta-actions reveal">
-        <a class="btn btn-primary" href="contact.html" data-zh="预约免费诊断" data-en="Book a free audit">预约免费诊断</a>
-        <a class="btn btn-ghost" href="mailto:hello@lx.dev" data-zh="直接发邮件" data-en="Email me">直接发邮件</a>
-      </div>
+      <p class="cta-note">[Your booking link]</p>
     </div>
   </section>
 
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="index.html" aria-label="LX home">
-          <span class="brand-mark">LX</span>
-          <span class="brand-text">
-            <span class="brand-name">LX</span>
-            <span class="brand-role" data-zh="全栈 · AI AGENT" data-en="FULL-STACK · AI AGENT">全栈 · AI AGENT</span>
-          </span>
-        </a>
-        <p data-zh="为国内与海外中小企业交付全栈产品、网站与 AI Agent 自动化。固定范围、固定价格、源码全部交付。" data-en="Web products, sites and AI-agent automation for SMBs in China and abroad. Fixed scope, fixed price, all source handed over.">为国内与海外中小企业交付全栈产品、网站与 AI Agent 自动化。固定范围、固定价格、源码全部交付。</p>
-      </div>
-      <div class="footer-col">
-        <h4 data-zh="站点" data-en="Site">站点</h4>
-        <a href="work.html" data-zh="案例" data-en="Work">案例</a>
-        <a href="services.html" data-zh="服务与报价" data-en="Services &amp; pricing">服务与报价</a>
-        <a href="about.html" data-zh="关于我" data-en="About">关于我</a>
-        <a href="contact.html" data-zh="联系" data-en="Contact">联系</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-zh="服务" data-en="Services">服务</h4>
-        <a href="services.html#packages" data-zh="AI Agent 自动化" data-en="AI agent automation">AI Agent 自动化</a>
-        <a href="services.html#packages" data-zh="SaaS MVP 开发" data-en="SaaS MVP build">SaaS MVP 开发</a>
-        <a href="services.html#packages" data-zh="官网 / 独立站" data-en="Websites &amp; storefronts">官网 / 独立站</a>
-        <a href="services.html#packages" data-zh="技术诊断" data-en="Technical audit">技术诊断</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-zh="联系" data-en="Contact">联系</h4>
-        <a href="mailto:hello@lx.dev">hello@lx.dev</a>
-        <p data-zh="微信：lx-dev" data-en="WeChat: lx-dev">微信：lx-dev</p>
-        <p data-zh="工作时间内 12 小时回复" data-en="Replies within 12h on workdays">工作时间内 12 小时回复</p>
-        <p>UTC+8 · Asia/Shanghai</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span data-year>2026</span> LX <span class="dot-sep">/</span> <span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></span>
-      <span data-zh="设计与开发：本人 · 托管于 Cloudflare" data-en="Designed and built by me · hosted on Cloudflare">设计与开发：本人 · 托管于 Cloudflare</span>
+  <div class="container footer__inner">
+    <span>© 2026 [Your Name]</span>
+    <div>
+      <a href="#">[LinkedIn]</a> · <a href="https://github.com/lx307697527">GitHub</a>
     </div>
   </div>
 </footer>
 
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>
