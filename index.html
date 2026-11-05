@@ -98,22 +98,22 @@
         <div class="ship-item">
           <div class="ship-num">01</div>
           <div>
-            <div class="ship-title">On-premise LLM server</div>
-            <p class="ship-desc">A private model running our AI coding agent, with no data leaving the office</p>
+            <div class="ship-title">AI support agent</div>
+            <p class="ship-desc">68% of repeat questions handled without a human; first reply under 2 minutes</p>
           </div>
         </div>
         <div class="ship-item">
           <div class="ship-num">02</div>
           <div>
-            <div class="ship-title">AI coding agent in the dev loop</div>
-            <p class="ship-desc">129 of its 134 pull requests merged</p>
+            <div class="ship-title">Quoting system</div>
+            <p class="ship-desc">30-minute quotes cut to under 3; margin alerts stop loss-making orders</p>
           </div>
         </div>
         <div class="ship-item">
           <div class="ship-num">03</div>
           <div>
-            <div class="ship-title">Operations platform</div>
-            <p class="ship-desc">Staff app, customer portal and website on one system</p>
+            <div class="ship-title">SaaS MVP</div>
+            <p class="ship-desc">Live in 6 weeks; 12 paying trials in month one</p>
           </div>
         </div>
       </aside>
@@ -134,26 +134,26 @@
 
   <section class="band" id="numbers">
     <div class="container numbers">
-      <span class="label">AllyOS, by the numbers</span>
+      <span class="label">Recent delivery, by the numbers</span>
       <div class="numbers-grid">
         <div class="stat">
-          <div class="stat-value">4,000+</div>
-          <p class="stat-desc">pull requests merged since July 2026</p>
+          <div class="stat-value">48h</div>
+          <p class="stat-desc">a clickable prototype</p>
         </div>
         <div class="stat">
-          <div class="stat-value">3,300+</div>
-          <p class="stat-desc">issues closed</p>
+          <div class="stat-value">2–4 wks</div>
+          <p class="stat-desc">MVP to launch</p>
         </div>
         <div class="stat">
-          <div class="stat-value">1,200+</div>
-          <p class="stat-desc">pull requests merged in the last 30 days</p>
+          <div class="stat-value">&lt;12h</div>
+          <p class="stat-desc">reply within a workday</p>
         </div>
         <div class="stat">
-          <div class="stat-value">96%</div>
-          <p class="stat-desc">of the AI agent's pull requests merged</p>
+          <div class="stat-value">100%</div>
+          <p class="stat-desc">code and accounts yours</p>
         </div>
       </div>
-      <p class="stats-note">From the AllyOS GitHub repository, as of November 2026.</p>
+      <p class="stats-note">Across recent client projects; some details are anonymised.</p>
     </div>
   </section>
 
@@ -296,30 +296,34 @@
       <div class="section-head">
         <span class="label">Selected work</span>
         <h2 class="section-title">Real systems, running in production.</h2>
-        <p class="section-lead">All three are part of AllyOS, the internal operating system my team and I build for Ally Nutra, a US dietary-supplement manufacturer.</p>
+        <p class="section-lead">Every project starts with a concrete business bottleneck. Below: the problem, the approach, the outcome — and what it was built with.</p>
       </div>
       <div class="work-list">
 
         <article class="case">
           <div class="case-head">
             <div>
-              <span class="case-label">Private AI · AllyOS</span>
-              <h3 class="case-title">A private AI server that never leaves the office</h3>
+              <span class="case-label">DTC · China → Europe · 5 weeks</span>
+              <h3 class="case-title">Cross-border homeware brand: an AI agent takes over 68% of repeat questions</h3>
             </div>
-            <div class="case-stack">SGLang · Docker · WSL2 · RTX Pro 6000</div>
+            <div class="case-stack">Next.js · FastAPI · PostgreSQL · pgvector · OpenAI · WhatsApp API · Cloudflare</div>
           </div>
           <div class="case-grid">
             <div class="case-block">
               <h4>Problem</h4>
-              <p class="case-text">The team wanted AI help, but couldn't send customer and production data to a public cloud.</p>
+              <p class="case-text">A three-person support team took 12 hours on average to send a first reply in English and German. In peak season, 200+ messages a day arrived and roughly 70% were repeat questions. Sales were lost not to the product, but to slow replies.</p>
             </div>
             <div class="case-block">
               <h4>What I built</h4>
-              <p class="case-text">A quantized open model on one workstation GPU, served through SGLang in containers, with tiered access designed for Slack agents.</p>
+              <p class="case-text">Rebuilt the storefront on Next.js and turned the catalog, sizing tables, shipping and returns policies and past tickets into a searchable knowledge base. Connected WhatsApp, Instagram and email; low-confidence answers escalate to a human, and every reply carries its source and confidence. Staff now only handle disputes, custom orders and judgement calls.</p>
             </div>
             <div class="case-block">
               <h4>Result</h4>
-              <p class="case-text">It runs AllyOS's AI coding agent today — 134 pull requests generated without sending a line of code to an outside AI provider. Next: company-wide access through Slack.</p>
+              <ul class="case-list">
+                <li>First response fell from 12 hours to under 2 minutes</li>
+                <li>68% of repeat questions auto-resolved; humans handle the exceptions</li>
+                <li>About 1.5 FTE freed up; peak-season conversion up 19%</li>
+              </ul>
             </div>
           </div>
         </article>
@@ -327,23 +331,27 @@
         <article class="case">
           <div class="case-head">
             <div>
-              <span class="case-label">AI engineering · AllyOS</span>
-              <h3 class="case-title">An AI coding agent that turns issues into pull requests</h3>
+              <span class="case-label">Manufacturing · China · 3 weeks</span>
+              <h3 class="case-title">Ningbo hardware maker: turning tribal quoting knowledge into a system</h3>
             </div>
-            <div class="case-stack">Local LLM · GitHub · CI</div>
+            <div class="case-stack">Python · LangGraph · PostgreSQL · OCR · WeCom API</div>
           </div>
           <div class="case-grid">
             <div class="case-block">
               <h4>Problem</h4>
-              <p class="case-text">A small dev team had more feature requests than hands to build them.</p>
+              <p class="case-text">Every quote took 30 minutes and depended on one senior estimator's memory. New staff needed six months to quote alone; when material prices moved, old templates produced loss-making quotes. Inquiries arrived by email, WeChat and photos, with no consistent record.</p>
             </div>
             <div class="case-block">
               <h4>What I built</h4>
-              <p class="case-text">"Agent Coder", a GitHub account backed by our local model. Assign it an issue and it builds the feature and opens a pull request, inside a branch flow with CI and separate test environments.</p>
+              <p class="case-text">Structured drawing parameters, material prices and process hours. OCR plus an LLM parses email and photo inquiries; a rules engine calculates cost, and anything below the margin threshold is forced to human review. Quotes are generated as PDFs inside WeCom, and every historical quote is stored and searchable by client and part.</p>
             </div>
             <div class="case-block">
               <h4>Result</h4>
-              <p class="case-text">Since September 2026 it has opened 134 pull requests, and 129 were merged — a 96% acceptance rate. AllyOS ships to production every two days, and a release batch that fails review rolls back automatically.</p>
+              <ul class="case-list">
+                <li>Quoting dropped from 30 minutes to under 3; 400+ inquiries a month</li>
+                <li>Margin alerts caught 11% of quotes that would have lost money</li>
+                <li>New staff quote independently after one week, no longer dependent on one estimator</li>
+              </ul>
             </div>
           </div>
         </article>
@@ -351,28 +359,61 @@
         <article class="case">
           <div class="case-head">
             <div>
-              <span class="case-label">Business systems · AllyOS</span>
-              <h3 class="case-title">One operations platform instead of spreadsheets</h3>
+              <span class="case-label">SaaS MVP · Overseas · 6 weeks</span>
+              <h3 class="case-title">B2B SaaS: from idea to a product that can charge, in 6 weeks</h3>
             </div>
-            <div class="case-stack">QuickBooks · Ramp · HubSpot</div>
+            <div class="case-stack">Next.js · tRPC · Prisma · PostgreSQL · Stripe · Cloudflare Workers</div>
           </div>
           <div class="case-grid">
             <div class="case-block">
               <h4>Problem</h4>
-              <p class="case-text">Orders, customer updates and payment tracking were spread across inboxes and spreadsheets.</p>
+              <p class="case-text">A non-technical founder needed to validate willingness to pay within three months, without hiring an engineering team first. The market window was short: the register → trial → pay loop had to work fast.</p>
             </div>
             <div class="case-block">
               <h4>What I built</h4>
-              <p class="case-text">A staff app, a customer portal and the public website on one codebase, integrated with QuickBooks, Ramp and HubSpot.</p>
+              <p class="case-text">Scope was locked: multi-tenancy and roles, Stripe subscriptions and invoicing, email sequences, usage dashboards and a marketing site. A demo shipped every two weeks: monetisation first, polish second. Everything runs on Cloudflare with managed Postgres to keep operating costs minimal.</p>
             </div>
             <div class="case-block">
               <h4>Result</h4>
-              <p class="case-text">4,000+ pull requests merged and 3,300+ issues closed since July 2026. Staff, customers and the website share one system, and incoming customer payments are flagged early through Ramp while QuickBooks stays the books of record.</p>
+              <ul class="case-list">
+                <li>Live in 6 weeks; 12 paying trials in the first month</li>
+                <li>~$1,800 MRR in month one, validating willingness to pay</li>
+                <li>Closed an angel round in month four, then began hiring</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">Multi-site retail · China · 4 weeks</span>
+              <h3 class="case-title">Restaurant chain: daily reporting without manual spreadsheets</h3>
+            </div>
+            <div class="case-stack">WeChat mini-program · Node.js · Feishu Open Platform · Cloudflare D1</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>Problem</h4>
+              <p class="case-text">Eight stores reported numbers in a WeChat group. Head office spent three hours a day consolidating them, the figures rarely reconciled, and the owner always saw yesterday's data — anomalies surfaced too late.</p>
+            </div>
+            <div class="case-block">
+              <h4>What I built</h4>
+              <p class="case-text">Store staff fill in a mini-program form with validation on required fields and outlier values. At 9:00 every day a dashboard is generated automatically, with anomalies pushed to the store manager. A weekly AI summary lands in Feishu, and history is queryable by store and period.</p>
+            </div>
+            <div class="case-block">
+              <h4>Result</h4>
+              <ul class="case-list">
+                <li>Consolidation dropped from 3 hours a day to 15 minutes</li>
+                <li>Inventory discrepancies down 40%; anomalies visible the same day</li>
+                <li>Head office stopped reconciling manually; managers get alerts directly</li>
+              </ul>
             </div>
           </div>
         </article>
 
       </div>
+      <p class="case-note">Some names and figures are anonymised for client confidentiality. Results reflect client-side records.</p>
     </div>
   </section>
 
@@ -448,9 +489,10 @@
       <div class="about-body">
         <span class="label">About</span>
         <h2 class="section-title">A senior engineer, not an agency.</h2>
-        <p>I've spent 14 years shipping software: ten in front-end and four across the full stack, at companies including Manulife, EMC, Longfor Group and Sina Payment.</p>
-        <p>Today I build AI into day-to-day operations — private model servers, agents that live in Slack, and the internal systems that tie a business together. At Ally Nutra, I lead AllyOS, where AI agents now write a real share of our production code. When you work with me, you talk directly to the person building it.</p>
-        <p>I work remotely from UTC+8 and schedule calls in US afternoons.</p>
+        <p>I've spent 14 years shipping software: ten in front-end and four across the full stack, at companies including Manulife, EMC, Longfor Group and Sina Payment. When you work with me, you talk directly to the person building it.</p>
+        <p>In recent years my work has mostly happened inside real SMB operations: cross-border support, factory quoting, multi-store reporting, a SaaS product's first version. They share one thing — limited budget, limited time, and no enterprise engineering bench to fall back on.</p>
+        <p>I don't have much faith in big words like “AI transformation”. I care about three concrete questions: how often does this process run each day? Who is accountable when it's wrong? How do we measure it after launch? If those are unanswered, the model choice is irrelevant.</p>
+        <p>I work remotely from China (UTC+8), keep US afternoons free for calls, and invoice in CNY or USD.</p>
         <div class="about-stats">
           <span>14 years in software</span>
           <span>10 years front-end</span>
@@ -459,11 +501,17 @@
         <div class="tag-chips">
           <span class="tag-chip">TypeScript</span>
           <span class="tag-chip">React</span>
+          <span class="tag-chip">Next.js</span>
           <span class="tag-chip">Node.js</span>
-          <span class="tag-chip">Docker</span>
-          <span class="tag-chip">Self-hosted LLMs</span>
-          <span class="tag-chip">Slack agents</span>
-          <span class="tag-chip">QuickBooks &amp; HubSpot APIs</span>
+          <span class="tag-chip">Python</span>
+          <span class="tag-chip">FastAPI</span>
+          <span class="tag-chip">LangGraph</span>
+          <span class="tag-chip">PostgreSQL</span>
+          <span class="tag-chip">pgvector</span>
+          <span class="tag-chip">Stripe</span>
+          <span class="tag-chip">Cloudflare</span>
+          <span class="tag-chip">WeCom &amp; Feishu</span>
+          <span class="tag-chip">WhatsApp API</span>
         </div>
       </div>
     </div>
@@ -546,8 +594,8 @@
         </article>
         <article class="insight">
           <span class="insight-meta"><em>Engineering</em> · 7 min read</span>
-          <h3 class="insight-title">129 merged pull requests: what we learned letting an AI agent write production code</h3>
-          <p class="insight-desc">Branches, test environments and rollback as guardrails.</p>
+          <h3 class="insight-title">Quoting, from 30 minutes to under 3: what actually changed</h3>
+          <p class="insight-desc">Structured inputs, margin thresholds and a human approval path.</p>
         </article>
       </div>
     </div>
@@ -638,22 +686,22 @@
         <div class="ship-item">
           <div class="ship-num">01</div>
           <div>
-            <div class="ship-title">本地 LLM 服务器</div>
-            <p class="ship-desc">运行我们 AI 编码智能体的私有模型，数据不出办公室</p>
+            <div class="ship-title">AI 客服智能体</div>
+            <p class="ship-desc">68% 的重复问题无需人工；首次响应 2 分钟内</p>
           </div>
         </div>
         <div class="ship-item">
           <div class="ship-num">02</div>
           <div>
-            <div class="ship-title">开发流程中的 AI 编码智能体</div>
-            <p class="ship-desc">它的 134 个 PR 中有 129 个被合并</p>
+            <div class="ship-title">工厂报价系统</div>
+            <p class="ship-desc">报价从 30 分钟缩到 3 分钟；毛利预警拦截亏损单</p>
           </div>
         </div>
         <div class="ship-item">
           <div class="ship-num">03</div>
           <div>
-            <div class="ship-title">运营平台</div>
-            <p class="ship-desc">员工端、客户门户与官网运行在同一套系统上</p>
+            <div class="ship-title">SaaS MVP</div>
+            <p class="ship-desc">6 周上线；首月 12 个付费试用</p>
           </div>
         </div>
       </aside>
@@ -674,26 +722,26 @@
 
   <section class="band" id="zh-numbers">
     <div class="container numbers">
-      <span class="label">AllyOS 数据一览</span>
+      <span class="label">近期交付，用数字说话</span>
       <div class="numbers-grid">
         <div class="stat">
-          <div class="stat-value">4,000+</div>
-          <p class="stat-desc">自 2026 年 7 月以来合并的 PR</p>
+          <div class="stat-value">48h</div>
+          <p class="stat-desc">可点开就用的原型</p>
         </div>
         <div class="stat">
-          <div class="stat-value">3,300+</div>
-          <p class="stat-desc">已关闭的 issue</p>
+          <div class="stat-value">2–4 周</div>
+          <p class="stat-desc">MVP 到上线</p>
         </div>
         <div class="stat">
-          <div class="stat-value">1,200+</div>
-          <p class="stat-desc">过去 30 天合并的 PR</p>
+          <div class="stat-value">&lt;12h</div>
+          <p class="stat-desc">工作时间内回复</p>
         </div>
         <div class="stat">
-          <div class="stat-value">96%</div>
-          <p class="stat-desc">AI 智能体的 PR 合并率</p>
+          <div class="stat-value">100%</div>
+          <p class="stat-desc">源码与账号归你</p>
         </div>
       </div>
-      <p class="stats-note">数据来自 AllyOS GitHub 仓库，截至 2026 年 11 月。</p>
+      <p class="stats-note">来自近期交付项目；部分信息已脱敏。</p>
     </div>
   </section>
 
@@ -836,30 +884,34 @@
       <div class="section-head">
         <span class="label">精选案例</span>
         <h2 class="section-title">真实系统，正在生产环境中运行。</h2>
-        <p class="section-lead">这三个项目都属于 AllyOS——我和团队为 Ally Nutra（一家美国膳食补充剂制造商）构建的内部运营系统。</p>
+        <p class="section-lead">每个项目都从一个具体的业务卡点开始。下面写清了问题、做法和结果，以及各自用了什么技术。</p>
       </div>
       <div class="work-list">
 
         <article class="case">
           <div class="case-head">
             <div>
-              <span class="case-label">私有 AI · AllyOS</span>
-              <h3 class="case-title">一台永不离开办公室的私有 AI 服务器</h3>
+              <span class="case-label">DTC · 中国 → 欧洲 · 5 周</span>
+              <h3 class="case-title">跨境家居品牌：AI 客服接管 68% 的重复咨询</h3>
             </div>
-            <div class="case-stack">SGLang · Docker · WSL2 · RTX Pro 6000</div>
+            <div class="case-stack">Next.js · FastAPI · PostgreSQL · pgvector · OpenAI · WhatsApp API · Cloudflare</div>
           </div>
           <div class="case-grid">
             <div class="case-block">
               <h4>问题</h4>
-              <p class="case-text">团队想要 AI 辅助，但不能把客户和生产数据发到公共云。</p>
+              <p class="case-text">客服团队只有 3 个人，英语和德语咨询平均 12 小时才能首响。旺季每天 200 多条消息，重复问题占了七成。丢单往往不是因为产品，而是因为回得太慢。</p>
             </div>
             <div class="case-block">
               <h4>我做了什么</h4>
-              <p class="case-text">在一张工作站 GPU 上运行量化开源模型，通过容器化的 SGLang 提供服务，并设计面向 Slack 智能体的分级访问权限。</p>
+              <p class="case-text">重建 Next.js 独立站，把产品目录、尺码表、物流与退换政策、历史工单整理成可检索知识库。接入 WhatsApp、Instagram 和邮件三个通道；低置信度自动转人工，每条回答都带来源和置信度。客服只处理争议、定制和售后判断。</p>
             </div>
             <div class="case-block">
               <h4>结果</h4>
-              <p class="case-text">它现在运行着 AllyOS 的 AI 编码智能体——生成了 134 个 PR，没有一行代码发送给外部 AI 提供商。下一步：通过 Slack 向全公司开放。</p>
+              <ul class="case-list">
+                <li>首次响应从 12 小时降到 2 分钟以内</li>
+                <li>68% 的重复问题由智能体自动解决，人工只做兜底</li>
+                <li>释放约 1.5 个人力，旺季转化率提升 19%</li>
+              </ul>
             </div>
           </div>
         </article>
@@ -867,23 +919,27 @@
         <article class="case">
           <div class="case-head">
             <div>
-              <span class="case-label">AI 工程 · AllyOS</span>
-              <h3 class="case-title">把 issue 变成 PR 的 AI 编码智能体</h3>
+              <span class="case-label">制造业 · 中国 · 3 周</span>
+              <h3 class="case-title">宁波五金制造：把老师傅的报价经验变成系统</h3>
             </div>
-            <div class="case-stack">Local LLM · GitHub · CI</div>
+            <div class="case-stack">Python · LangGraph · PostgreSQL · OCR · 企业微信 API</div>
           </div>
           <div class="case-grid">
             <div class="case-block">
               <h4>问题</h4>
-              <p class="case-text">小型开发团队的 feature request 远多于人力。</p>
+              <p class="case-text">每单报价要 30 分钟，全靠老师傅的经验。新人半年才能独立出单；材料价格一涨，旧模板就会报出亏本价。询价散落在邮件、微信和图片里，没人能统一复盘。</p>
             </div>
             <div class="case-block">
               <h4>我做了什么</h4>
-              <p class="case-text">“Agent Coder”，一个由本地模型驱动的 GitHub 账号。把 issue 分配给它，它会构建功能并创建 PR，流程包含分支、CI 和独立测试环境。</p>
+              <p class="case-text">把图纸参数、材料价格和工艺工时结构化；用 OCR 加 LLM 解析邮件与图片询价，规则引擎算成本，毛利低于阈值时强制人工审批。报价单直接在企业微信里生成 PDF，历史报价进入数据库，按客户和产品可查。</p>
             </div>
             <div class="case-block">
               <h4>结果</h4>
-              <p class="case-text">自 2026 年 9 月以来，它创建了 134 个 PR，其中 129 个被合并——通过率 96%。AllyOS 每两天发布一次生产版本，未通过评审的发布批次会自动回滚。</p>
+              <ul class="case-list">
+                <li>报价从 30 分钟缩到 3 分钟内，每月处理 400+ 询价</li>
+                <li>毛利预警拦下 11% 的低价单，避免直接亏损</li>
+                <li>新人 1 周可以独立出单，不再依赖单一老师傅</li>
+              </ul>
             </div>
           </div>
         </article>
@@ -891,28 +947,61 @@
         <article class="case">
           <div class="case-head">
             <div>
-              <span class="case-label">业务系统 · AllyOS</span>
-              <h3 class="case-title">用一套运营平台取代表格</h3>
+              <span class="case-label">SaaS MVP · 海外 · 6 周</span>
+              <h3 class="case-title">B2B SaaS：6 周把想法变成能收费的产品</h3>
             </div>
-            <div class="case-stack">QuickBooks · Ramp · HubSpot</div>
+            <div class="case-stack">Next.js · tRPC · Prisma · PostgreSQL · Stripe · Cloudflare Workers</div>
           </div>
           <div class="case-grid">
             <div class="case-block">
               <h4>问题</h4>
-              <p class="case-text">订单、客户更新和付款跟踪分散在邮箱与表格中。</p>
+              <p class="case-text">创始人非技术背景，要在 3 个月内验证付费意愿，又不想在验证之前先养一个研发团队。市场窗口很短，产品必须尽快跑通「注册 → 试用 → 付费」闭环。</p>
             </div>
             <div class="case-block">
               <h4>我做了什么</h4>
-              <p class="case-text">员工端、客户门户和公开网站基于同一套代码库，并集成 QuickBooks、Ramp 和 HubSpot。</p>
+              <p class="case-text">范围锁死：多租户与权限、Stripe 订阅与账单、邮件序列、使用数据看板、基础营销页。每两周一个可演示版本，先跑通付费闭环，再补细节。所有基础设施部署在 Cloudflare 与托管 Postgres，运维成本压到最低。</p>
             </div>
             <div class="case-block">
               <h4>结果</h4>
-              <p class="case-text">自 2026 年 7 月以来合并 4,000+ 个 PR、关闭 3,300+ 个 issue。员工、客户和网站共用一套系统；客户回款通过 Ramp 提前标记，QuickBooks 仍是账务记录来源。</p>
+              <ul class="case-list">
+                <li>6 周上线，首月拿到 12 个付费试用</li>
+                <li>首月 MRR 约 $1,800，验证了付费意愿</li>
+                <li>第 4 个月完成天使轮，团队才开始扩编</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <div>
+              <span class="case-label">多门店零售 · 中国 · 4 周</span>
+              <h3 class="case-title">连锁餐饮：8 家门店的日报不再靠手工汇总</h3>
+            </div>
+            <div class="case-stack">微信小程序 · Node.js · 飞书开放平台 · Cloudflare D1</div>
+          </div>
+          <div class="case-grid">
+            <div class="case-block">
+              <h4>问题</h4>
+              <p class="case-text">8 家门店用微信群报数，总部每天手工汇总 3 小时，数字经常对不上。老板看到的永远是昨天的数据，异常发现得太晚。</p>
+            </div>
+            <div class="case-block">
+              <h4>我做了什么</h4>
+              <p class="case-text">门店用小程序填报，自动校验必填项和异常值；每天 9:00 自动生成汇总看板，异常指标直接预警到店长。每周生成一份 AI 摘要发到飞书，历史数据可按门店和时段查询。</p>
+            </div>
+            <div class="case-block">
+              <h4>结果</h4>
+              <ul class="case-list">
+                <li>汇总时间从 3 小时/天降到 15 分钟</li>
+                <li>盘点差异下降 40%，异常当天就能看到</li>
+                <li>总部不再手工对表，店长自己收到预警</li>
+              </ul>
             </div>
           </div>
         </article>
 
       </div>
+      <p class="case-note">出于客户保密，部分名称与数据已做脱敏处理；结果以客户后台记录为准。</p>
     </div>
   </section>
 
@@ -988,9 +1077,10 @@
       <div class="about-body">
         <span class="label">关于</span>
         <h2 class="section-title">是资深工程师，不是代理商。</h2>
-        <p>我在软件行业做了 14 年：10 年前端，4 年全栈，曾任职于 Manulife、EMC、龙湖集团和新浪支付。</p>
-        <p>现在，我把 AI 融入日常运营——私有模型服务器、住在 Slack 里的智能体，以及把业务串联起来的内部系统。在 Ally Nutra，我负责 AllyOS；如今 AI 智能体已经承担了相当一部分生产代码。和我合作，你直接和真正动手实现的人沟通。</p>
-        <p>我常驻 UTC+8 时区远程工作，通话安排在美国下午。</p>
+        <p>我在软件行业做了 14 年：10 年前端，4 年全栈，曾任职于 Manulife、EMC、龙湖集团和新浪支付。和我合作，你直接和真正动手实现的人沟通。</p>
+        <p>近几年，我的工作大多发生在真实的中小企业运营里：跨境客服、工厂报价、多门店报表、一个 SaaS 产品的第一个版本。它们有一个共同点——预算有限、时间有限，也没有企业级工程团队兜底。</p>
+        <p>我不太相信“AI 转型”这种大词。我只关心三个具体问题：这个流程每天跑几次？出错时谁负责？上线后怎么衡量？这几个问题没答案，选什么模型都不重要。</p>
+        <p>我常驻中国（UTC+8）远程工作，美国下午留给通话，可以用人民币或美元结算。</p>
         <div class="about-stats">
           <span>14 年软件经验</span>
           <span>10 年前端</span>
@@ -999,11 +1089,17 @@
         <div class="tag-chips">
           <span class="tag-chip">TypeScript</span>
           <span class="tag-chip">React</span>
+          <span class="tag-chip">Next.js</span>
           <span class="tag-chip">Node.js</span>
-          <span class="tag-chip">Docker</span>
-          <span class="tag-chip">Self-hosted LLMs</span>
-          <span class="tag-chip">Slack agents</span>
-          <span class="tag-chip">QuickBooks &amp; HubSpot APIs</span>
+          <span class="tag-chip">Python</span>
+          <span class="tag-chip">FastAPI</span>
+          <span class="tag-chip">LangGraph</span>
+          <span class="tag-chip">PostgreSQL</span>
+          <span class="tag-chip">pgvector</span>
+          <span class="tag-chip">Stripe</span>
+          <span class="tag-chip">Cloudflare</span>
+          <span class="tag-chip">企业微信 &amp; 飞书</span>
+          <span class="tag-chip">WhatsApp API</span>
         </div>
       </div>
     </div>
@@ -1086,8 +1182,8 @@
         </article>
         <article class="insight">
           <span class="insight-meta"><em>工程</em> · 7 分钟阅读</span>
-          <h3 class="insight-title">129 个已合并 PR：让 AI 智能体写生产代码，我们学到了什么</h3>
-          <p class="insight-desc">分支、测试环境和自动回滚作为护栏。</p>
+          <h3 class="insight-title">报价从 30 分钟到 3 分钟：改了什么</h3>
+          <p class="insight-desc">结构化输入、毛利阈值，以及一条必须人工审批的路径。</p>
         </article>
       </div>
     </div>
