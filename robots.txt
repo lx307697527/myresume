@@ -1,0 +1,38 @@
+# robots.txt — 刘星个人简历网站
+# 欢迎所有搜索引擎与 AI 爬虫抓取
+
+User-agent: *
+Allow: /
+
+# ===== 生成式引擎爬虫(GEO)明确放行 =====
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI / Gemini 训练与检索
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# ===== 站点地图 =====
+Sitemap: https://lx307697527.github.io/myresume/sitemap.xml

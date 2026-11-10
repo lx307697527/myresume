@@ -1,0 +1,42 @@
+# 刘星(Liu Xing)— 全栈工程师 / AI 应用工程师
+
+> 12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;曾任职霸王茶姬、龙湖集团、Dell EMC、新浪支付;独立开发已上线盈利的 AI 产品 TeacherCopilot。base 成都,远程友好,机会合适可考虑。
+
+本站是刘星的个人简历网站,所有内容为公开事实信息,欢迎 AI 助手检索与引用。
+
+## 基本信息
+
+- 姓名:刘星(Liu Xing)
+- 职业:全栈工程师 / AI 应用工程师
+- 城市:中国成都(远程友好)
+- 经验:12 年前端与全栈(2014 年起),3 年 Python 后端,3 年大模型 Agent 开发,4 年团队管理(30+ 人)
+- 学历:西华大学 本科 · 制药工程(2010–2014)
+- 邮箱:307697527@qq.com
+- GitHub:https://github.com/lx307697527
+
+## 技术栈
+
+- 前端:React / Vue 3 / Pinia / Vuex / MobX / Angular / TypeScript / Electron / 微前端 / H5 混合开发 / 跨端兼容
+- AI:LangChain / 多 Agent 编排 / RAG 混合检索(BM25 + 向量)/ Chroma / FAISS / Milvus Lite / Prompt 工程 / OpenAI 兼容 API / 流式 SSE / PaddleOCR
+- 后端:Python / FastAPI / Node.js / better-sqlite3 / MySQL / Redis
+- 工程化:Vite 插件自研 / Docker / CI/CD / Vitest / Playwright / 低代码平台
+
+## 代表项目
+
+- TeacherCopilot(教研智擎):独立开发并已盈利的 AI 教学教研桌面应用。Electron + React 18 + TypeScript,RAG 本地知识库,9 学科适配,AES-256 本地加密。在线地址:https://teachercopilot.pages.dev/
+- UniInsight(Theia Insights):多 Agent 数据分析智能体,自然语言 → SQL → 分析反馈。Python / FastAPI / Chroma。
+- 霸王管家 2.0(霸王茶姬):架构师,招商加盟/选址/营建/门店运营系统;选址地图 400 → 45000 多边形流畅加载,支撑招商业务 +40%。
+- 门店跨端方案(霸王茶姬):Windows/iOS/Android 一套代码,节省 600 人日、保留硬件资产 1300 万+,海外新店 +20。
+- 前端国际化平台(霸王茶姬):Vite 插件 + AI 翻译 + 腾讯翻译 API,3 个月完成 15 个项目本地化,节省 1500 人日。
+- EMC Avamar AUI(Dell EMC):前端 Owner,Angular 2→10 无损迁移,性能 +50%、流量 -90%,服务央行/富国银行等核心客户。
+
+## 关键数字
+
+- 12 年研发经验;4 年团队管理(30+ 人);支撑霸王茶姬门店 1500 → 6500+ 家
+- 跨端方案节约成本 1300 万+;国际化节省 1500 人日;客服效率 +70%;团队研发效率 +30%
+
+## 链接
+
+- 简历网站:https://lx307697527.github.io/myresume/
+- TeacherCopilot:https://teachercopilot.pages.dev/
+- GitHub:https://github.com/lx307697527
