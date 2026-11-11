@@ -917,6 +917,95 @@ html[data-theme="light"] .icon-moon { display: none; }
 .d3 { transition-delay: .24s; }
 
 /* ============================================================
+   增强层:墨浪粒子 / 3D 印章 / 滚动词条 / 进度条 / 逐字动画
+   (CDN 加载失败时相关元素自动回退,不影响基础阅读)
+   ============================================================ */
+
+/* 首屏粒子层 */
+.hero { position: relative; overflow: hidden; }
+.hero > .container { position: relative; z-index: 1; }
+.ink-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ink-field canvas { display: block; }
+
+/* 3D 印章挂载点 */
+.seal { position: relative; }
+.seal canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+.seal.is-3d { filter: none; aspect-ratio: 1 / 1; }
+
+/* 逐字动画字符 */
+.ch { display: inline-block; will-change: transform; }
+
+/* GSAP 接管时关闭 CSS 过渡,避免双重动画 */
+html.gsap .reveal { transition: none !important; }
+
+/* Lenis 激活时关闭原生平滑 */
+html.lenis-active { scroll-behavior: auto; }
+html.lenis-active, html.lenis-active body { overscroll-behavior: none; }
+
+/* 首屏强调词:朱砂底纹随入场展开 */
+.hero-lead em {
+  background-image: linear-gradient(var(--accent-soft), var(--accent-soft));
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .8s ease .9s;
+}
+.hero-lead.visible em { background-size: 100% 100%; }
+
+/* 顶部阅读进度条 */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+/* 滚动词条(无限循环) */
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line-2);
+  padding: 15px 0;
+  user-select: none;
+}
+.ticker-track {
+  display: flex;
+  align-items: baseline;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-track span {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .24em;
+  color: var(--muted);
+  white-space: nowrap;
+  padding: 0 22px;
+}
+.ticker-track i {
+  font-style: normal;
+  color: var(--accent);
+  font-size: 11px;
+}
+@keyframes ticker-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ============================================================
    响应式
    ============================================================ */
 @media (max-width: 1024px) {
