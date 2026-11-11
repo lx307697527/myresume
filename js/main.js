@@ -185,6 +185,9 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  /* ---------- 8. 页脚年份 ---------- */
-  document.getElementById("year").textContent = new Date().getFullYear();
+  /* ---------- 8. 页脚年份 / 刊头年份 ---------- */
+  const nowYear = String(new Date().getFullYear());
+  document.getElementById("year").textContent = nowYear;
+  const mastheadYear = document.getElementById("mastheadYear");
+  if (mastheadYear) mastheadYear.textContent = nowYear;
 })();

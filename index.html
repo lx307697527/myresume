@@ -22,8 +22,8 @@
   <meta name="ICBM" content="30.5728, 104.0668" />
 
   <!-- 移动端浏览器主题色 -->
-  <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f5f7fc" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#161310" media="(prefers-color-scheme: dark)" />
 
   <!-- ========== Open Graph / Twitter(社交分享卡片) ========== -->
   <meta property="og:type" content="profile" />
@@ -47,7 +47,7 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "刘星",
-    "alternateName": "Liu Xing",
+    "alternateName": "LIU XING",
     "jobTitle": "全栈工程师 / AI 应用工程师",
     "description": "12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;独立开发已盈利 AI 产品 TeacherCopilot。",
     "email": "307697527@qq.com",
@@ -116,10 +116,10 @@
   </script>
 
   <script>
-    // 尽早应用主题,避免闪烁(优先本地记忆,其次系统偏好)
+    // 尽早应用主题,避免闪烁(优先本地记忆,其次系统偏好;编辑风默认浅色)
     (function () {
       var t = localStorage.getItem("theme");
-      if (!t) t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
     })();
   </script>
@@ -129,25 +129,24 @@
   <!-- ==================== 导航栏 ==================== -->
   <header class="navbar" id="navbar">
     <nav class="nav-container">
-      <a href="#hero" class="nav-logo">刘<span>星</span><small>.dev</small></a>
+      <a href="#hero" class="nav-brand">刘星<small>LIU XING</small></a>
 
       <ul class="nav-menu" id="navMenu">
-        <li><a href="#hero" class="nav-link active">首页</a></li>
         <li><a href="#about" class="nav-link">关于</a></li>
         <li><a href="#skills" class="nav-link">技能</a></li>
         <li><a href="#experience" class="nav-link">经历</a></li>
         <li><a href="#projects" class="nav-link">项目</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#faq" class="nav-link">问答</a></li>
         <li><a href="#contact" class="nav-link">联系</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a class="nav-gh" href="https://github.com/lx307697527" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <a class="nav-icon" href="https://github.com/lx307697527" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
         </a>
-        <button class="theme-toggle" id="themeToggle" aria-label="切换深浅色模式" title="切换深浅色模式">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <button class="nav-icon" id="themeToggle" aria-label="切换深浅色模式" title="切换深浅色模式">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
         <button class="nav-burger" id="navBurger" aria-label="打开菜单" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -157,93 +156,65 @@
   </header>
 
   <main>
-    <!-- ==================== 首屏 Hero ==================== -->
+    <!-- ==================== 首屏(杂志刊头) ==================== -->
     <section class="hero" id="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <div class="grid-overlay"></div>
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-      </div>
+      <div class="container">
+        <div class="masthead reveal">
+          <span>PORTFOLIO · CURRICULUM VITAE</span>
+          <span>成都 CHENGDU — <span id="mastheadYear">2026</span></span>
+        </div>
 
-      <div class="hero-container">
-        <div class="hero-text">
-          <p class="hero-greeting reveal">你好,我是</p>
-          <h1 class="hero-name reveal d1">刘星</h1>
-          <!-- ✏️ 打字轮播头衔在 js/main.js 的 TITLES 数组中配置 -->
-          <h2 class="hero-title reveal d2">一名 <span class="typed" id="typed"></span><span class="cursor">|</span></h2>
-          <p class="hero-desc reveal d3">
-            12 年前端架构与团队管理经验,从企业级软件到 6500+ 门店的全球化业务;
-            近 3 年深耕大模型应用,独立做出已上线盈利的 AI 产品。
-            相信 AI 是工程师的杠杆,擅长把智能体技术变成真实生产力。
-          </p>
+        <p class="hero-greeting reveal">// 你好,我是</p>
 
-          <div class="hero-btns reveal d3">
-            <a href="#projects" class="btn btn-primary">查看项目</a>
-            <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener" class="btn btn-ghost">TeacherCopilot ↗</a>
-            <a href="resume.pdf" class="btn btn-outline" download>下载简历</a>
+        <div class="hero-name-row reveal d1">
+          <h1 class="hero-name">刘星</h1>
+          <!-- 朱砂印章 -->
+          <svg class="seal" viewBox="0 0 96 96" role="img" aria-label="刘星印章">
+            <rect width="96" height="96" rx="12" fill="currentColor"/>
+            <rect x="7.5" y="7.5" width="81" height="81" rx="7" fill="none" stroke="#f6f2ea" stroke-width="2.5" opacity=".85"/>
+            <text x="48" y="44" text-anchor="middle" font-size="29" font-weight="700" fill="#f6f2ea" font-family="Songti SC, STSong, Noto Serif CJK SC, SimSun, serif">刘</text>
+            <text x="48" y="79" text-anchor="middle" font-size="29" font-weight="700" fill="#f6f2ea" font-family="Songti SC, STSong, Noto Serif CJK SC, SimSun, serif">星</text>
+          </svg>
+        </div>
+
+        <!-- ✏️ 打字轮播头衔在 js/main.js 的 TITLES 数组中配置 -->
+        <h2 class="hero-role reveal d1">全栈工程师 <span class="role-x">×</span> <span class="typed" id="typed"></span><span class="cursor">|</span></h2>
+
+        <p class="hero-lead reveal d2">
+          十二年前端架构与团队管理,从服务全球银行的存储软件,到支撑
+          6500+ 门店的全球化业务;近三年深耕大模型应用,
+          独立做出<em>已上线盈利</em>的 AI 产品 —— 相信 AI 是工程师的杠杆。
+        </p>
+
+        <div class="hero-btns reveal d2">
+          <a href="#projects" class="btn btn-solid">查看项目</a>
+          <a href="resume.pdf" class="btn btn-line" download>下载简历 PDF</a>
+          <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener" class="btn-text">TeacherCopilot ↗</a>
+        </div>
+
+        <!-- 关键数字 -->
+        <div class="stats reveal d3">
+          <div class="stat">
+            <b><span class="stat-num" data-count="12">0</span><sup>+</sup></b>
+            <span class="stat-label">年研发经验 YEARS</span>
           </div>
-
-          <!-- ✏️ 社交链接 -->
-          <div class="hero-social reveal d4">
-            <a href="https://github.com/lx307697527" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.2.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-            </a>
-            <a href="mailto:307697527@qq.com" aria-label="邮箱" title="307697527@qq.com">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            </a>
-            <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener" aria-label="TeacherCopilot" title="TeacherCopilot · 已上线产品">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0 3.5-2.5 6.5-6 7.8-3.5-1.3-6-4.3-6-7.8V5l6-2 6 2z"/><path d="m9.5 11.5 2 2 3.5-3.5"/></svg>
-            </a>
+          <div class="stat">
+            <b><span class="stat-num" data-count="3">0</span></b>
+            <span class="stat-label">年大模型 AGENT 开发</span>
           </div>
-        </div>
-
-        <!-- 代码风格个人档案卡 -->
-        <div class="hero-code reveal d3" aria-hidden="true">
-          <div class="code-card">
-            <div class="code-head">
-              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-              <span class="code-title">liuxing.profile.ts</span>
-            </div>
-            <pre class="code-body"><code><span class="tk-cmt">// 一份可运行的自我介绍</span>
-<span class="tk-kw">const</span> <span class="tk-var">liuxing</span> <span class="tk-pun">=</span> {
-  base<span class="tk-pun">:</span> <span class="tk-str">"成都 · 远程友好"</span><span class="tk-pun">,</span>
-  role<span class="tk-pun">:</span> [<span class="tk-str">"全栈工程师"</span><span class="tk-pun">,</span> <span class="tk-str">"AI 应用工程师"</span>]<span class="tk-pun">,</span>
-  <span class="tk-var">years</span><span class="tk-pun">:</span> {
-    frontend<span class="tk-pun">:</span> <span class="tk-num">12</span><span class="tk-pun">,</span>  <span class="tk-cmt">// React · Vue · Angular · TS</span>
-    backend<span class="tk-pun">:</span> <span class="tk-num">3</span><span class="tk-pun">,</span>   <span class="tk-cmt">// Python · FastAPI · Node.js</span>
-    aiAgent<span class="tk-pun">:</span> <span class="tk-num">3</span><span class="tk-pun">,</span>   <span class="tk-cmt">// LangChain · RAG · 多 Agent</span>
-    manage<span class="tk-pun">:</span>  <span class="tk-num">4</span><span class="tk-pun">,</span>   <span class="tk-cmt">// 30+ 人团队</span>
-  }<span class="tk-pun">,</span>
-  <span class="tk-var">building</span><span class="tk-pun">:</span> <span class="tk-str">"TeacherCopilot"</span><span class="tk-pun">,</span>  <span class="tk-cmt">// 已盈利</span>
-  <span class="tk-var">openTo</span><span class="tk-pun">:</span> <span class="tk-str">"全栈 / AI 产品机会"</span><span class="tk-pun">,</span>
-} <span class="tk-kw">as const</span><span class="tk-pun">;</span></code></pre>
-            <div class="code-foot"><span class="pulse"></span>open to work · 成都</div>
+          <div class="stat">
+            <b><span class="stat-num" data-count="30">0</span><sup>+</sup></b>
+            <span class="stat-label">人团队管理规模</span>
           </div>
-        </div>
-      </div>
-
-      <!-- 关键数字 -->
-      <div class="hero-stats reveal d4">
-        <div class="stat-card">
-          <div class="stat-top"><span class="stat-num" data-count="12">0</span><span class="stat-plus">年+</span></div>
-          <span class="stat-label">研发经验</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top"><span class="stat-num" data-count="3">0</span><span class="stat-plus">年</span></div>
-          <span class="stat-label">大模型 Agent 开发</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top"><span class="stat-num" data-count="30">0</span><span class="stat-plus">+</span></div>
-          <span class="stat-label">团队管理规模(人)</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top"><span class="stat-num" data-count="6500">0</span><span class="stat-plus">+</span></div>
-          <span class="stat-label">支撑全球门店(家)</span>
+          <div class="stat">
+            <b><span class="stat-num" data-count="6500">0</span><sup>+</sup></b>
+            <span class="stat-label">家支撑全球门店</span>
+          </div>
         </div>
       </div>
 
       <a href="#about" class="scroll-down" aria-label="向下滚动">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m7-7-7 7-7-7"/></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m7-7-7 7-7-7"/></svg>
       </a>
     </section>
 
@@ -251,18 +222,18 @@
     <section class="section" id="about">
       <div class="container">
         <header class="sec-head reveal">
-          <span class="sec-num">01</span>
+          <span class="sec-idx">01</span>
           <h2 class="sec-title">关于我</h2>
-          <span class="sec-sub">About</span>
+          <span class="sec-sub">ABOUT</span>
         </header>
 
         <div class="about-grid">
           <div class="about-text reveal">
-            <p>我从<strong>制药工程</strong>转行写代码,2014 年入行至今 <strong>12 年</strong>:在新浪支付做 C 端金融页面起步,在 Dell EMC 维护服务全球银行的存储软件,在龙湖集团带团队交付地产科技产品,在霸王茶姬从零搭建 B 端、C 端、客户端 <strong>3 个前端团队</strong>,支撑门店从 1500 家扩张到全球 <strong>6500+ 家</strong>。</p>
+            <p>我从<strong>制药工程</strong>转行写代码,2014 年入行至今十二年:在新浪支付做 C 端金融页面起步,在 Dell EMC 维护服务全球银行的存储软件,在龙湖集团带团队交付地产科技产品,在霸王茶姬从零搭建 B 端、C 端、客户端 <strong>3 个前端团队</strong>,支撑门店从 1500 家扩张到全球 <strong>6500+ 家</strong>。</p>
             <p>2023 年起重心转向 <strong>AI 应用工程</strong>:用 LangChain / RAG / 多 Agent 编排构建智能体系统,为客服团队提效 70%+,并独立完成从 PRD 到发布全链路的<strong>已盈利产品 TeacherCopilot</strong>。熟悉 Vibe Coding,善用 Claude Code 等 AI 编程工具 —— 让 AI 驾驭工程,让工程放大 AI。</p>
             <p>既能写代码也能带团队:4 年管理经验、培养 10+ 位中高级工程师;也享受一个人把想法做成产品的完整过程。</p>
 
-            <ul class="about-info">
+            <ul class="facts">
               <li><span>城市</span><strong>中国 · 成都(远程友好)</strong></li>
               <li><span>邮箱</span><strong><a href="mailto:307697527@qq.com">307697527@qq.com</a></strong></li>
               <li><span>学历</span><strong>本科 · 西华大学 · 制药工程</strong></li>
@@ -272,20 +243,20 @@
 
           <aside class="about-side">
             <!-- ✏️ 关键成就:数据均来自简历 -->
-            <div class="highlight-card reveal d1">
-              <h3>代表性成果</h3>
-              <ul class="hl-list">
-                <li><b>1300 万+</b><span>跨端兼容方案节约的硬件与开发成本</span></li>
-                <li><b>1500 人日</b><span>15 个大型项目国际化落地的节省量</span></li>
-                <li><b>+70%</b><span>LLM + RAG 客服知识库带来的效率提升</span></li>
-                <li><b>+40%</b><span>霸王管家 2.0 支撑的招商加盟业务增长</span></li>
-                <li><b>+30%</b><span>AI 协作流程推动的团队研发效率提升</span></li>
-              </ul>
+            <div class="hl reveal d1">
+              <h3 class="aside-title">代表性成果 <em>SELECTED WORKS</em></h3>
+              <ol class="hl-list">
+                <li><b>01</b><div><strong>1300 万+</strong> 跨端兼容方案节约的硬件与开发成本</div></li>
+                <li><b>02</b><div><strong>1500 人日</strong> 15 个大型项目国际化落地的节省量</div></li>
+                <li><b>03</b><div><strong>+70%</strong> LLM + RAG 客服知识库带来的效率提升</div></li>
+                <li><b>04</b><div><strong>+40%</strong> 霸王管家 2.0 支撑的招商加盟业务增长</div></li>
+                <li><b>05</b><div><strong>+30%</strong> AI 协作流程推动的团队研发效率提升</div></li>
+              </ol>
             </div>
-            <div class="way-card reveal d2">
-              <h3>工作方式</h3>
-              <p>AI 协作开发 · Vibe Coding · 用 Claude Code 等 AI 编程工具高效驾驭全栈工程,小团队也能打出大产能。</p>
-            </div>
+            <blockquote class="quote reveal d2">
+              <h3 class="aside-title">工作方式 <em>APPROACH</em></h3>
+              <p>AI 协作开发 · Vibe Coding —— 用 Claude Code 等 AI 编程工具高效驾驭全栈工程,小团队也能打出大产能。</p>
+            </blockquote>
           </aside>
         </div>
       </div>
@@ -295,94 +266,78 @@
     <section class="section section-alt" id="skills">
       <div class="container">
         <header class="sec-head reveal">
-          <span class="sec-num">02</span>
+          <span class="sec-idx">02</span>
           <h2 class="sec-title">技能栈</h2>
-          <span class="sec-sub">Skills</span>
+          <span class="sec-sub">CAPABILITIES</span>
         </header>
 
-        <div class="skills-grid">
-          <!-- ✏️ 技能卡片:复制 .skill-card 修改 -->
-          <article class="skill-card reveal">
-            <div class="skill-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <div class="skills">
+          <!-- ✏️ 技能行:复制 .skill-row 修改 -->
+          <div class="skill-row reveal">
+            <div class="skill-cat">
+              <h3>AI 与大模型</h3>
+              <span class="skill-yrs is-core">3 年 · 核心方向</span>
             </div>
-            <h3>前端工程 <em>12 年</em></h3>
-            <p>精通 React / Vue 全生态与 Angular,熟练使用 TypeScript 构建大型企业级项目,具备复杂业务场景下的框架选型与落地能力。</p>
-            <div class="skill-tags">
-              <span class="tag">React</span><span class="tag">Vue 3</span><span class="tag">Pinia</span>
-              <span class="tag">Vuex</span><span class="tag">MobX</span><span class="tag">Angular</span>
-              <span class="tag">TypeScript</span><span class="tag">微前端</span><span class="tag">Electron</span>
-              <span class="tag">H5 混合开发</span><span class="tag">跨端兼容</span>
+            <div class="skill-body">
+              <p>具备从 0 到 1 构建多智能体协作系统的实战经验,擅长用 LangChain 与向量库解决复杂业务场景下的任务规划与执行问题。</p>
+              <div class="tags"><span>LangChain</span><span>多 Agent 编排</span><span>RAG 混合检索</span><span>BM25 + Vector</span><span>Chroma</span><span>FAISS</span><span>Milvus Lite</span><span>Prompt 工程</span><span>OpenAI 兼容 API</span><span>流式 SSE</span><span>PaddleOCR</span></div>
             </div>
-          </article>
+          </div>
 
-          <article class="skill-card card-featured reveal d1">
-            <div class="skill-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="4"/><path d="m6 6 2.5 2.5m7 7L18 18M18 6l-2.5 2.5m-7 7L6 18"/></svg>
+          <div class="skill-row reveal">
+            <div class="skill-cat">
+              <h3>前端工程</h3>
+              <span class="skill-yrs">12 年</span>
             </div>
-            <h3>AI 与大模型 <em>3 年</em></h3>
-            <p>具备从 0 到 1 构建多智能体协作系统的实战经验,擅长用 LangChain 与向量库解决复杂业务场景下的任务规划与执行问题。</p>
-            <div class="skill-tags">
-              <span class="tag">LangChain</span><span class="tag">多 Agent 编排</span>
-              <span class="tag">RAG 混合检索</span><span class="tag">BM25 + Vector</span>
-              <span class="tag">Chroma</span><span class="tag">FAISS</span><span class="tag">Milvus Lite</span>
-              <span class="tag">Prompt 工程</span><span class="tag">OpenAI 兼容 API</span>
-              <span class="tag">流式 SSE</span><span class="tag">PaddleOCR</span>
+            <div class="skill-body">
+              <p>精通 React / Vue 全生态与 Angular,熟练使用 TypeScript 构建大型企业级项目,具备复杂业务场景下的框架选型与落地能力。</p>
+              <div class="tags"><span>React</span><span>Vue 3</span><span>Pinia / Vuex</span><span>MobX</span><span>Angular</span><span>TypeScript</span><span>微前端</span><span>Electron</span><span>H5 混合开发</span><span>跨端兼容</span></div>
             </div>
-          </article>
+          </div>
 
-          <article class="skill-card reveal d2">
-            <div class="skill-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
+          <div class="skill-row reveal">
+            <div class="skill-cat">
+              <h3>后端与数据</h3>
+              <span class="skill-yrs">3 年</span>
             </div>
-            <h3>后端与数据 <em>3 年</em></h3>
-            <p>Python 后端开发出身的技术敏感度,熟悉数据存储选型与向量数据库,能独立完成全栈闭环交付。</p>
-            <div class="skill-tags">
-              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Node.js</span>
-              <span class="tag">better-sqlite3</span><span class="tag">MySQL</span>
-              <span class="tag">Redis</span><span class="tag">MongoDB</span><span class="tag">Nginx</span>
+            <div class="skill-body">
+              <p>Python 后端开发出身的技术敏感度,熟悉数据存储选型与向量数据库,能独立完成全栈闭环交付。</p>
+              <div class="tags"><span>Python</span><span>FastAPI</span><span>Node.js</span><span>better-sqlite3</span><span>MySQL</span><span>Redis</span><span>MongoDB</span><span>Nginx</span></div>
             </div>
-          </article>
+          </div>
 
-          <article class="skill-card reveal">
-            <div class="skill-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <div class="skill-row reveal">
+            <div class="skill-cat">
+              <h3>工程化与效能</h3>
+              <span class="skill-yrs">持续投入</span>
             </div>
-            <h3>工程化与效能</h3>
-            <p>熟悉前端从开发到自动化发布、运维及监测的完整链路;有自研 Vite 插件、Docker 编译测试镜像与 CI/CD 落地经验。</p>
-            <div class="skill-tags">
-              <span class="tag">Vite 插件</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
-              <span class="tag">Vitest</span><span class="tag">Playwright</span>
-              <span class="tag">低代码平台</span><span class="tag">E2E 测试</span>
-              <span class="tag">性能监控</span><span class="tag">Git</span><span class="tag">Linux</span>
+            <div class="skill-body">
+              <p>熟悉前端从开发到自动化发布、运维及监测的完整链路;有自研 Vite 插件、Docker 编译测试镜像与 CI/CD 落地经验。</p>
+              <div class="tags"><span>Vite 插件</span><span>Docker</span><span>CI/CD</span><span>Vitest</span><span>Playwright</span><span>低代码平台</span><span>E2E 测试</span><span>性能监控</span></div>
             </div>
-          </article>
+          </div>
 
-          <article class="skill-card reveal d1">
-            <div class="skill-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="skill-row reveal">
+            <div class="skill-cat">
+              <h3>团队与管理</h3>
+              <span class="skill-yrs">4 年</span>
             </div>
-            <h3>团队与管理 <em>4 年</em></h3>
-            <p>从零搭建 3 个前端团队并支持新加坡海外招聘;制定技术规范与代码评审机制,培养中级 → 高级工程师 10+ 人。</p>
-            <div class="skill-tags">
-              <span class="tag">30+ 人团队</span><span class="tag">海外招聘</span>
-              <span class="tag">代码评审机制</span><span class="tag">人才培养</span>
-              <span class="tag">跨团队协作</span><span class="tag">绩效体系</span>
+            <div class="skill-body">
+              <p>从零搭建 3 个前端团队并支持新加坡海外招聘;制定技术规范与代码评审机制,培养中级 → 高级工程师 10+ 人。</p>
+              <div class="tags"><span>30+ 人团队</span><span>海外招聘</span><span>代码评审机制</span><span>人才培养</span><span>绩效体系</span><span>跨团队协作</span></div>
             </div>
-          </article>
+          </div>
 
-          <article class="skill-card reveal d2">
-            <div class="skill-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="skill-row reveal">
+            <div class="skill-cat">
+              <h3>国际化与跨端</h3>
+              <span class="skill-yrs">多区域落地</span>
             </div>
-            <h3>国际化与跨端</h3>
-            <p>制定前端多语言整体方案(AI 翻译 + 腾讯翻译 API),3 个月完成 15 个大型项目本地化;主导 Windows / iOS / Android 跨端兼容方案。</p>
-            <div class="skill-tags">
-              <span class="tag">i18n 方案</span><span class="tag">AI 翻译流水线</span>
-              <span class="tag">响应式 H5</span><span class="tag">适配层设计</span>
-              <span class="tag">Electron</span><span class="tag">多区域部署</span>
+            <div class="skill-body">
+              <p>制定前端多语言整体方案(AI 翻译 + 腾讯翻译 API),3 个月完成 15 个大型项目本地化;主导 Windows / iOS / Android 跨端兼容方案。</p>
+              <div class="tags"><span>i18n 方案</span><span>AI 翻译流水线</span><span>响应式 H5</span><span>适配层设计</span><span>多区域部署</span></div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -391,21 +346,20 @@
     <section class="section" id="experience">
       <div class="container">
         <header class="sec-head reveal">
-          <span class="sec-num">03</span>
+          <span class="sec-idx">03</span>
           <h2 class="sec-title">职业经历</h2>
-          <span class="sec-sub">Experience</span>
+          <span class="sec-sub">EXPERIENCE</span>
         </header>
 
-        <div class="timeline">
-          <!-- ✏️ 经历条目:复制 .timeline-item 修改 -->
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-meta">
-                <span class="timeline-date">2026.03 — 至今</span>
-                <span class="timeline-badge">独立产品</span>
-              </div>
-              <h3>教研智擎 TeacherCopilot <span class="timeline-role">· 全栈工程师</span></h3>
+        <div class="xp-list">
+          <!-- ✏️ 经历条目:复制 .xp 修改 -->
+          <div class="xp reveal">
+            <div class="xp-when">
+              <span class="xp-date">2026.03 — 至今</span>
+              <span class="xp-badge">独立产品</span>
+            </div>
+            <div class="xp-body">
+              <h3>教研智擎 TeacherCopilot <span class="xp-role">· 全栈工程师</span></h3>
               <ul>
                 <li>独立负责需求分析、架构设计与全栈开发,覆盖 PRD 定义到打包发布的完整闭环,产品<strong>已上线并盈利</strong>。</li>
                 <li>基于 Electron + React 18 + TypeScript 构建三栏式桌面应用,集成 Tiptap 富文本与 Docxtemplater 模板引擎,一键导出结构化教学文档。</li>
@@ -415,14 +369,13 @@
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-meta">
-                <span class="timeline-date">2025.06 — 至今</span>
-                <span class="timeline-badge">AI 架构</span>
-              </div>
-              <h3>Theia Insights <span class="timeline-role">· 系统架构师</span></h3>
+          <div class="xp reveal">
+            <div class="xp-when">
+              <span class="xp-date">2025.06 — 至今</span>
+              <span class="xp-badge">AI 架构</span>
+            </div>
+            <div class="xp-body">
+              <h3>Theia Insights <span class="xp-role">· 系统架构师</span></h3>
               <ul>
                 <li>负责 UniInsight 产品前端开发与后端 Python Agent 构建,以 AI 辅助编程完成全栈交付。</li>
                 <li>实现多 Agent 流程编排:自然语言询问 → 本体论建模匹配 → 生成 SQL → 数据分析结果反馈,覆盖完整业务流程。</li>
@@ -431,14 +384,13 @@
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-meta">
-                <span class="timeline-date">2023.09 — 2025.03</span>
-                <span class="timeline-badge">前端负责人</span>
-              </div>
-              <h3>霸王茶姬(四川茶姬) <span class="timeline-role">· 前端负责人 / 项目经理</span></h3>
+          <div class="xp reveal">
+            <div class="xp-when">
+              <span class="xp-date">2023.09 — 2025.03</span>
+              <span class="xp-badge">前端负责人</span>
+            </div>
+            <div class="xp-body">
+              <h3>霸王茶姬(四川茶姬) <span class="xp-role">· 前端负责人 / 项目经理</span></h3>
               <ul>
                 <li>从零组建 B 端、C 端、客户端 3 个前端团队,管理 30+ 人(含新加坡海外 8 人招聘),团队迭代效率提升 30%。</li>
                 <li>主导跨端兼容方案与前端工程化体系,支撑门店规模从 1500 家扩张至全球 <strong>6500+ 家</strong>,跨端方案节约成本 <strong>1300 万+</strong>。</li>
@@ -448,14 +400,13 @@
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-meta">
-                <span class="timeline-date">2021.05 — 2023.04</span>
-                <span class="timeline-badge">高级工程师</span>
-              </div>
-              <h3>龙湖集团 <span class="timeline-role">· Web 前端高级工程师</span></h3>
+          <div class="xp reveal">
+            <div class="xp-when">
+              <span class="xp-date">2021.05 — 2023.04</span>
+              <span class="xp-badge">高级工程师</span>
+            </div>
+            <div class="xp-body">
+              <h3>龙湖集团 <span class="xp-role">· Web 前端高级工程师</span></h3>
               <ul>
                 <li>带领 6 人团队完成「蜜蜂派」大学生实习平台 3.0 上线,支撑全国 200+ 高校学生实习对接。</li>
                 <li>牵头薪酬模板重构,删除冗余代码 2000 行,线上 BUG 率降低 20%;营销决策平台 2.0 提前 3 天上线。</li>
@@ -464,14 +415,13 @@
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-meta">
-                <span class="timeline-date">2018.06 — 2021.03</span>
-                <span class="timeline-badge">企业级软件</span>
-              </div>
-              <h3>Dell EMC <span class="timeline-role">· 前端开发工程师</span></h3>
+          <div class="xp reveal">
+            <div class="xp-when">
+              <span class="xp-date">2018.06 — 2021.03</span>
+              <span class="xp-badge">企业级软件</span>
+            </div>
+            <div class="xp-body">
+              <h3>Dell EMC <span class="xp-role">· 前端开发工程师</span></h3>
               <ul>
                 <li>主导 Avamar 数据保护软件前端框架从 Angular 2 → 10 无损迁移,解决 12 项历史兼容问题,稳定性提升 40%。</li>
                 <li>优化 AUI 加载逻辑,性能提升 50%、流量减少 90%,获美国银行、富国银行等核心客户认可。</li>
@@ -480,14 +430,13 @@
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-meta">
-                <span class="timeline-date">2014.06 — 2018.05</span>
-                <span class="timeline-badge">起步</span>
-              </div>
-              <h3>上海微汇 · 新浪支付 <span class="timeline-role">· Web 前端工程师</span></h3>
+          <div class="xp reveal">
+            <div class="xp-when">
+              <span class="xp-date">2014.06 — 2018.05</span>
+              <span class="xp-badge">起步</span>
+            </div>
+            <div class="xp-body">
+              <h3>上海微汇 · 新浪支付 <span class="xp-role">· Web 前端工程师</span></h3>
               <ul>
                 <li>独立负责 C 端金融服务页面与中后台管理系统(vbasis 十至十二期),支撑 500+ 内部用户。</li>
                 <li>优化云金融站点首屏加载至 2s,解决 IE11 / Chrome 跨浏览器兼容问题,成功防御 XSS 等安全威胁。</li>
@@ -503,120 +452,139 @@
     <section class="section section-alt" id="projects">
       <div class="container">
         <header class="sec-head reveal">
-          <span class="sec-num">04</span>
+          <span class="sec-idx">04</span>
           <h2 class="sec-title">项目经验</h2>
-          <span class="sec-sub">Projects</span>
+          <span class="sec-sub">SELECTED PROJECTS</span>
         </header>
 
         <!-- ✏️ 重点项目 -->
-        <article class="project-featured reveal">
-          <div class="pf-info">
-            <div class="pf-badges">
-              <span class="badge badge-live"><span class="pulse"></span>已上线 · 已盈利</span>
+        <article class="feat reveal">
+          <div class="feat-info">
+            <div class="feat-badges">
+              <span class="badge badge-live"><i class="dot"></i>已上线 · 已盈利</span>
               <span class="badge">独立开发</span>
-              <span class="badge">Electron 桌面端</span>
+              <span class="badge">ELECTRON 桌面端</span>
             </div>
-            <h3 class="pf-title">TeacherCopilot · 教研智擎</h3>
-            <p class="pf-desc">
+            <h3 class="feat-title">TeacherCopilot · 教研智擎</h3>
+            <p class="feat-desc">
               面向教师的 AI 教学教研工作站:三栏式桌面应用 + RAG 本地知识库,覆盖
               学情分析、备课设计、作业设计、观评课、教学反思、教研材料 6 大模块,
               支持 9 学科 × 多教材版本 × 多课型的差异化配置,本地加密确保校本资源零外传。
             </p>
-            <div class="pf-tags">
-              <span class="tag">Electron</span><span class="tag">React 18</span>
-              <span class="tag">TypeScript</span><span class="tag">Tiptap</span>
-              <span class="tag">RAG 混合检索</span><span class="tag">PaddleOCR</span>
-              <span class="tag">Docxtemplater</span><span class="tag">Vitest + Playwright</span>
-            </div>
-            <div class="pf-links">
-              <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener" class="btn btn-primary">在线体验 ↗</a>
-              <a href="https://github.com/lx307697527?tab=repositories" target="_blank" rel="noopener" class="btn btn-outline">GitHub ↗</a>
+            <div class="tags"><span>Electron</span><span>React 18</span><span>TypeScript</span><span>Tiptap</span><span>RAG 混合检索</span><span>PaddleOCR</span><span>Docxtemplater</span><span>Vitest + Playwright</span></div>
+            <div class="feat-links">
+              <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener" class="btn btn-solid">在线体验 ↗</a>
+              <a href="https://github.com/lx307697527?tab=repositories" target="_blank" rel="noopener" class="btn btn-line">GitHub ↗</a>
             </div>
           </div>
-          <div class="pf-metrics">
-            <div class="pm-item"><b>9</b><span>学科适配</span></div>
-            <div class="pm-item"><b>6</b><span>教学模块</span></div>
-            <div class="pm-item"><b>≤2s</b><span>RAG 检索响应</span></div>
-            <div class="pm-item"><b>≤8s</b><span>AI 生成首包</span></div>
-            <div class="pm-item"><b>AES-256</b><span>本地加密</span></div>
-            <div class="pm-item"><b>0</b><span>资源外传</span></div>
+          <div class="feat-metrics">
+            <div class="fm"><b>9</b><span>学科适配</span></div>
+            <div class="fm"><b>6</b><span>教学模块</span></div>
+            <div class="fm"><b>≤2s</b><span>RAG 检索响应</span></div>
+            <div class="fm"><b>≤8s</b><span>AI 生成首包</span></div>
+            <div class="fm"><b>AES-256</b><span>本地加密</span></div>
+            <div class="fm"><b>0</b><span>资源外传</span></div>
           </div>
         </article>
 
-        <!-- ✏️ 项目卡片:复制 .project-card 修改 -->
-        <div class="projects-grid">
-          <article class="project-card reveal">
-            <div class="project-badge">UI</div>
-            <div class="project-role">Theia Insights · 架构师</div>
-            <h3>UniInsight · 数据分析智能体</h3>
-            <p>多 Agent 编排的数据分析产品:自然语言提问 → 意图识别与语义消歧 → 本体论建模匹配 → 自动生成 SQL → 分析结果可视化反馈,多平台多框架适配。</p>
-            <div class="project-tags"><span>Python</span><span>FastAPI</span><span>Chroma</span><span>多 Agent</span><span>RAG</span></div>
-            <div class="project-metric">覆盖 意图识别 → 分析反馈 完整链路</div>
+        <!-- ✏️ 项目行:复制 .proj 修改 -->
+        <div class="proj-list">
+          <article class="proj reveal">
+            <span class="proj-idx">P1</span>
+            <div class="proj-main">
+              <div class="proj-top">
+                <h3>UniInsight · 数据分析智能体</h3>
+                <span class="proj-role">THEIA INSIGHTS · 架构师</span>
+              </div>
+              <p>多 Agent 编排的数据分析产品:自然语言提问 → 意图识别与语义消歧 → 本体论建模匹配 → 自动生成 SQL → 分析结果可视化反馈,多平台多框架适配。</p>
+              <div class="tags"><span>Python</span><span>FastAPI</span><span>Chroma</span><span>多 Agent</span><span>RAG</span></div>
+              <p class="proj-metric">▸ 覆盖意图识别 → 分析反馈完整业务链路</p>
+            </div>
           </article>
 
-          <article class="project-card reveal d1">
-            <div class="project-badge">BG</div>
-            <div class="project-role">霸王茶姬 · 架构师 / 前端管理</div>
-            <h3>霸王管家 2.0</h3>
-            <p>自研替代外采的一站式门店管理系统,含招商加盟、选址、营建、门店运营子系统;3 个大版本按期交付,同步支持国内与马来西亚 / 新加坡 / 泰国版本。</p>
-            <div class="project-tags"><span>Vue</span><span>React</span><span>低代码</span><span>A/B 测试</span></div>
-            <div class="project-metric">选址地图 400 → 45000 多边形流畅加载,招商业务 +40%</div>
+          <article class="proj reveal">
+            <span class="proj-idx">P2</span>
+            <div class="proj-main">
+              <div class="proj-top">
+                <h3>霸王管家 2.0</h3>
+                <span class="proj-role">霸王茶姬 · 架构师 / 前端管理</span>
+              </div>
+              <p>自研替代外采的一站式门店管理系统,含招商加盟、选址、营建、门店运营子系统;3 个大版本按期交付,同步支持国内与马来西亚 / 新加坡 / 泰国版本。</p>
+              <div class="tags"><span>Vue</span><span>React</span><span>低代码</span><span>A/B 测试</span></div>
+              <p class="proj-metric">▸ 选址地图 400 → 45,000 多边形流畅加载 · 招商业务 +40%</p>
+            </div>
           </article>
 
-          <article class="project-card reveal d2">
-            <div class="project-badge">XD</div>
-            <div class="project-role">霸王茶姬 · 架构师</div>
-            <h3>门店跨平台跨端兼容方案</h3>
-            <p>「响应式 H5 + 适配层」一套代码多端运行,兼容 Windows / iOS / Android,保留国内 Windows 硬件资产的同时满足海外手机端操作需求。</p>
-            <div class="project-tags"><span>响应式 H5</span><span>Electron</span><span>适配层</span><span>跨端</span></div>
-            <div class="project-metric">节省 600 人日 + 保留硬件 1300 万+,海外门店 +20</div>
+          <article class="proj reveal">
+            <span class="proj-idx">P3</span>
+            <div class="proj-main">
+              <div class="proj-top">
+                <h3>门店跨平台跨端兼容方案</h3>
+                <span class="proj-role">霸王茶姬 · 架构师</span>
+              </div>
+              <p>「响应式 H5 + 适配层」一套代码多端运行,兼容 Windows / iOS / Android,保留国内 Windows 硬件资产的同时满足海外手机端操作需求。</p>
+              <div class="tags"><span>响应式 H5</span><span>Electron</span><span>适配层</span><span>跨端</span></div>
+              <p class="proj-metric">▸ 节省 600 人日 · 保留硬件资产 1300 万+ · 海外门店 +20</p>
+            </div>
           </article>
 
-          <article class="project-card reveal">
-            <div class="project-badge">i18n</div>
-            <div class="project-role">霸王茶姬 · 架构师</div>
-            <h3>前端国际化平台</h3>
-            <p>自研 Vite 自动化插件,打通「字符串自动提取 → AI + 腾讯翻译 API 生成多语言字段 → 产物打包」全流程,解决日期、货币等本地化适配。</p>
-            <div class="project-tags"><span>Vite 插件</span><span>AI 翻译</span><span>i18n</span><span>工程化</span></div>
-            <div class="project-metric">3 个月完成 15 个项目本地化,节省 1500 人日,周期 -80%</div>
+          <article class="proj reveal">
+            <span class="proj-idx">P4</span>
+            <div class="proj-main">
+              <div class="proj-top">
+                <h3>前端国际化平台</h3>
+                <span class="proj-role">霸王茶姬 · 架构师</span>
+              </div>
+              <p>自研 Vite 自动化插件,打通「字符串自动提取 → AI + 腾讯翻译 API 生成多语言字段 → 产物打包」全流程,解决日期、货币等本地化适配。</p>
+              <div class="tags"><span>Vite 插件</span><span>AI 翻译</span><span>i18n</span><span>工程化</span></div>
+              <p class="proj-metric">▸ 3 个月完成 15 个项目本地化 · 节省 1500 人日 · 周期 -80%</p>
+            </div>
           </article>
 
-          <article class="project-card reveal d1">
-            <div class="project-badge">AV</div>
-            <div class="project-role">Dell EMC · 前端 Owner</div>
-            <h3>EMC Avamar · AUI</h3>
-            <p>全球份额领先的数据保护软件 HTML5 新界面:Angular 2 → 10.1 无损迁移,完成 Data Policy / ESRS / LDAP 等核心功能与四语国际化。</p>
-            <div class="project-tags"><span>Angular</span><span>TypeScript</span><span>RxJS</span><span>Clarity</span></div>
-            <div class="project-metric">加载性能 +50%、流量 -90%,服务央行与富国银行</div>
+          <article class="proj reveal">
+            <span class="proj-idx">P5</span>
+            <div class="proj-main">
+              <div class="proj-top">
+                <h3>EMC Avamar · AUI</h3>
+                <span class="proj-role">DELL EMC · 前端 OWNER</span>
+              </div>
+              <p>全球份额领先的数据保护软件 HTML5 新界面:Angular 2 → 10.1 无损迁移,完成 Data Policy / ESRS / LDAP 等核心功能与四语国际化。</p>
+              <div class="tags"><span>Angular</span><span>TypeScript</span><span>RxJS</span><span>Clarity</span></div>
+              <p class="proj-metric">▸ 加载性能 +50% · 流量 -90% · 服务央行与富国银行</p>
+            </div>
           </article>
 
-          <article class="project-card reveal d2">
-            <div class="project-badge">MB</div>
-            <div class="project-role">龙湖集团 · 前端组长</div>
-            <h3>蜜蜂派 · 实习平台</h3>
-            <p>面向全国在校大学生的游戏化实习 App(PC + 原生外壳 H5 混合开发):招聘阅读分享、培训打卡、小组 PK、薪酬实时查询,3.0 版本顺利上线。</p>
-            <div class="project-tags"><span>Vue</span><span>Vuex</span><span>混合开发</span><span>Java</span></div>
-            <div class="project-metric">支撑全国 200+ 高校实习对接</div>
+          <article class="proj reveal">
+            <span class="proj-idx">P6</span>
+            <div class="proj-main">
+              <div class="proj-top">
+                <h3>蜜蜂派 · 实习平台</h3>
+                <span class="proj-role">龙湖集团 · 前端组长</span>
+              </div>
+              <p>面向全国在校大学生的游戏化实习 App(PC + 原生外壳 H5 混合开发):招聘阅读分享、培训打卡、小组 PK、薪酬实时查询,3.0 版本顺利上线。</p>
+              <div class="tags"><span>Vue</span><span>Vuex</span><span>混合开发</span><span>Java</span></div>
+              <p class="proj-metric">▸ 支撑全国 200+ 高校实习对接</p>
+            </div>
           </article>
         </div>
 
         <!-- 更多项目 -->
-        <div class="more-projects reveal">
-          <h3 class="mp-title">更多项目</h3>
-          <ul class="mp-list">
+        <div class="more reveal">
+          <h3 class="aside-title">更多项目 <em>MORE</em></h3>
+          <ul class="more-list">
             <li>
               <b>营销决策平台 2.0</b>
-              <span>龙湖 · 高层营销资金决策平台,Vue + 低代码,核心模块单测覆盖 90%,提前 3 天交付</span>
+              <span>龙湖 · 高层营销资金决策平台,核心模块单测覆盖 90%,提前 3 天交付</span>
               <em>Vue · 低代码 · Vitest</em>
             </li>
             <li>
               <b>LLM + RAG 客服知识库</b>
-              <span>霸王茶姬 · 为客服 / 运维快速搭建知识库,客服工作效率提升 70%+,获集体月度嘉奖</span>
+              <span>霸王茶姬 · 为客服 / 运维快速搭建知识库,客服效率提升 70%+</span>
               <em>LLM · RAG · 知识库</em>
             </li>
             <li>
               <b>攀远财富 · P2P 投资平台</b>
-              <span>新浪支付时期 · 投资标的展示、资金安全校验,负责前端安全防护成功抵御 XSS</span>
+              <span>新浪支付时期 · 投资标的展示、资金安全校验,成功抵御 XSS 威胁</span>
               <em>Vue · ECharts · Webpack</em>
             </li>
           </ul>
@@ -628,39 +596,36 @@
     <section class="section" id="education">
       <div class="container">
         <header class="sec-head reveal">
-          <span class="sec-num">05</span>
+          <span class="sec-idx">05</span>
           <h2 class="sec-title">教育背景</h2>
-          <span class="sec-sub">Education</span>
+          <span class="sec-sub">EDUCATION</span>
         </header>
 
-        <div class="edu-card reveal">
-          <div class="edu-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
-          </div>
+        <div class="edu reveal">
           <div class="edu-main">
             <h3>西华大学 <span>· 制药工程 · 本科</span></h3>
             <p class="edu-date">2010.09 — 2014.06</p>
             <p class="edu-desc">非科班转行:从制药工程到 12 年全栈工程,靠持续自学完成从前端到 AI 应用工程师的每一次进化。</p>
           </div>
-          <div class="edu-cert">
-            <span class="tag">大学英语四级 CET-4</span>
+          <div class="edu-side">
+            <span class="badge">大学英语四级 CET-4</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 常见问题(SEO/GEO:面向搜索与 AI 引擎的事实型问答) ==================== -->
+    <!-- ==================== 常见问题(SEO/GEO) ==================== -->
     <section class="section section-alt" id="faq">
       <div class="container">
         <header class="sec-head reveal">
-          <span class="sec-num">06</span>
+          <span class="sec-idx">06</span>
           <h2 class="sec-title">常见问题</h2>
           <span class="sec-sub">FAQ</span>
         </header>
 
         <div class="faq-list">
           <details class="faq-item reveal" open>
-            <summary>刘星是谁?</summary>
+            <summary><span class="faq-idx">Q1</span>刘星是谁?</summary>
             <div class="faq-a">
               刘星是一名拥有 <strong>12 年经验的全栈工程师与 AI 应用工程师</strong>,现居成都,远程友好。
               曾在霸王茶姬、龙湖集团、Dell EMC 和新浪支付任职;2023 年起专注大模型应用开发,
@@ -668,7 +633,7 @@
             </div>
           </details>
           <details class="faq-item reveal">
-            <summary>刘星的技术栈是什么?</summary>
+            <summary><span class="faq-idx">Q2</span>刘星的技术栈是什么?</summary>
             <div class="faq-a">
               前端精通 <strong>React / Vue / Angular / TypeScript / Electron</strong>;
               AI 侧擅长 <strong>LangChain、RAG 混合检索(BM25 + 向量)、多 Agent 编排</strong>与 Prompt 工程;
@@ -676,7 +641,7 @@
             </div>
           </details>
           <details class="faq-item reveal">
-            <summary>TeacherCopilot(教研智擎)是什么?</summary>
+            <summary><span class="faq-idx">Q3</span>TeacherCopilot(教研智擎)是什么?</summary>
             <div class="faq-a">
               刘星独立开发并已盈利的 AI 教学教研桌面应用:基于 Electron + React 18 + TypeScript,
               内置 RAG 本地知识库(BM25 + 向量混合检索、PaddleOCR 兜底),覆盖 6 大教学模块、9 学科适配,
@@ -685,7 +650,7 @@
             </div>
           </details>
           <details class="faq-item reveal">
-            <summary>刘星有哪些代表性项目成果?</summary>
+            <summary><span class="faq-idx">Q4</span>刘星有哪些代表性项目成果?</summary>
             <div class="faq-a">
               霸王茶姬跨端兼容方案节约成本 <strong>1300 万+</strong>;Vite 国际化插件 3 个月完成
               <strong>15 个大型项目</strong>本地化,节省 1500 人日;LLM + RAG 客服知识库提效
@@ -693,7 +658,7 @@
             </div>
           </details>
           <details class="faq-item reveal">
-            <summary>如何联系刘星?</summary>
+            <summary><span class="faq-idx">Q5</span>如何联系刘星?</summary>
             <div class="faq-a">
               邮箱:<a href="mailto:307697527@qq.com">307697527@qq.com</a>;
               GitHub:<a href="https://github.com/lx307697527" target="_blank" rel="noopener">github.com/lx307697527</a>。
@@ -707,22 +672,20 @@
     <!-- ==================== 联系我 ==================== -->
     <section class="section" id="contact">
       <div class="container contact-wrap">
-        <header class="sec-head reveal">
-          <span class="sec-num">07</span>
+        <header class="sec-head reveal sec-head-center">
+          <span class="sec-idx">07</span>
           <h2 class="sec-title">联系我</h2>
-          <span class="sec-sub">Contact</span>
+          <span class="sec-sub">CONTACT</span>
         </header>
-        <p class="contact-desc reveal d1">
+        <p class="contact-lead reveal d1">
           正在寻找全栈 / AI 方向的机会,或者想聊聊智能体产品与技术顾问合作?
-          我的邮箱永远敞开,期待与你把下一个想法做成产品。
+          我的邮箱永远敞开 —— 期待与你把下一个想法做成产品。
         </p>
-        <div class="contact-btns reveal d2">
-          <a href="mailto:307697527@qq.com" class="btn btn-primary btn-lg">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            307697527@qq.com
-          </a>
-          <a href="https://github.com/lx307697527" target="_blank" rel="noopener" class="btn btn-outline btn-lg">GitHub ↗</a>
-          <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">TeacherCopilot ↗</a>
+        <a href="mailto:307697527@qq.com" class="contact-mail reveal d2">307697527@qq.com</a>
+        <div class="contact-links reveal d3">
+          <a href="https://github.com/lx307697527" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener">TeacherCopilot ↗</a>
+          <a href="resume.pdf" download>下载简历 PDF</a>
         </div>
       </div>
     </section>
@@ -730,13 +693,15 @@
 
   <!-- ==================== 页脚 ==================== -->
   <footer class="footer">
-    <p>© <span id="year"></span> 刘星 · 成都</p>
-    <p class="footer-sub">Designed &amp; Coded by Liu Xing · 与 AI 协作构建</p>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> 刘星 · 成都</p>
+      <p class="footer-sub">DESIGNED &amp; CODED BY LIU XING · 与 AI 协作构建</p>
+    </div>
   </footer>
 
   <!-- 返回顶部 -->
   <button class="back-top" id="backTop" aria-label="返回顶部">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m7 7-7-7-7 7"/></svg>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m7 7-7-7-7 7"/></svg>
   </button>
 
   <script src="js/main.js"></script>
