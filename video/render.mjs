@@ -48,7 +48,7 @@ if (mode !== "film") {
 await renderMedia({
   serveUrl, composition: film, codec: "h264", crf: 24, pixelFormat: "yuv420p",
   browserExecutable, chromiumOptions, concurrency: 4, muted: true,
-  output: path.join(out, "allyos-film.mp4"),
+  outputLocation: path.join(out, "allyos-film.mp4"),
   onProgress: ({ progress }) => process.stdout.write(`\rfilm ${(progress * 100).toFixed(0)}%`),
 });
 const filmPath = path.join(out, "allyos-film.mp4");
