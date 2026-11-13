@@ -23,7 +23,7 @@
   --accent: #b4432a;      /* 朱砂 */
   --accent-deep: #93321d;
   --accent-soft: rgba(180, 67, 42, .08);
-  --nav-bg: rgba(246, 242, 234, .86);
+  --nav-bg: rgba(246, 242, 234, .96);
   --shadow: 0 1px 2px rgba(29, 26, 21, .05), 0 12px 32px rgba(29, 26, 21, .07);
 }
 
@@ -39,7 +39,7 @@ html[data-theme="dark"] {
   --accent: #d96a4a;
   --accent-deep: #e58a6b;
   --accent-soft: rgba(217, 106, 74, .1);
-  --nav-bg: rgba(22, 19, 16, .86);
+  --nav-bg: rgba(22, 19, 16, .96);
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 36px rgba(0, 0, 0, .35);
 }
 
@@ -128,8 +128,6 @@ img, svg { display: block; }
 }
 .navbar.scrolled {
   background: var(--nav-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
 
@@ -948,9 +946,6 @@ html[data-theme="light"] .icon-moon { display: none; }
 /* GSAP 接管时关闭 CSS 过渡,避免双重动画 */
 html.gsap .reveal { transition: none !important; }
 
-/* Lenis 激活时关闭原生平滑 */
-html.lenis-active { scroll-behavior: auto; }
-html.lenis-active, html.lenis-active body { overscroll-behavior: none; }
 
 /* 首屏强调词:朱砂底纹随入场展开 */
 .hero-lead em {
@@ -967,9 +962,12 @@ html.lenis-active, html.lenis-active body { overscroll-behavior: none; }
   top: 0;
   left: 0;
   z-index: 200;
-  width: 0;
+  width: 100%;
   height: 2px;
   background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
   pointer-events: none;
 }
 

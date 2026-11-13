@@ -4,7 +4,7 @@
    增强层(检测 CDN 加载成功后启用,失败自动回退基础层):
      - Three.js:首屏"墨浪"粒子场(鼠标交互) + 可拖拽旋转的 3D 朱砂印章
      - GSAP + ScrollTrigger:逐字标题入场、滚动编排、磁性按钮
-     - Lenis:惯性顺滑滚动
+     滚动一律用浏览器原生滚动(不做滚动劫持):滚轮 / 触控板的每一下都立刻生效,不会有"拖泥带水"的延迟感
    ============================================================ */
 
 (function () {
@@ -18,7 +18,6 @@
   var finePointer = window.matchMedia("(pointer: fine)").matches;
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
   var hasTHREE = !!window.THREE;
-  var hasLenis = !!window.Lenis;
   var useGSAP = hasGSAP && !prefersReduced;
 
   /* ---------- 0. 兜底:3 秒后强制显示所有未入场元素(任何极端情况内容都可见) ---------- */
@@ -62,34 +61,50 @@
   });
 
   /* ---------- 4. 滚动高亮当前区块 ---------- */
-  var sections = document.querySelectorAll("section[id]");
+  // 区块位置只在尺寸变化时量一次,滚动时只读缓存 —— 滚动回调里不做任何会触发重排的读取
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
   var navLinks = document.querySelectorAll(".nav-link");
-  function scrollSpy() {
-    var pos = window.scrollY + window.innerHeight / 3;
-    var currentId = "hero";
-    sections.forEach(function (sec) {
-      if (pos >= sec.offsetTop) currentId = sec.id;
+  var sectionTops = [], maxScroll = 1, currentId = "";
+  function measure() {
+    sectionTops = sections.map(function (sec) {
+      return { id: sec.id, top: sec.getBoundingClientRect().top + window.scrollY };
     });
+    maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  }
+  function scrollSpy(y) {
+    var pos = y + window.innerHeight / 3;
+    var id = "hero";
+    for (var i = 0; i < sectionTops.length; i++) if (pos >= sectionTops[i].top) id = sectionTops[i].id;
+    if (id === currentId) return;
+    currentId = id;
     navLinks.forEach(function (link) {
-      link.classList.toggle("active", link.getAttribute("href") === "#" + currentId);
+      link.classList.toggle("active", link.getAttribute("href") === "#" + id);
     });
   }
 
-  /* ---------- 5. 顶部阅读进度条 ---------- */
+  /* ---------- 5. 顶部阅读进度条(用 transform 缩放,不改 width,不触发布局) ---------- */
   var progressBar = document.getElementById("scrollProgress");
-  function updateProgress() {
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
-  }
-
-  window.addEventListener("scroll", function () {
+  var backTop = document.getElementById("backTop");
+  function onScrollFrame() {
+    ticking = false;
+    var y = window.scrollY;
     onScrollNav();
-    scrollSpy();
-    updateProgress();
+    scrollSpy(y);
+    progressBar.style.transform = "scaleX(" + Math.min(1, y / maxScroll) + ")";
+    backTop.classList.toggle("show", y > 500);
+  }
+  // 所有滚动联动合并成一次 requestAnimationFrame,每帧最多执行一次
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onScrollFrame);
   }, { passive: true });
-  onScrollNav();
-  scrollSpy();
-  updateProgress();
+  window.addEventListener("resize", function () { measure(); onScrollFrame(); });
+  window.addEventListener("load", function () { measure(); onScrollFrame(); });
+  if ("ResizeObserver" in window) new ResizeObserver(function () { measure(); }).observe(document.body);
+  measure();
+  onScrollFrame();
 
   /* ---------- 6. 打字机轮播 ---------- */
   var TITLES = ["AI 研发系统架构师", "AI 应用工程师", "全栈工程师", "前端架构师", "多 Agent 系统构建者"];
@@ -265,49 +280,11 @@
     setTimeout(revealInViewport, 1200);
   }
 
-  /* ---------- 9. Lenis 顺滑滚动 + 锚点 ---------- */
-  var lenis = null;
-  if (hasLenis && !prefersReduced) {
-    try {
-      lenis = new Lenis({ duration: 1.15, smoothWheel: true });
-      root.classList.add("lenis-active");
-      if (useGSAP) {
-        lenis.on("scroll", ScrollTrigger.update);
-        gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(0);
-      } else {
-        (function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        })(0);
-      }
-      // 锚点平滑跳转
-      document.addEventListener("click", function (e) {
-        var a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        var href = a.getAttribute("href");
-        if (href.length > 1) {
-          var target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            lenis.scrollTo(target, { offset: -66 });
-          }
-        } else {
-          e.preventDefault();
-          lenis.scrollTo(0);
-        }
-      });
-    } catch (e) { lenis = null; }
-  }
+  /* ---------- 9. 锚点跳转:交给原生 CSS(scroll-behavior: smooth + scroll-padding-top) ---------- */
 
   /* ---------- 10. 返回顶部 ---------- */
-  var backTop = document.getElementById("backTop");
-  window.addEventListener("scroll", function () {
-    backTop.classList.toggle("show", window.scrollY > 500);
-  }, { passive: true });
   backTop.addEventListener("click", function () {
-    if (lenis) lenis.scrollTo(0);
-    else window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
   });
 
   /* ---------- 11. 滚动词条:克隆一份实现无缝循环 ---------- */
