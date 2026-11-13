@@ -92,7 +92,7 @@
   updateProgress();
 
   /* ---------- 6. 打字机轮播 ---------- */
-  var TITLES = ["AI 应用工程师", "全栈工程师", "前端架构师", "多 Agent 系统构建者"];
+  var TITLES = ["AI 原生研发体系搭建者", "AI 应用工程师", "全栈工程师", "前端架构师", "多 Agent 系统构建者"];
   var typedEl = document.getElementById("typed");
   var tIndex = 0, cIndex = 0, deleting = false;
   function typeLoop() {
@@ -313,6 +313,73 @@
   /* ---------- 11. 滚动词条:克隆一份实现无缝循环 ---------- */
   var tickerTrack = document.getElementById("tickerTrack");
   if (tickerTrack) tickerTrack.innerHTML += tickerTrack.innerHTML;
+
+  /* ---------- 11.5 AllyOS 放映窗:进入视口自动静音播放,章节跳转,时间码 ---------- */
+  (function initReel() {
+    var reel = document.getElementById("reel");
+    var video = document.getElementById("reelVideo");
+    if (!reel || !video) return;
+    var btn = document.getElementById("reelPlay");
+    var tc = document.getElementById("reelTc");
+    var fill = document.getElementById("reelFill");
+    var chapterBtns = Array.prototype.slice.call(document.querySelectorAll("#reelChapters button"));
+    var marks = chapterBtns.map(function (b) { return parseFloat(b.dataset.t); });
+    var userPaused = false;
+    var inView = false;
+
+    function fmt(s) {
+      s = Math.max(0, Math.floor(s || 0));
+      return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    function sync() {
+      var d = video.duration || 41;
+      var t = video.currentTime || 0;
+      tc.textContent = fmt(t) + " / " + fmt(d);
+      fill.style.width = (t / d) * 100 + "%";
+      var idx = 0;
+      marks.forEach(function (m, i) { if (t >= m - 0.05) idx = i; });
+      chapterBtns.forEach(function (b, i) { b.classList.toggle("on", i === idx); });
+    }
+    function play() {
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { /* 浏览器拒绝自动播放时保持海报帧 */ });
+    }
+    video.addEventListener("timeupdate", sync);
+    video.addEventListener("loadedmetadata", sync);
+    video.addEventListener("play", function () { reel.classList.add("is-playing"); });
+    video.addEventListener("pause", function () { reel.classList.remove("is-playing"); });
+
+    btn.addEventListener("click", function () {
+      if (video.paused) { userPaused = false; play(); }
+      else { userPaused = true; video.pause(); }
+    });
+    video.addEventListener("click", function () { btn.click(); });
+    chapterBtns.forEach(function (b, i) {
+      b.addEventListener("click", function () {
+        video.currentTime = marks[i];
+        userPaused = false;
+        play();
+        sync();
+      });
+    });
+
+    // reduced-motion:不自动播放,只展示海报帧,由用户主动点播
+    if (prefersReduced || !("IntersectionObserver" in window)) { sync(); return; }
+    new IntersectionObserver(function (entries) {
+      inView = entries[0].isIntersecting;
+      if (inView && !userPaused) {
+        video.preload = "auto";
+        play();
+      } else if (!inView) {
+        video.pause();
+      }
+    }, { threshold: 0.45 }).observe(video);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) video.pause();
+      else if (inView && !userPaused) play();
+    });
+    sync();
+  })();
 
   /* ---------- 12. 磁性按钮(GSAP + 精确指针) ---------- */
   if (useGSAP && finePointer) {
