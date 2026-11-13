@@ -5,6 +5,7 @@
 
 ## ✨ 功能
 
+- 🎬 **AllyOS 旗舰案例放映厅**:用 [Remotion](https://www.remotion.dev/) 渲染的 40 秒短片,讲清「一个需求如何走完 AI 研发流水线」—— 进入视口自动静音播放、章节跳转、时间码;深浅主题下都是暗场
 - 单页滚动式布局:首页 / 关于 / 技能栈 / 职业经历 / 项目经验 / 教育 / FAQ / 联系
 - 🎨 纸墨编辑风:米白纸感底 · 墨色衬线大标题 · 朱砂印章 · 发丝分隔线;🌗 深浅色切换(默认跟随系统,记忆选择,刷新不闪烁)
 - 🖥️ 首屏 TypeScript 代码风格个人档案卡 + 打字机轮播头衔
@@ -28,10 +29,28 @@
 - 📊 **顶部阅读进度条** + 关键数字滚动 + 打字机头衔
 - ♿ `prefers-reduced-motion` 时全部增强自动禁用;移动端不加载 3D,保证性能
 
+## 🎬 AllyOS 短片(Remotion)
+
+短片源码在 `video/`(React + Remotion),渲染产物提交在 `assets/`,网站本身仍是**零构建**的静态页:
+
+```bash
+cd video
+npm install
+npm run studio     # 浏览器里逐帧预览、调动画
+npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、og-image.png
+```
+
+- 片中所有数字集中在 `video/src/data.ts`(2026-11-13 AllyOS 仓库实测),改完重新 render 即可
+- 7 个章节的起点(帧)在 `data.ts` 的 `CHAPTERS`;改了时长要同步 `index.html` 里 `#reelChapters` 的 `data-t`(秒 = 帧 / 30)
+- 分享卡片 `og-image.png` 由同一工程的 `OgCard` 静帧生成,视觉语言与短片一致
+- 渲染时优先用本机 Chromium(`REMOTION_BROWSER` 环境变量可指定),没有则由 Remotion 自动下载
+
 ## 📁 目录结构
 
 ```
 ├── index.html      # 页面结构(个人信息都在这里改,✏️ 注释标记了可编辑处)
+├── assets/         # Remotion 渲染产物:allyos-film.mp4 + allyos-poster.jpg
+├── video/          # 短片源码(Remotion 工程,不参与网站运行)
 ├── css/style.css   # 样式(主题色在 :root 与 html[data-theme="light"] 变量中)
 ├── js/main.js      # 交互脚本(轮播头衔在 TITLES 数组中)
 ├── resume.pdf      # 可下载的简历 PDF(首屏「下载简历」按钮指向它)
@@ -105,6 +124,7 @@ python3 -m http.server 8080
 | three@0.128 | 墨浪粒子场 + 3D 印章 | 隐藏粒子层,印章回退 SVG |
 | gsap@3.12 + ScrollTrigger | 滚动编排 / 逐字动画 / 磁性按钮 | 回退 IntersectionObserver 入场 |
 | lenis@1.1 | 惯性顺滑滚动 | 回退原生滚动 |
+| Remotion 4(仅构建期) | 渲染 AllyOS 短片与分享卡片 | 网站只引用渲染好的 mp4 / jpg,运行时零依赖 |
 
 ## 📄 License
 
