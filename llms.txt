@@ -7,7 +7,7 @@
 ## 基本信息
 
 - 姓名:刘星(Liu Xing)
-- 职业:全栈工程师 / AI 应用工程师
+- 职业:AI 研发系统架构师(AllyNutra · AllyOS)/ 全栈工程师 / AI 应用工程师
 - 城市:中国成都(远程友好)
 - 经验:12 年前端与全栈(2014 年起),3 年 Python 后端,3 年大模型 Agent 开发,4 年团队管理(30+ 人)
 - 学历:西华大学 本科 · 制药工程(2010–2014)
@@ -23,7 +23,7 @@
 
 ## 代表项目
 
-- AllyOS(AllyNutra,2026.07 至今):定制营养补充剂代工厂的全部业务系统 —— 客户门户(Next.js 15 SSR)+ 员工运营系统(Vite / React 18)+ 供应商协同,覆盖询盘、报价、打样、订单、采购、生产、开票、收款。Supabase / Postgres 15,无 ORM,前端不直接写表(每次写入都是带审计与事件的受治理 RPC),RLS 覆盖全部客户表。
+- AllyOS(AllyNutra,2026.07 至今,AI 研发系统架构师):定制营养补充剂代工厂的全部业务系统 —— 客户门户(Next.js 15 SSR)+ 员工运营系统(Vite / React 18)+ 供应商协同,覆盖询盘、报价、打样、订单、采购、生产、开票、收款。Supabase / Postgres 15,无 ORM,前端不直接写表(每次写入都是带审计与事件的受治理 RPC),RLS 覆盖全部客户表。
   - AI 原生研发流水线:Claude Code + 14 个技能 + 6 个子 Agent;需求 → 产品经理 Agent 追问 → 规格(PRD / 设计 / 测试计划)→ implementer / test-runner / reviewer 闭环 → 109 道自测守卫(推送前 fail-closed)→ PR 自开自盯 → 每日北京 11:11 定格 release、15:00 上 main。
   - 数字(2026-11-13 实测):118 天;1,200 个需求编号;1,527 次数据库迁移;1,270 个 pgTAP 测试;23 个业务模块;80 个边缘函数;986 份事故复盘沉淀为 18 条规则。
 - TeacherCopilot(教研智擎):独立开发并已盈利的 AI 教学教研桌面应用。Electron + React 18 + TypeScript,RAG 本地知识库,9 学科适配,AES-256 本地加密。在线地址:https://teachercopilot.pages.dev/

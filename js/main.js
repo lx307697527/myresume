@@ -92,7 +92,7 @@
   updateProgress();
 
   /* ---------- 6. 打字机轮播 ---------- */
-  var TITLES = ["AI 原生研发体系搭建者", "AI 应用工程师", "全栈工程师", "前端架构师", "多 Agent 系统构建者"];
+  var TITLES = ["AI 研发系统架构师", "AI 应用工程师", "全栈工程师", "前端架构师", "多 Agent 系统构建者"];
   var typedEl = document.getElementById("typed");
   var tIndex = 0, cIndex = 0, deleting = false;
   function typeLoop() {
