@@ -36,12 +36,14 @@ if (mode === "stills") {
 }
 
 // 海报帧:落款画面,视频加载前和 reduced-motion 下展示
-await renderStill({
+if (mode !== "film") await renderStill({
   serveUrl, composition: film, frame: 1196, browserExecutable, chromiumOptions,
   imageFormat: "jpeg", jpegQuality: 86, output: path.join(out, "allyos-poster.jpg"),
 });
-const card = await selectComposition({ serveUrl, id: "OgCard", browserExecutable, chromiumOptions });
-await renderStill({ serveUrl, composition: card, browserExecutable, chromiumOptions, output: path.resolve(here, "../og-image.png") });
+if (mode !== "film") {
+  const card = await selectComposition({ serveUrl, id: "OgCard", browserExecutable, chromiumOptions });
+  await renderStill({ serveUrl, composition: card, browserExecutable, chromiumOptions, output: path.resolve(here, "../og-image.png") });
+}
 
 await renderMedia({
   serveUrl, composition: film, codec: "h264", crf: 24, pixelFormat: "yuv420p",
@@ -49,4 +51,6 @@ await renderMedia({
   output: path.join(out, "allyos-film.mp4"),
   onProgress: ({ progress }) => process.stdout.write(`\rfilm ${(progress * 100).toFixed(0)}%`),
 });
-console.log("\ndone →", out);
+const filmPath = path.join(out, "allyos-film.mp4");
+if (!fs.existsSync(filmPath)) throw new Error(`render finished but ${filmPath} is missing`);
+console.log(`\ndone → ${filmPath} (${(fs.statSync(filmPath).size / 1e6).toFixed(1)} MB)`);
