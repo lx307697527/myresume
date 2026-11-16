@@ -1,0 +1,6 @@
+# IDE / 工具生成的分享包,不属于站点内容
+.trae-html-share-packages/
+
+# 系统文件
+.DS_Store
+Thumbs.db
