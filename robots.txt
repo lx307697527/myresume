@@ -35,4 +35,6 @@ User-agent: Applebot-Extended
 Allow: /
 
 # ===== 站点地图 =====
-Sitemap: https://lx307697527.github.io/myresume/sitemap.xml
+# 品牌域名 myaiwebdev.com 为唯一权威地址(canonical),
+# lx307697527.github.io/myresume/ 仅为镜像,其 canonical 已跨域指回品牌域名。
+Sitemap: https://myaiwebdev.com/sitemap.xml

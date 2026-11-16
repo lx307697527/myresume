@@ -105,6 +105,6 @@ export const COPY = {
   endEn: "LIU XING",
   endTag: "让 AI 驾驭工程,让工程放大 AI。",
   endRole: "AI 研发系统架构师 · AI-NATIVE ENGINEERING · ALLYOS",
-  endUrl: "lx307697527.github.io/myresume",
+  endUrl: "myaiwebdev.com",
   chrome: "ALLYOS — FIELD REEL",
 };

@@ -1,5 +1,7 @@
 # myresume · 刘星个人简历网站
 
+**在线地址:https://myaiwebdev.com**(品牌域名,唯一权威地址)· [GitHub Pages 镜像](https://lx307697527.github.io/myresume/)
+
 纯静态单页简历网站,无框架、无构建依赖,开箱即用。
 设计与内容基于本人简历重新设计:纸墨编辑风(米白纸感 + 墨色衬线 + 朱砂印章),真实数据驱动。
 
@@ -62,7 +64,8 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 
 - `title` / `description` / `keywords` / `canonical` / `robots` meta 完整
 - Open Graph + Twitter Card:分享到微信 / Telegram / X 等平台会显示 `og-image.png` 卡片
-- JSON-LD 结构化数据:`Person`(实体档案)、`WebSite`、`FAQPage`(与页面可见 FAQ 内容一致)
+- JSON-LD 结构化数据:`Person`(实体档案 + sameAs)、`WebSite`、`FAQPage`(与页面可见 FAQ 内容一致)、`HowTo`(七步流水线)、`SoftwareApplication`(AllyOS / TeacherCopilot)、`ProfessionalService`(服务页)
+- 域名统一:canonical、`sitemap.xml`、`robots.txt`、`llms.txt`、og:image 全部指向品牌域名 **https://myaiwebdev.com**;GitHub Pages 镜像的 canonical 跨域指回品牌域名,消除信号分裂
 - 地理 meta(`geo.region CN-51`、`geo.placename 成都`)与语义化 HTML(单一 h1、层级化 h2/h3)
 - 静态直出内容:全部正文都在 HTML 里,不依赖 JS 渲染,爬虫可完整抓取
 
@@ -73,12 +76,24 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 - FAQ 问答区块:AI 引擎最偏好引用的事实型问答(`是谁 / 技术栈 / TeacherCopilot 是什么 / 成果 / 联系方式`),带数字证据
 - JSON-LD 实体数据 + `sameAs` 关联 GitHub 与产品站,帮助 AI 引擎做实体消歧("刘星 = 这个 GitHub 账号 = TeacherCopilot 作者")
 
-**后续可做(需要你的账号,建议部署后执行)**
+**域名与收录入口(2026-11-16 域名统一已完成,以下需你的账号手动执行)**
 
-1. [Google Search Console](https://search.google.com/search-console) 添加资源并提交 `sitemap.xml`
+1. [Google Search Console](https://search.google.com/search-console) 添加 `https://myaiwebdev.com` 资源并提交 `sitemap.xml`
 2. [Bing Webmaster Tools](https://www.bing.com/webmasters) 同步提交(GPT 检索来源)
-3. 在 GitHub Profile、LinkedIn、脉脉等页面加指向本站的链接,提升实体关联度
-4. 换自定义域名时,全局替换 `index.html` / `sitemap.xml` / `robots.txt` / `llms.txt` 中的 `lx307697527.github.io/myresume`
+3. [百度搜索资源平台](https://ziyuan.baidu.com) 用"HTML 标签"验证品牌域名(占位注释已备在 `index.html` head 里)
+
+**站外引用清单(P2:让品牌域名被外部语境"提起"——SEO 反链 + GEO 实体锚点)**
+
+按优先级从高到低,每处引用 `https://myaiwebdev.com`:
+
+1. **GitHub Profile README**(建 `lx307697527/lx307697527` 仓库):github.com 权重高,是"刘星 = 这个 GitHub 账号"实体消歧的第一锚点
+2. **GitHub 各仓库**:TeacherCopilot、UniInsight 等产品仓库的 README、About 描述、Topics 链回品牌域名
+3. **TeacherCopilot 产品站**(teachercopilot.pages.dev):页脚 / 关于页互链,自有站点形成引用网络
+4. **知乎**:个人简介 + 围绕"AI 写代码如何把关"写深度回答与专栏(中文 AI 引擎引用率最高的来源)
+5. **掘金 / CSDN / V2EX / SegmentFault**:技术长文 + 个人主页资料页
+6. **LinkedIn / 脉脉**:职业档案的"网站"字段
+7. **Stack Overflow**:profile About me + 高质量技术回答
+8. **日常触点**:邮件签名、简历 PDF、X / 即刻等社交简介、协作文档署名
 
 ## ✏️ 常用自定义
 
@@ -107,7 +122,7 @@ python3 -m http.server 8080
    ```
 
 2. 打开仓库 **Settings → Pages**,Source 选择 `main` 分支 `/ (root)`,保存。
-3. 稍等片刻,访问 `https://lx307697527.github.io/myresume/` 即可看到网站。
+3. 稍等片刻,GitHub Pages 镜像在 `https://lx307697527.github.io/myresume/`;品牌域名 **https://myaiwebdev.com**(Vercel)随后自动部署。两个地址服务同一份内容,品牌域名是唯一权威地址——所有 canonical / sitemap / llms.txt 都指向它。
 
 ## 📄 License
 
