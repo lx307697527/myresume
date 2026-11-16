@@ -83,6 +83,8 @@
         "acceptedAnswer": { "@type": "Answer", "text": "AllyOS 是 AllyNutra 的全部业务系统(客户门户 + 供应商协同 + 内部运营),覆盖询盘、报价、打样、订单、采购、生产、开票、收款。它由 AI 原生研发流水线构建:需求入口 → 产品经理 Agent 追问 → 规格 → 实现 / 测试 / 评审子 Agent 闭环 → 109 道机器守卫 → 每日 11:11 定格、15:00 上线。118 天累计 1,200 个需求编号、1,527 次数据库迁移、1,270 个数据库测试。" } },
       { "@type": "Question", "name": "可以怎么和刘星合作?",
         "acceptedAnswer": { "@type": "Answer", "text": "三种方式:全职担任 AI 研发负责人 / 架构师;作为顾问为团队搭建 AI 研发流水线(技能、子 Agent、机器守卫、发布节奏);或从 0 到 1 交付一个 AI 产品。联系邮箱 307697527@qq.com。" } },
+      { "@type": "Question", "name": "找刘星做项目,流程是什么样的?",
+        "acceptedAnswer": { "@type": "Answer", "text": "15 分钟通话说清业务;动工前先出规格、客户确认才开工;开发期间每周都有能点开的版本;全部改动过自动检查、拦截理由可审计;交付源码、部署指导和上线后 7 天 Bug 修复。详见服务与流程页(services.html)。" } },
       { "@type": "Question", "name": "刘星的技术栈是什么?",
         "acceptedAnswer": { "@type": "Answer", "text": "AI 研发体系:Claude Code、Skills / 子 Agent、多 Agent 编排、Spec 驱动开发、机器守卫与发布列车;AI 应用:LangChain、RAG 混合检索(BM25 + 向量)、Prompt 工程;前端:React / Vue / Angular / TypeScript / Electron;后端与数据:Supabase / PostgreSQL、Python / FastAPI、Node.js。" } },
       { "@type": "Question", "name": "TeacherCopilot(教研智擎)是什么?",
@@ -114,13 +116,15 @@
       </a>
       <nav class="nav-menu" id="navMenu" aria-label="主导航">
         <a href="#approach">方案</a>
-        <a href="#proof">成果</a>
+        <a href="#proof">证据</a>
         <a href="#experience">经历</a>
         <a href="#work">合作</a>
+        <a href="services.html">服务</a>
         <a href="#faq">问答</a>
       </nav>
       <div class="nav-actions">
-        <a class="nav-cta" href="mailto:307697527@qq.com">联系我</a>
+        <!-- ✏️ 换成你的 Cal.com / Calendly 预约链接即可 -->
+        <a class="nav-cta" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟</a>
         <button class="icon-btn" id="themeToggle" aria-label="切换深浅色">
           <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -142,12 +146,13 @@
           而且<span class="ink-mark">不失控</span>。
         </h1>
         <p class="hero-lead">
-          我把研发流程写成机器能执行的规则：需求先被追问清楚，再由 AI Agent 按规格写代码、写测试、互相评审，
-          最后过 109 道自动检查才准上线。用这套流水线，我在 118 天里搭起了一家制造企业从询盘到收款的全部业务系统。
+          我为中小企业构建 AI 辅助的定制系统——最近的一套，用 118 天、1,200 个需求、109 道守卫，
+          撑起一家制造企业从询盘到收款的全业务，至今每天在跑。
         </p>
         <div class="hero-cta">
-          <a class="btn" href="mailto:307697527@qq.com?subject=%E4%BD%A0%E5%A5%BD%E5%88%98%E6%98%9F">约我聊聊</a>
-          <a class="link-arrow" href="#approach">先看它怎么运转 <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="#proof">查看工程证据 <span aria-hidden="true">↓</span></a>
+          <!-- ✏️ 换成你的 Cal.com / Calendly 预约链接即可 -->
+          <a class="link-arrow" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">有项目？预约 15 分钟通话 <span aria-hidden="true">→</span></a>
         </div>
 
         <!-- 证据条:每个数字都写明出处 -->
@@ -248,36 +253,117 @@
       </div>
     </section>
 
-    <!-- ==================== 03 证据 ==================== -->
+    <!-- ==================== 03 工程证据(深度案例:问题→角色→决策→结果) ==================== -->
     <section class="section" id="proof" aria-labelledby="proofTitle">
       <div class="wrap">
         <header class="sec-head reveal">
-          <span class="sec-no">03 · 成果</span>
+          <span class="sec-no">03 · 工程证据</span>
           <h2 id="proofTitle">不是演示，是每天在跑的业务。</h2>
+          <p class="sec-lead">每个案例按同一套结构讲：问题是什么、我具体做了什么、关键取舍为什么这么定、最后拿数字说话。</p>
         </header>
 
-        <article class="case reveal">
-          <div class="case-main">
-            <p class="case-meta">AllyNutra · 2026.07 至今 · AI 研发系统架构师</p>
-            <h3>AllyOS：一家制造企业的全部业务系统</h3>
-            <p>AllyNutra 做定制配方营养补充剂代工。客户发来询盘之后的每一步 —— 报价、打样、下单、采购、排产、发货、开票、收尾款 —— 都跑在 AllyOS 上：客户门户、供应商协同、员工运营系统，一个仓库，一个数据库。</p>
-            <p class="stack">Claude Code · 14 个技能 + 6 个子 Agent · Supabase / Postgres · Next.js 15 · React · Deno Edge Functions · pgTAP · Playwright</p>
-          </div>
-          <dl class="case-nums">
-            <div><dt>23</dt><dd>个业务模块</dd></div>
-            <div><dt>1,527</dt><dd>次数据库迁移</dd></div>
-            <div><dt>1,270</dt><dd>个数据库测试</dd></div>
-            <div><dt>80</dt><dd>个边缘函数</dd></div>
+        <!-- 深度案例一:AllyOS(数字前置) -->
+        <article class="case study reveal">
+          <dl class="case-figures">
+            <div><dt>118 天</dt><dd>搭起全链路，运行至今</dd></div>
+            <div><dt>1,200</dt><dd>个需求走完同一条流水线</dd></div>
+            <div><dt>109</dt><dd>道机器守卫，全绿才放行</dd></div>
+            <div><dt>986</dt><dd>份复盘沉淀成 18 条规则</dd></div>
           </dl>
+          <div class="study-body">
+            <div class="study-text">
+              <p class="case-meta">AllyNutra · 2026.07 至今 · AI 研发系统架构师</p>
+              <h3>AllyOS：一家制造企业的全部业务系统</h3>
+              <h4 class="study-label">问题</h4>
+              <p>AllyNutra 做定制配方营养补充剂代工，询盘、报价、打样、订单、采购、生产、开票、收款，全靠表格和聊天记录人工流转。找人外包，贵、慢、还改不动；让 AI 直接写代码，快是快——但没人把关，错误会直接进生产系统，返工比开发还贵。</p>
+              <h4 class="study-label">我的角色</h4>
+              <p>独立设计并实现整套研发流水线：产品经理 Agent、实现 / 测试 / 评审三个子 Agent、109 道机器守卫、每日发布列车——以及跑在上面的 23 个业务模块。一个人类，带一支有纪律的 AI 队伍。</p>
+              <h4 class="study-label">关键决策</h4>
+              <ul class="decisions">
+                <li><b>规则，不是概率</b><p>把关为什么不让模型自己判断？因为拦截必须有可审计的理由：哪条规则、缺什么前提、怎么修。黑盒概率说不清"为什么拦"，也就说不清"为什么放"。</p></li>
+                <li><b>地图，不是全文</b><p>为什么不把整个仓库喂给模型？读得越多，猜得越远。根目录一张地图、每个模块一张子地图，只写"去哪找"和"不能破"——细节会过时，指针不会。</p></li>
+                <li><b>列车，不是随时发</b><p>为什么不随时合并上线？每天 11:11 定格、15:00 发车，出了问题能定位到是哪一天、哪一趟车、为什么、当时谁拍的板。</p></li>
+              </ul>
+              <h4 class="study-label">结果</h4>
+              <p>118 天上线并运行至今：1,200 个需求全走同一条流水线，1,527 次数据库迁移无一人工执行，1,270 个数据库测试随时可跑。客户门户、供应商协同、内部运营，一个仓库、一个数据库。</p>
+              <p class="stack">Claude Code · 14 个技能 + 6 个子 Agent · Supabase / Postgres · Next.js 15 · React · Deno Edge Functions · pgTAP · Playwright</p>
+            </div>
+            <aside class="study-side">
+              <figure class="diagram">
+                <svg viewBox="0 0 520 262" role="img" aria-label="守卫自我进化闭环:事故到复盘,同一根因出现两次就立规则,规则固化成守卫,拦住下一次事故">
+                  <g fill="none" stroke="currentColor" stroke-width="1.4">
+                    <rect x="16" y="18" width="124" height="64" rx="3" />
+                    <rect x="198" y="18" width="124" height="64" rx="3" />
+                    <rect x="380" y="18" width="124" height="64" rx="3" />
+                    <rect x="380" y="170" width="124" height="64" rx="3" />
+                    <rect x="198" y="170" width="124" height="64" rx="3" />
+                    <rect x="16" y="170" width="124" height="64" rx="3" />
+                    <line x1="140" y1="50" x2="190" y2="50" />
+                    <line x1="322" y1="50" x2="372" y2="50" />
+                    <line x1="442" y1="82" x2="442" y2="164" />
+                    <line x1="380" y1="202" x2="330" y2="202" />
+                    <line x1="198" y1="202" x2="148" y2="202" />
+                    <line x1="78" y1="170" x2="78" y2="88" />
+                  </g>
+                  <g fill="currentColor">
+                    <path d="M198 50l-9 -4.5v9z" />
+                    <path d="M380 50l-9 -4.5v9z" />
+                    <path d="M442 170l-4.5 -9h9z" />
+                    <path d="M330 202l9 -4.5v9z" />
+                    <path d="M148 202l9 -4.5v9z" />
+                    <path d="M78 82l-4.5 9h9z" />
+                  </g>
+                  <g fill="currentColor" text-anchor="middle">
+                    <text x="78" y="55" class="dg-t">出事故</text>
+                    <text x="260" y="44" class="dg-t">复盘归档</text>
+                    <text x="260" y="68" class="dg-n">986 份</text>
+                    <text x="442" y="55" class="dg-t">同一根因 ×2</text>
+                    <text x="442" y="196" class="dg-t">立规则</text>
+                    <text x="442" y="222" class="dg-n">18 条</text>
+                    <text x="260" y="196" class="dg-t">固化为守卫</text>
+                    <text x="260" y="222" class="dg-n">109 道</text>
+                    <text x="78" y="207" class="dg-t">拦住</text>
+                    <text x="78" y="224" class="dg-t">下一次</text>
+                  </g>
+                </svg>
+                <figcaption>自我进化闭环：同一根因出现两次就立规则，规则成熟就变成守卫——系统越跑越难犯错。</figcaption>
+              </figure>
+            </aside>
+          </div>
         </article>
 
+        <!-- 深度案例二:TeacherCopilot -->
+        <article class="case study reveal">
+          <dl class="case-figures">
+            <div><dt>1 人</dt><dd>需求、开发、上线、收费全流程</dd></div>
+            <div><dt>已盈利</dt><dd>上线收费，跑通商业闭环</dd></div>
+            <div><dt>9 × 6</dt><dd>学科 × 教学模块全覆盖</dd></div>
+            <div><dt>≤ 2 秒</dt><dd>本地知识库检索出结果</dd></div>
+          </dl>
+          <div class="study-body single">
+            <div class="study-text">
+              <p class="case-meta">独立产品 · 2026.03 至今 · 已上线并盈利</p>
+              <h3>TeacherCopilot · 教研智擎</h3>
+              <h4 class="study-label">问题</h4>
+              <p>老师备课要翻十几份资料，校本资源散在各种文档里；市面上的 AI 工具把教研数据传上云，学校不敢真用。</p>
+              <h4 class="study-label">我的角色</h4>
+              <p>独立完成：需求定义、设计、开发、上线、收费。一个人，就是整个团队。</p>
+              <h4 class="study-label">关键决策</h4>
+              <ul class="decisions">
+                <li><b>本地加密，不是云端</b><p>教研数据是学校的资产，"零外传"是信任底线。功能可以慢慢加，信任崩了就什么都没了——所以选本地 AES-256。</p></li>
+                <li><b>混合检索，不是纯向量</b><p>公式、术语、编号靠关键词才检得准，语义靠向量补——两路混合，断网也能用。</p></li>
+                <li><b>桌面应用，不是网页</b><p>学校网络环境复杂，"双击就能用"比"记得网址"可靠。</p></li>
+              </ul>
+              <h4 class="study-label">结果</h4>
+              <p>已上线并盈利：9 个学科、6 大教学模块，本地检索 2 秒内出结果。这条"从需求到收款"的路，我自己走通过一遍。</p>
+              <p class="stack">Electron · React 18 · TypeScript · BM25 + 向量混合检索 · PaddleOCR · AES-256</p>
+              <a class="link-arrow" href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener">在线体验 <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 更早的证据 -->
         <div class="cases">
-          <article class="case-sm reveal">
-            <p class="case-meta">独立产品 · 已上线并盈利</p>
-            <h3>TeacherCopilot · 教研智擎</h3>
-            <p>面向教师的 AI 教研桌面应用：本地知识库检索 ≤2 秒，9 个学科、6 大模块，校本资源 AES-256 本地加密、零外传。从需求到发布一个人完成。</p>
-            <a class="link-arrow" href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener">在线体验 <span aria-hidden="true">↗</span></a>
-          </article>
           <article class="case-sm reveal">
             <p class="case-meta">霸王茶姬 · 前端负责人</p>
             <h3>支撑门店从 1,500 到 6,500+</h3>
@@ -318,43 +404,51 @@
       </div>
     </section>
 
-    <!-- ==================== 05 怎么开始 ==================== -->
+    <!-- ==================== 05 合作(两条路径分流) ==================== -->
     <section class="section" id="work" aria-labelledby="workTitle">
       <div class="wrap">
         <header class="sec-head reveal">
           <span class="sec-no">05 · 合作</span>
           <h2 id="workTitle">三种合作方式，挑一种开始。</h2>
+          <p class="sec-lead">招人还是交项目？两条路各自往深处走：招人看上面的工程证据，交项目看服务与流程页。</p>
         </header>
         <div class="offers">
           <article class="offer reveal">
             <h3>全职</h3>
             <p class="offer-role">AI 研发负责人 / 架构师</p>
             <p>带团队把 AI 编程从"个人提效"升级成"团队流程"：有规格、有守卫、有节奏。</p>
+            <p class="offer-links"><a href="#proof">看工程证据 ↓</a><a href="resume.pdf" download>下载简历 PDF</a></p>
           </article>
           <article class="offer reveal">
             <h3>顾问</h3>
             <p class="offer-role">为你的团队搭 AI 研发流水线</p>
             <p>代码地图、技能与子 Agent、自动检查、发布节奏，按你的仓库落地，交付后团队能自己维护。</p>
+            <p class="offer-links"><a href="services.html">了解服务与流程 →</a></p>
           </article>
           <article class="offer reveal">
             <h3>项目</h3>
             <p class="offer-role">从 0 到 1 做一个 AI 产品</p>
             <p>从需求定义到上线收费，TeacherCopilot 就是这样一个人做出来的。</p>
+            <p class="offer-links"><a href="services.html">了解服务与流程 →</a></p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 联系(第二次行动按钮) ==================== -->
+    <!-- ==================== 联系(低摩擦预约 + 证据在旁边) ==================== -->
     <section class="section contact" id="contact" aria-labelledby="contactTitle">
       <div class="wrap">
         <h2 id="contactTitle" class="reveal">有想交给 AI、又怕它失控的事？聊聊。</h2>
-        <p class="reveal">成都 · 远程友好 · 一般 24 小时内回复。</p>
-        <a class="btn btn-lg reveal" href="mailto:307697527@qq.com?subject=%E4%BD%A0%E5%A5%BD%E5%88%98%E6%98%9F">307697527@qq.com</a>
+        <p class="reveal">成都 · 远程友好 · 一般 24 小时内回复。15 分钟通话不收费，聊完你只会更清楚自己要不要做。</p>
+        <!-- ✏️ 换成你的 Cal.com / Calendly 预约链接即可 -->
+        <a class="btn btn-lg reveal" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟通话</a>
+        <p class="contact-proof reveal">电话前可以先验证：118 天连续运行 · 1,200 个需求 · 109 道守卫</p>
         <p class="contact-links reveal">
+          <a href="mailto:307697527@qq.com">直接发邮件：307697527@qq.com</a>
           <a href="resume.pdf" download>下载简历 PDF</a>
           <a href="https://github.com/lx307697527" target="_blank" rel="noopener">GitHub ↗</a>
           <a href="https://teachercopilot.pages.dev/" target="_blank" rel="noopener">TeacherCopilot ↗</a>
+          <a href="mailto:307697527@qq.com?subject=%E7%B4%A2%E5%8F%96%E3%80%8A%E4%B8%AD%E5%B0%8F%E4%BC%81%E4%B8%9A%20AI%20%E8%BE%85%E5%8A%A9%E5%BC%80%E5%8F%91%E9%81%BF%E5%9D%91%E6%B8%85%E5%8D%95%E3%80%8B">索取《AI 辅助开发避坑清单》</a>
         </p>
       </div>
     </section>
@@ -377,7 +471,11 @@
           </details>
           <details class="reveal">
             <summary>可以怎么合作?</summary>
-            <p>三种方式：全职担任 AI 研发负责人 / 架构师；作为顾问为团队搭建 AI 研发流水线；或从 0 到 1 交付一个 AI 产品。邮箱 <a href="mailto:307697527@qq.com">307697527@qq.com</a>。</p>
+            <p>三种方式：全职担任 AI 研发负责人 / 架构师；作为顾问为团队搭建 AI 研发流水线；或从 0 到 1 交付一个 AI 产品。如果是后两种，建议先看<a href="services.html">服务与流程</a>页，写清了接什么、怎么交付、怎么计费。邮箱 <a href="mailto:307697527@qq.com">307697527@qq.com</a>。</p>
+          </details>
+          <details class="reveal">
+            <summary>找你做项目，流程是什么样的?</summary>
+            <p>15 分钟通话说清业务 → 动工前先出规格、你确认才开工 → 开发期间每周都有能点开的版本 → 全部改动过自动检查、拦截理由白纸黑字 → 交付源码、部署指导和上线后 7 天 Bug 修复。详见<a href="services.html">服务与流程</a>。</p>
           </details>
           <details class="reveal">
             <summary>技术栈是什么?</summary>
@@ -395,7 +493,10 @@
   <footer class="footer">
     <div class="wrap footer-row">
       <p>© <span id="year">2026</span> 刘星 · 成都</p>
-      <p class="footer-sub">与 AI 协作构建 · 短片用 Remotion 渲染 · 原生滚动，零框架</p>
+      <p class="footer-sub">
+        <a href="services.html">服务与流程</a> · <a href="resume.pdf" download>简历 PDF</a>
+        · 与 AI 协作构建 · 短片用 Remotion 渲染 · 原生滚动，零框架
+      </p>
     </div>
   </footer>
 

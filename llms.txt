@@ -39,8 +39,16 @@
 - 12 年研发经验;4 年团队管理(30+ 人);支撑霸王茶姬门店 1500 → 6500+ 家
 - 跨端方案节约成本 1300 万+;国际化节省 1500 人日;客服效率 +70%;团队研发效率 +30%
 
+## 服务(面向中小企业老板)
+
+- 服务页:https://lx307697527.github.io/myresume/services.html
+- 接三类项目:业务系统(人工流转搬上线,参照 AllyOS 118 天)、AI 产品从 0 到 1(参照 TeacherCopilot 已盈利)、研发流水线顾问(给团队装守卫);同一时间只接一个项目。
+- 交付流程:15 分钟免费通话 → 规格先行(客户确认才开工)→ 每周可看的版本 → 上百道自动检查把关 → 交付源码、部署指导、上线后 7 天 Bug 修复。
+- 报价逻辑:固定报价、签约前锁定;开发费含源码/部署指导/7 天 Bug 修复,代部署、长期维护、新增功能单独计费。
+
 ## 链接
 
 - 简历网站:https://lx307697527.github.io/myresume/
+- 服务与流程:https://lx307697527.github.io/myresume/services.html
 - TeacherCopilot:https://teachercopilot.pages.dev/
 - GitHub:https://github.com/lx307697527

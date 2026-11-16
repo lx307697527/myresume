@@ -277,26 +277,47 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 .tenets h3 { font-size: 21px; }
 .tenets p { margin-top: 10px; font-size: 14.5px; color: var(--d-muted); }
 
-/* 03 成果 */
-.case {
-  display: grid; grid-template-columns: 1.5fr 1fr;
-  border: 1px solid var(--line-2); background: var(--paper);
-}
-.case-main { padding: clamp(28px, 4vw, 44px); }
+/* 03 工程证据:深度案例(数字前置 → 问题 → 角色 → 决策 → 结果) */
+.case { border: 1px solid var(--line-2); background: var(--paper); }
+.case.study { display: block; }
+.case.study + .case.study { margin-top: 40px; }
 .case-meta { font: 12px/1.6 var(--mono); letter-spacing: .08em; color: var(--faint); }
 .case h3 { margin-top: 10px; font-size: clamp(22px, 2.5vw, 28px); }
-.case-main p { margin-top: 14px; color: var(--muted); }
-.case-main .stack { font: 12.5px/1.8 var(--mono); color: var(--faint); }
-.case-nums { display: grid; grid-template-columns: 1fr 1fr; border-left: 1px solid var(--line-2); }
-.case-nums > div { padding: 26px 24px; border-bottom: 1px solid var(--line); }
-.case-nums > div:nth-child(odd) { border-right: 1px solid var(--line); }
-.case-nums > div:nth-last-child(-n+2) { border-bottom: 0; }
-.case-nums dt { font: 700 clamp(28px, 3.4vw, 40px)/1.1 var(--serif); font-variant-numeric: tabular-nums; }
-.case-nums dd { margin-top: 6px; font-size: 13.5px; color: var(--muted); }
+.stack { font: 12.5px/1.8 var(--mono); color: var(--faint); }
 
-.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; border-top: 1px solid var(--line-2); }
-.case-sm { padding: 28px 28px 0 0; }
-.case-sm + .case-sm { padding-left: 28px; border-left: 1px solid var(--line); }
+.case-figures { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line-2); }
+.case-figures > div { padding: 20px 24px 18px 0; }
+.case-figures > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.case-figures dt { font: 700 clamp(24px, 2.8vw, 34px)/1.1 var(--serif); font-variant-numeric: tabular-nums; }
+.case-figures dd { margin-top: 6px; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
+
+.study-body { display: grid; grid-template-columns: 1.6fr 1fr; }
+.study-text { padding: clamp(24px, 3.5vw, 40px); }
+.study-text .case-meta { margin-bottom: 2px; }
+.study-label { margin: 24px 0 0; font: 500 12px/1 var(--mono); letter-spacing: .14em; color: var(--faint); }
+.study-label:first-of-type { margin-top: 18px; }
+.study-text p { margin-top: 10px; color: var(--muted); }
+.study-text p.stack { margin-top: 16px; }
+.study-text .link-arrow { margin-top: 12px; }
+
+.decisions { margin-top: 8px; }
+.decisions li { padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.decisions li:last-child { border-bottom: 0; padding-bottom: 0; }
+.decisions b { display: block; font: 700 16.5px/1.5 var(--serif); }
+.decisions p { margin-top: 4px; font-size: 14.5px; color: var(--muted); }
+
+.study-side { padding: clamp(24px, 3.5vw, 40px); border-left: 1px solid var(--line-2); background: var(--paper-2); }
+.study-body.single { grid-template-columns: 1fr; }
+
+.diagram { margin: 0; }
+.diagram svg { width: 100%; height: auto; color: var(--ink); }
+.dg-t { font: 500 13px var(--sans); }
+.dg-n { font: 700 20px var(--serif); font-variant-numeric: tabular-nums; }
+.diagram figcaption { margin-top: 12px; font-size: 12.5px; line-height: 1.7; color: var(--faint); }
+
+.cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 28px; margin-top: 40px; border-top: 1px solid var(--line-2); }
+.case-sm { padding: 28px 0 0; }
+.case-sm + .case-sm { border-left: 1px solid var(--line); padding-left: 28px; }
 .case-sm h3 { margin-top: 8px; font-size: 20px; }
 .case-sm p:not(.case-meta) { margin-top: 10px; font-size: 14.5px; color: var(--muted); }
 .case-sm .link-arrow { margin-top: 6px; }
@@ -318,6 +339,58 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 .offer h3 { font-size: 30px; }
 .offer-role { margin-top: 4px; font-weight: 600; }
 .offer p:last-child { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.offer-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.offer-links a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--accent); font-size: 14.5px; font-weight: 500; text-decoration: none;
+  border-bottom: 1px solid transparent; transition: border-color .2s ease;
+}
+.offer-links a:hover { border-bottom-color: currentColor; }
+.offer-cycle { margin-top: 10px; font: 12.5px/1.7 var(--mono); color: var(--faint); }
+
+/* ---------- 服务与流程页(services.html,老板向) ---------- */
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 18px; }
+.step { padding-top: 16px; border-top: 2px solid var(--ink); }
+.step-n { font: 500 12px/1 var(--mono); color: var(--faint); }
+.step h3 { margin-top: 10px; font-size: 20px; }
+.step p { margin-top: 8px; font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+
+.notake { margin-top: 40px; border: 1px dashed var(--line-2); padding: clamp(22px, 3vw, 32px); }
+.notake h3 { font-size: 19px; }
+.notake p { margin-top: 8px; font-size: 14.5px; color: var(--muted); }
+.notake ul { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 24px; }
+.notake li { position: relative; padding-left: 1.4em; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.notake li::before { content: "×"; position: absolute; left: 0; font: 700 15px/1.7 var(--mono); color: var(--faint); }
+
+.pricing { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-2); }
+.price-col { padding: clamp(24px, 3.5vw, 40px); }
+.price-col + .price-col { border-left: 1px solid var(--line-2); background: var(--paper-2); }
+.price-col h3 { font-size: 21px; }
+.price-col .price-note { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.price-col ul { margin-top: 16px; }
+.price-col li { position: relative; padding: 8px 0 8px 26px; font-size: 14.5px; line-height: 1.7; color: var(--muted); }
+.price-col li b { color: var(--ink); font-weight: 600; }
+.price-col li::before { position: absolute; left: 0; top: 8px; font: 700 13px/1.7 var(--mono); color: var(--ink); }
+.price-in li::before { content: "✓"; }
+.price-out li::before { content: "+"; }
+
+.trust-cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-2); }
+.trust-cards > div { padding: 24px 26px 22px 0; }
+.trust-cards > div + div { padding-left: 26px; border-left: 1px solid var(--line); }
+.trust-cards b { font: 700 clamp(22px, 2.4vw, 28px)/1.2 var(--serif); font-variant-numeric: tabular-nums; }
+.trust-cards p { margin-top: 8px; font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+
+.trust-cta { display: grid; grid-template-columns: 1.2fr 1fr; border: 1px solid var(--line-2); margin-top: 48px; }
+.trust-main { padding: clamp(28px, 4vw, 44px); }
+.trust-main h3 { font-size: clamp(24px, 3vw, 32px); }
+.trust-main > p { margin-top: 12px; color: var(--muted); }
+.trust-main .btn { margin-top: 24px; }
+.trust-main .contact-proof { margin-top: 18px; }
+.trust-side { padding: clamp(28px, 4vw, 44px); border-left: 1px solid var(--line-2); background: var(--paper-2); display: flex; flex-direction: column; justify-content: center; }
+.trust-side .magnet-kicker { font: 500 12px/1 var(--mono); letter-spacing: .14em; color: var(--faint); }
+.trust-side h3 { margin-top: 12px; font-size: 20px; }
+.trust-side p { margin-top: 10px; font-size: 14.5px; line-height: 1.75; color: var(--muted); }
+.trust-side .link-arrow { margin-top: 16px; align-self: flex-start; }
 
 /* 联系(第二个行动按钮) */
 .contact { text-align: center; border-top: 1px solid var(--line); }
@@ -350,10 +423,9 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 /* ---------- 响应式 ---------- */
 @media (max-width: 1024px) {
   .pipe { grid-template-columns: repeat(4, 1fr); row-gap: 28px; }
-  .case { grid-template-columns: 1fr; }
-  .case-nums { border-left: 0; border-top: 1px solid var(--line-2); grid-template-columns: repeat(4, 1fr); }
-  .case-nums > div { border-bottom: 0; border-right: 1px solid var(--line); }
-  .case-nums > div:last-child { border-right: 0; }
+  .study-body { grid-template-columns: 1fr; }
+  .study-side { border-left: 0; border-top: 1px solid var(--line-2); }
+  .steps { grid-template-columns: repeat(3, 1fr); row-gap: 28px; }
 }
 
 @media (max-width: 860px) {
@@ -385,6 +457,22 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
   .pains li + li, .case-sm + .case-sm, .offer + .offer { border-top: 1px solid var(--line); }
   .tenets > div + div { border-top: 1px solid var(--d-line); }
 
+  .case-figures { grid-template-columns: 1fr 1fr; }
+  .case-figures > div { padding: 18px 0 16px; }
+  .case-figures > div:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+  .case-figures > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+
+  .steps { grid-template-columns: 1fr; row-gap: 0; }
+  .step { border-top: 0; border-left: 2px solid var(--ink); padding: 14px 0 14px 16px; }
+  .step h3 { margin-top: 6px; }
+  .notake ul { grid-template-columns: 1fr; }
+
+  .pricing, .trust-cta { grid-template-columns: 1fr; }
+  .price-col + .price-col, .trust-side { border-left: 0; border-top: 1px solid var(--line-2); }
+  .trust-cards { grid-template-columns: 1fr; }
+  .trust-cards > div, .trust-cards > div + div { padding: 20px 0; border-left: 0; }
+  .trust-cards > div + div { border-top: 1px solid var(--line); }
+
   .pipe { grid-template-columns: 1fr; gap: 0; }
   .pipe li { display: grid; grid-template-columns: 28px 64px 1fr; align-items: baseline; gap: 10px; padding: 16px 0; }
   .pipe h3, .pipe p { margin: 0; }
@@ -405,9 +493,6 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 
 @media (max-width: 520px) {
   .hero-cta .btn { width: 100%; }
-  .case-nums { grid-template-columns: 1fr 1fr; }
-  .case-nums > div:nth-child(2) { border-right: 0; }
-  .case-nums > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .pipe li { grid-template-columns: 24px 1fr; }
   .pipe p { grid-column: 2; }
 }
