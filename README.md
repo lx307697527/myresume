@@ -1,4 +1,4 @@
-# myresume · 刘星个人简历网站
+# myresume · 晨星·路西法个人简历网站
 
 **在线地址:https://myaiwebdev.com**(品牌域名,唯一权威地址)· [GitHub Pages 镜像](https://lx307697527.github.io/myresume/)
 
@@ -74,7 +74,7 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 - `robots.txt` 明确放行 GPTBot、OAI-SearchBot、ChatGPT-User、ClaudeBot、anthropic-ai、PerplexityBot、Google-Extended、Applebot-Extended
 - `llms.txt`:站点级机器可读摘要(行业新标准),把"是谁 / 技术栈 / 项目 / 关键数字"写成事实清单
 - FAQ 问答区块:AI 引擎最偏好引用的事实型问答(`是谁 / 技术栈 / TeacherCopilot 是什么 / 成果 / 联系方式`),带数字证据
-- JSON-LD 实体数据 + `sameAs` 关联 GitHub 与产品站,帮助 AI 引擎做实体消歧("刘星 = 这个 GitHub 账号 = TeacherCopilot 作者")
+- JSON-LD 实体数据 + `sameAs` 关联 GitHub 与产品站,帮助 AI 引擎做实体消歧("晨星·路西法 = 这个 GitHub 账号 = TeacherCopilot 作者")
 
 **域名与收录入口(2026-11-16 域名统一已完成,以下需你的账号手动执行)**
 
@@ -86,7 +86,7 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 
 按优先级从高到低,每处引用 `https://myaiwebdev.com`:
 
-1. **GitHub Profile README**(建 `lx307697527/lx307697527` 仓库):github.com 权重高,是"刘星 = 这个 GitHub 账号"实体消歧的第一锚点
+1. **GitHub Profile README**(建 `lx307697527/lx307697527` 仓库):github.com 权重高,是"晨星·路西法 = 这个 GitHub 账号"实体消歧的第一锚点
 2. **GitHub 各仓库**:TeacherCopilot、UniInsight 等产品仓库的 README、About 描述、Topics 链回品牌域名
 3. **TeacherCopilot 产品站**(teachercopilot.pages.dev):页脚 / 关于页互链,自有站点形成引用网络
 4. **知乎**:个人简介 + 围绕"AI 写代码如何把关"写深度回答与专栏(中文 AI 引擎引用率最高的来源)

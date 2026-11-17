@@ -1,4 +1,4 @@
-# robots.txt — 刘星个人简历网站
+# robots.txt — 晨星·路西法个人简历网站
 # 欢迎所有搜索引擎与 AI 爬虫抓取
 
 User-agent: *

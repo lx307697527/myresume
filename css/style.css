@@ -8,31 +8,32 @@
    ============================================================ */
 
 :root {
-  --serif: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "Noto Serif SC", "SimSun", Georgia, serif;
+  /* 冷白极简:标题/数字用无衬线,强调=实心近黑,不靠色相 */
+  --serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
-  --paper: #f6f2ea;
-  --paper-2: #efe9dc;
-  --ink: #1d1a15;
-  --muted: #5a5346;
-  --faint: #716857;
-  --line: #ddd4c2;
-  --line-2: #c4b9a3;
-  --mark: rgba(29, 26, 21, .09);
-  --accent: #a83c24;
-  --accent-hover: #872e1a;
-  --on-accent: #fbf8f1;
-  --nav-bg: #f6f2ea;
+  --paper: #ffffff;
+  --paper-2: #fafafa;
+  --ink: #1e2124;
+  --muted: #6b6b6b;
+  --faint: #8f9296;
+  --line: #e5e5e5;
+  --line-2: #d4d4d6;
+  --mark: rgba(30, 33, 36, .08);
+  --accent: #1e2124;
+  --accent-hover: #000000;
+  --on-accent: #ffffff;
+  --nav-bg: #ffffff;
 
   /* 暗场区块(方案 / 短片),深浅模式都一样 */
-  --d-bg: #14110e;
-  --d-ink: #efe8db;
-  --d-muted: #b0a695;
-  --d-faint: #8f8574;
-  --d-line: #2e2921;
-  --d-line-2: #453d31;
-  --d-accent: #e8775a;
+  --d-bg: #1e2124;
+  --d-ink: #f2f3f5;
+  --d-muted: #a6abb1;
+  --d-faint: #878b90;
+  --d-line: #34383d;
+  --d-line-2: #4a4e53;
+  --d-accent: #ffffff;
 
   --wrap: 1120px;
   --gutter: 32px;
@@ -40,26 +41,26 @@
 }
 
 :root[data-theme="dark"] {
-  --paper: #14110e;
-  --paper-2: #1b1713;
-  --ink: #ece5d8;
-  --muted: #b0a695;
-  --faint: #938978;
-  --line: #2c271f;
-  --line-2: #433b2f;
-  --mark: rgba(236, 229, 216, .1);
-  --accent: #e8775a;
-  --accent-hover: #f09378;
-  --on-accent: #14110e;
-  --nav-bg: #14110e;
-  --d-bg: #0e0c0a;
+  --paper: #15181b;
+  --paper-2: #1b1e22;
+  --ink: #e8eaed;
+  --muted: #a2a7ad;
+  --faint: #84888d;
+  --line: #2a2e32;
+  --line-2: #3c4146;
+  --mark: rgba(232, 234, 237, .09);
+  --accent: #e8eaed;
+  --accent-hover: #ffffff;
+  --on-accent: #15181b;
+  --nav-bg: #15181b;
+  --d-bg: #0f1113;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #14110e; --paper-2: #1b1713; --ink: #ece5d8; --muted: #b0a695; --faint: #938978;
-    --line: #2c271f; --line-2: #433b2f; --mark: rgba(236, 229, 216, .1);
-    --accent: #e8775a; --accent-hover: #f09378; --on-accent: #14110e; --nav-bg: #14110e; --d-bg: #0e0c0a;
+    --paper: #15181b; --paper-2: #1b1e22; --ink: #e8eaed; --muted: #a2a7ad; --faint: #84888d;
+    --line: #2a2e32; --line-2: #3c4146; --mark: rgba(232, 234, 237, .09);
+    --accent: #e8eaed; --accent-hover: #ffffff; --on-accent: #15181b; --nav-bg: #15181b; --d-bg: #0f1113;
   }
 }
 
@@ -81,7 +82,7 @@ a { color: inherit; }
 ol, ul { list-style: none; }
 img, svg, video { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.25; letter-spacing: .01em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.25; letter-spacing: -.015em; text-wrap: balance; }
 p { text-wrap: pretty; }
 ::selection { background: var(--ink); color: var(--paper); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
@@ -176,7 +177,7 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 .hero-title {
   margin-top: 28px;
   font-size: clamp(44px, 8.4vw, 104px);
-  font-weight: 800; line-height: 1.12; letter-spacing: .01em;
+  font-weight: 700; line-height: 1.12; letter-spacing: -.02em;
 }
 .ink-mark {
   background: linear-gradient(transparent 62%, var(--mark) 62%, var(--mark) 92%, transparent 92%);
@@ -222,7 +223,7 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 .reel { margin: 0 0 clamp(56px, 8vw, 88px); }
 .reel-frame {
   position: relative; aspect-ratio: 16 / 9;
-  background: #0b0a08 url("../assets/allyos-poster.jpg") center / cover no-repeat;
+  background: #14171a url("../assets/allyos-poster.jpg") center / cover no-repeat;
   border: 1px solid var(--d-line-2);
   overflow: hidden;
 }
@@ -230,7 +231,7 @@ main p a, .faq a { color: var(--accent); text-underline-offset: 3px; }
 .reel-play {
   position: absolute; left: 16px; bottom: 16px;
   display: grid; place-items: center; width: 52px; height: 52px;
-  background: var(--d-accent); color: #14110e; border-radius: 2px;
+  background: var(--d-accent); color: #1e2124; border-radius: 2px;
   transition: opacity .25s ease, transform .2s ease;
 }
 .reel-play:hover { transform: scale(1.05); }
