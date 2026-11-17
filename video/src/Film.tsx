@@ -83,12 +83,12 @@ export const Card: React.FC = () => {
               color: C.paper,
             }}
           >
-            <span>刘</span>
+            <span>晨</span>
             <span>星</span>
           </div>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 96, lineHeight: 1 }}>刘星</div>
+          <div style={{ fontWeight: 700, fontSize: 96, lineHeight: 1 }}>晨星·路西法</div>
           <div style={{ fontSize: 34, color: C.muted, marginTop: 16 }}>AI 研发系统架构师 · AllyOS · 全栈</div>
         </div>
       </div>

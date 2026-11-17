@@ -50,7 +50,6 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 ├── video/          # 短片源码(Remotion 工程,不参与网站运行)
 ├── css/style.css   # 样式(主题色在 :root 与 html[data-theme="light"] 变量中)
 ├── js/main.js      # 交互脚本(约 5KB,零依赖,无 scroll 监听)
-├── resume.pdf      # 可下载的简历 PDF(合作区「下载简历」按钮指向它)
 ├── robots.txt      # 爬虫规则(已明确放行 GPTBot / ClaudeBot / PerplexityBot 等 AI 爬虫)
 ├── sitemap.xml     # 站点地图(首页 + services.html)
 ├── llms.txt        # 面向大语言引擎的站点摘要(GEO,含服务页事实清单)
@@ -93,14 +92,13 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 5. **掘金 / CSDN / V2EX / SegmentFault**:技术长文 + 个人主页资料页
 6. **LinkedIn / 脉脉**:职业档案的"网站"字段
 7. **Stack Overflow**:profile About me + 高质量技术回答
-8. **日常触点**:邮件签名、简历 PDF、X / 即刻等社交简介、协作文档署名
+8. **日常触点**:邮件签名、X / 即刻等社交简介、协作文档署名
 
 ## ✏️ 常用自定义
 
 1. **个人信息 / 经历 / 项目**:编辑 `index.html`,所有可改位置都有 `<!-- ✏️ -->` 注释。
-2. **主题配色**:编辑 `css/style.css` 顶部 `:root`(纸墨浅色)与 `html[data-theme="dark"]`(暖炭深色)中的 `--accent`(朱砂强调色)/ `--ink`(墨色)/ `--paper`(纸色)变量。
-3. **简历 PDF**:替换 `resume.pdf` 即可(文件名不变则无需改代码)。
-4. **联系方式**:搜索 `307697527@qq.com` 与 `github.com/lx307697527` 全局替换。
+2. **主题配色**:编辑 `css/style.css` 顶部 `:root`(冷白浅色)与 `html[data-theme="dark"]`(冷炭深色)中的 `--accent`(强调色)/ `--ink`(墨色)/ `--paper`(底色)变量。
+3. **联系方式**:搜索 `307697527@qq.com` 与 `github.com/lx307697527` 全局替换。
 
 ## 🚀 本地预览
 

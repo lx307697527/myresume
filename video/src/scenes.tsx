@@ -529,7 +529,7 @@ export const End: React.FC = () => {
                 color: C.paper,
               }}
             >
-              <span>刘</span>
+              <span>晨</span>
               <span>星</span>
             </div>
           </div>
