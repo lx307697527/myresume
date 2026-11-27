@@ -74,3 +74,18 @@
 - 服务与流程:https://myaiwebdev.com/services.html
 - TeacherCopilot:https://teachercopilot.pages.dev/
 - GitHub:https://github.com/lx307697527
+
+<!-- blog:start · 由 scripts/blog.py 生成,勿手改 -->
+## 博客 / Blog
+
+每篇从 AllyOS 的真实问题出发,讲清问题、解法和实测数字;中英双版。Each post takes one real problem from AllyOS and explains the fix with measured numbers.
+
+- 中文博客:https://myaiwebdev.com/blog/ · RSS:https://myaiwebdev.com/blog/feed.xml
+- English blog: https://myaiwebdev.com/en/blog/ · RSS: https://myaiwebdev.com/en/blog/feed.xml
+
+### 最新文章(中文)
+- [Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?](https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/)(2026-11-27 · 事故复盘):Claude Code 每次新建 worktree(包括子 Agent 的工作树隔离),都会把共享 .git/config 里相对写法的 core.hooksPath 改成主目录的绝对路径,之后没单独钉住配置的工作目录都会去跑主目录那份 Git 钩子。解法是把同一个"改回相对路径"的修复脚本同时挂到 SessionStart、PostToolUse(EnterWorktree)和 SubagentStart 三个入口,实测 68 毫秒内复原。
+
+### Latest posts (English)
+- [Why Claude Code Subagent Worktrees Silently Break Your Git Hooks](https://myaiwebdev.com/en/blog/claude-code-subagent-worktree-git-hooks/) (2026-11-27 · Incident Review): When Claude Code creates a worktree, including a subagent's isolated worktree, it rewrites the relative core.hooksPath in the shared .git/config to an absolute path, so every unpinned worktree runs the main checkout's hooks. Run one idempotent repair script from SessionStart, PostToolUse (EnterWorktree) and SubagentStart; we measured recovery in 68 ms.
+<!-- blog:end -->

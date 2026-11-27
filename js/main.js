@@ -23,7 +23,7 @@
   function setMenu(open) {
     menu.classList.toggle("open", open);
     burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
+    burger.setAttribute("aria-label", open ? (burger.dataset.labelClose || "关闭菜单") : (burger.dataset.labelOpen || "打开菜单"));
   }
   burger.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });

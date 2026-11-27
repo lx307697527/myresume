@@ -1,0 +1,41 @@
+# 博客守卫:PR 与 main 上都跑检查;合并进 main 后通知 Bing(IndexNow)。
+# 判断逻辑都在 scripts/blog.py 里(有自测),这里只负责调用。
+name: blog
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 自测(红线规则真的会拦)
+        run: python3 scripts/test_blog.py
+      - name: 质量门槛 + 信息安全红线 + 产物同步
+        run: python3 scripts/blog.py check
+
+  indexnow:
+    if: github.event_name == 'push'
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 等部署上线后通知 IndexNow
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: python3 scripts/blog.py indexnow --before "$BEFORE" --after "$AFTER"

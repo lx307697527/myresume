@@ -41,17 +41,41 @@ npm run render     # 输出 assets/allyos-film.mp4、assets/allyos-poster.jpg、
 - 分享卡片 `og-image.png` 由同一工程的 `OgCard` 静帧生成,视觉语言与短片一致
 - 渲染时优先用本机 Chromium(`REMOTION_BROWSER` 环境变量可指定),没有则由 Remotion 自动下载
 
+## 📝 博客(每日一篇,中英双版)
+
+每天从 AllyOS 的一个真实问题出发写一篇,讲清问题、解法和实测数字。规则全部写在
+[`_blog/EDITORIAL.md`](_blog/EDITORIAL.md)(定时任务每次运行前先读它;改策略只改这份文件)。
+
+```bash
+python3 scripts/blog.py new <英文短链> --pillar incident   # 生成中英两份骨架
+python3 scripts/blog.py build                             # 源稿 → 文章页、博客首页、RSS、sitemap、llms.txt、首页"最新文章"
+python3 scripts/blog.py check --strict --denylist <私有词表> # 质量门槛 + 信息安全红线 + 产物同步,不过就不发
+python3 scripts/test_blog.py                              # 证明红线规则真的会拦
+```
+
+- **网站仍是零构建**:脚本只在写文章时运行,产物提交进仓库,和 `video/` 渲染短片同一个思路;脚本只用 Python 标准库。
+- **源稿在 `_blog/`**:下划线开头,GitHub Pages 不会发布它,避免重复页面。
+- **信息安全**:公开仓库里只放"形状类"规则(邮箱、金额、密钥、内部编号、内部路径……);客户 / 供应商 / 真名等具体词条
+  只在运行时通过 `--denylist` 或环境变量 `BLOG_DENYLIST` 传入,**绝不提交**。`--strict` 模式下没有词表直接失败。
+- **GitHub Action**(`.github/workflows/blog.yml`):PR 与 main 上跑检查;合并进 main 后等线上部署完成,再用
+  IndexNow 通知 Bing(ChatGPT 搜索很大程度依赖 Bing 索引)。密钥文件是根目录的 `2d090988…txt`(按协议必须公开)。
+- **每篇的 SEO / GEO**:问题式标题 + 一句话答案置顶;`BlogPosting`(作者指向首页 `#person` 实体)+ 面包屑 + `FAQPage`
+  结构化数据;中英互为 `hreflang`;sitemap 带多语言互链;RSS;`llms.txt` 自动追加最新文章清单。
+
 ## 📁 目录结构
 
 ```
 ├── index.html      # 首页(求职路径:6 秒测试 + 深度工程证据,个人信息都在这里改,✏️ 注释标记了可编辑处)
 ├── services.html   # 服务与流程页(获客路径:接什么 / 怎么交付 / 怎么计费,老板向非技术语言)
+├── blog/  en/blog/ # 博客产物(scripts/blog.py 生成,勿手改):中文 / 英文文章页、列表页、RSS
+├── _blog/          # 博客源稿(posts/*.zh.md + *.en.md)、编辑手册 EDITORIAL.md、外链白名单
+├── scripts/        # blog.py(生成 + 检查,零依赖)与 test_blog.py(自测)
 ├── assets/         # Remotion 渲染产物:allyos-film.mp4 + allyos-poster.jpg
 ├── video/          # 短片源码(Remotion 工程,不参与网站运行)
 ├── css/style.css   # 样式(主题色在 :root 与 html[data-theme="light"] 变量中)
 ├── js/main.js      # 交互脚本(约 5KB,零依赖,无 scroll 监听)
 ├── robots.txt      # 爬虫规则(已明确放行 GPTBot / ClaudeBot / PerplexityBot 等 AI 爬虫)
-├── sitemap.xml     # 站点地图(首页 + services.html)
+├── sitemap.xml     # 站点地图(首页 + services.html + 博客,博客部分由 scripts/blog.py 生成)
 ├── llms.txt        # 面向大语言引擎的站点摘要(GEO,含服务页事实清单)
 ├── og-image.png    # 社交分享卡片图(1200×630)
 └── favicon.svg     # 网站图标

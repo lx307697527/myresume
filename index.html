@@ -18,6 +18,8 @@
   <link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/" />
   <link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/" />
   <link rel="sitemap" type="application/xml" href="https://myaiwebdev.com/sitemap.xml" />
+  <link rel="alternate" type="application/rss+xml" title="晨星·路西法的博客" href="https://myaiwebdev.com/blog/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Morningstar Lucifer's Blog" href="https://myaiwebdev.com/en/blog/feed.xml" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
 
@@ -240,6 +242,7 @@
         <a href="#experience">经历</a>
         <a href="#work">合作</a>
         <a href="services.html">服务</a>
+        <a href="blog/">博客</a>
         <a href="#faq">问答</a>
       </nav>
       <div class="nav-actions">
@@ -608,6 +611,28 @@
         </div>
       </div>
     </section>
+
+    <!-- BLOG:LATEST:START · 由 scripts/blog.py 生成,勿手改 -->
+    <section class="section" id="blog" aria-labelledby="blogTitle">
+      <div class="wrap narrow">
+        <header class="sec-head reveal">
+          <span class="sec-no">笔记 · 博客</span>
+          <h2 id="blogTitle">每天一篇实战笔记。</h2>
+          <p class="sec-lead">从 AllyOS 的真实问题里挑一个,讲清问题、解法和实测数字。</p>
+        </header>
+        <div class="reveal">
+    <ul class="post-list">
+      <li>
+        <p class="case-meta">事故复盘 · <time datetime="2026-11-27">2026-11-27</time></p>
+        <h3><a href="blog/claude-code-subagent-worktree-git-hooks/">Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?</a></h3>
+        <p>Claude Code 每次新建 worktree(包括子 Agent 的工作树隔离),都会把共享 <code>.git/config</code> 里相对写法的 <code>core.hooksPath</code> 改成主目录的绝对路径,之后没单独钉住配置的工作目录都会去跑主目录那份 Git 钩子。解法是把同一个&quot;改回相对路径&quot;的修复脚本同时挂到 SessionStart、PostToolUse(EnterWorktree)和 SubagentStart 三个入口,实测 68 毫秒内复原。</p>
+      </li>
+    </ul>
+        </div>
+        <p class="offer-links"><a href="blog/">全部文章 →</a><a href="en/blog/" hreflang="en" lang="en">English posts →</a></p>
+      </div>
+    </section>
+    <!-- BLOG:LATEST:END -->
   </main>
 
   <footer class="footer">
