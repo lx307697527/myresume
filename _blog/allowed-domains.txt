@@ -1,0 +1,41 @@
+# 博客外链白名单(scripts/blog.py check 读取)
+# 只放"公开、权威、长期有效"的资料站:官方文档、标准、知名技术站。
+# 一行一个主机名;要限制路径就写 主机名/路径前缀。新增一行要在 PR 里说明理由。
+# 公司私有仓库、内部域名、客户或供应商网站一律不加。
+
+myaiwebdev.com
+github.com/lx307697527
+teachercopilot.pages.dev
+
+# Claude / Anthropic 官方文档
+code.claude.com
+docs.claude.com
+docs.anthropic.com
+www.anthropic.com
+
+# 语言、框架、数据库官方文档
+git-scm.com
+supabase.com
+www.postgresql.org
+developer.mozilla.org
+react.dev
+nextjs.org
+vite.dev
+vitest.dev
+playwright.dev
+docs.deno.com
+tailwindcss.com
+www.typescriptlang.org
+docs.python.org
+nodejs.org
+
+# 标准与搜索引擎官方说明
+schema.org
+developers.google.com
+www.bing.com
+www.indexnow.org
+llmstxt.org
+owasp.org
+www.w3.org
+en.wikipedia.org
+zh.wikipedia.org

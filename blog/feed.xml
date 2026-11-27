@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>晨星·路西法的博客</title>
+    <link>https://myaiwebdev.com/blog/</link>
+    <description>成都 AI 研发系统架构师晨星·路西法的实战笔记:每篇从 AllyOS 的真实问题出发,讲清问题、解法和实测数字,覆盖 Claude Code、多 Agent 研发流水线、事故复盘与业务系统数字化。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 27 Nov 2026 08:00:00 +0800</lastBuildDate>
+    <atom:link href="https://myaiwebdev.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?</title>
+      <link>https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/</link>
+      <guid isPermaLink="true">https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/</guid>
+      <pubDate>Fri, 27 Nov 2026 08:00:00 +0800</pubDate>
+      <category>事故复盘</category>
+      <description>Claude Code 每次新建 worktree(包括子 Agent 的工作树隔离),都会把共享 .git/config 里相对写法的 core.hooksPath 改成主目录的绝对路径,之后没单独钉住配置的工作目录都会去跑主目录那份 Git 钩子。解法是把同一个&quot;改回相对路径&quot;的修复脚本同时挂到 SessionStart、PostToolUse(EnterWorktree)和 SubagentStart 三个入口,实测 68 毫秒内复原。</description>
+    </item>
+  </channel>
+</rss>
