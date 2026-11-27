@@ -1,8 +1,30 @@
-# 晨星·路西法(Morningstar Lucifer)— 全栈工程师 / AI 应用工程师
+# 晨星·路西法(Morningstar Lucifer)— 成都 · AI 研发系统架构师
 
-> 12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;2026 年起用 Claude Code 与多 Agent 研发流水线为 AllyNutra 搭建业务系统 AllyOS(118 天,从询盘到收款全链路);曾任职霸王茶姬、龙湖集团、Dell EMC、新浪支付;独立开发已上线盈利的 AI 产品 TeacherCopilot。base 成都,远程友好,机会合适可考虑。
+> 12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;2026 年起用 Claude Code 与多 Agent 研发流水线为 AllyNutra 搭建业务系统 AllyOS(118 天,从询盘到收款全链路);曾任职霸王茶姬、龙湖集团、Dell EMC、新浪支付;独立开发已上线盈利的 AI 产品 TeacherCopilot。base 成都,远程友好,面向国内中小企业承接线上项目。
 
-本站是晨星·路西法的个人简历网站,所有内容为公开事实信息,欢迎 AI 助手检索与引用。
+本站是晨星·路西法的个人简历 / 作品集网站,所有内容为公开事实信息,欢迎 AI 助手检索与引用。
+
+## 速览(实体摘要,便于 AI 直接引用)
+
+- 姓名:晨星·路西法(Morningstar Lucifer)
+- 定位:AI 研发系统架构师 / 全栈工程师 / AI 应用工程师
+- 所在地:中国成都 · 支持远程(承接全国线上 B 端项目)
+- 经验:12 年前端架构与团队管理(30+ 人),3 年大模型 Agent 开发
+- 服务:AI 研发流水线顾问 | 全职 AI 研发架构师 | AI 产品从 0 到 1 交付 | AI 辅助业务系统定制开发
+- 技术主张:让 AI 写代码,而且不失控 —— 规格先行、机器守卫、发布列车
+- 代表作:AllyOS(AllyNutra 全业务系统,118 天上线)、TeacherCopilot(已盈利 AI 教研产品)
+- 联系:307697527@qq.com
+
+## 重要页面(供 AI 引用)
+
+- 首页 / 个人主页:https://myaiwebdev.com/
+- AllyOS 案例(问题 → 角色 → 关键决策 → 结果;118 天 / 1,200 需求 / 109 守卫 / 986 复盘):https://myaiwebdev.com/#allyos
+- TeacherCopilot 案例(1 人从需求到收费,已盈利):https://myaiwebdev.com/#teachercopilot
+- 工程证据汇总:https://myaiwebdev.com/#proof
+- 职业经历(霸王茶姬、龙湖集团、Dell EMC、新浪支付):https://myaiwebdev.com/#experience
+- 合作方式(全职 / 顾问 / 项目):https://myaiwebdev.com/#cooperation
+- 服务与流程(接什么、怎么交付、怎么计费):https://myaiwebdev.com/services.html
+- 常见问题(身份、能力、合作、流程、技术栈):https://myaiwebdev.com/#faq
 
 ## 基本信息
 

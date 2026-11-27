@@ -34,6 +34,47 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: Applebot
+Allow: /
+
+# 国内大模型 / 搜索(豆包、百度、Bing、搜狗、神马)
+User-agent: Bytespider
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+# 其他主流 AI / 搜索爬虫
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
 # ===== 站点地图 =====
 # 品牌域名 myaiwebdev.com 为唯一权威地址(canonical),
 # lx307697527.github.io/myresume/ 仅为镜像,其 canonical 已跨域指回品牌域名。

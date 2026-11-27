@@ -15,6 +15,7 @@
   <meta name="author" content="晨星·路西法 (Morningstar Lucifer)" />
   <meta name="keywords" content="晨星·路西法,AI 研发系统架构师,AI 原生研发,Claude Code,AllyOS,多智能体,Agent 工程,研发效能,全栈工程师,前端架构师,LangChain,RAG,TeacherCopilot,成都,远程" />
   <link rel="canonical" href="https://myaiwebdev.com/" />
+  <link rel="sitemap" type="application/xml" href="https://myaiwebdev.com/sitemap.xml" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
 
@@ -48,6 +49,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://myaiwebdev.com/#person",
     "name": "晨星·路西法",
     "alternateName": "MORNINGSTAR LUCIFER",
     "jobTitle": "AI 研发系统架构师 / 全栈工程师",
@@ -56,7 +58,23 @@
     "email": "307697527@qq.com",
     "url": "https://myaiwebdev.com/",
     "image": "https://myaiwebdev.com/og-image.png",
-    "address": { "@type": "PostalAddress", "addressLocality": "成都", "addressCountry": "CN" },
+    "address": { "@type": "PostalAddress", "addressLocality": "成都", "addressRegion": "四川省", "addressCountry": "CN" },
+    "workLocation": {
+      "@type": "Place",
+      "name": "成都(支持远程)",
+      "address": { "@type": "PostalAddress", "addressLocality": "成都", "addressRegion": "四川省", "addressCountry": "CN" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 30.5728, "longitude": 104.0668 }
+    },
+    "mainEntityOfPage": { "@id": "https://myaiwebdev.com/#profilepage" },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "合作方式",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "全职担任 AI 研发负责人 / 架构师" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI 研发流水线顾问", "url": "https://myaiwebdev.com/services.html" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI 产品从 0 到 1 交付", "url": "https://myaiwebdev.com/services.html" } }
+      ]
+    },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "西华大学" },
     "knowsLanguage": ["zh-CN", "en"],
     "sameAs": ["https://github.com/lx307697527", "https://teachercopilot.pages.dev/"],
@@ -72,10 +90,48 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://myaiwebdev.com/#website",
     "name": "晨星·路西法 · AI 研发系统架构师",
     "url": "https://myaiwebdev.com/",
     "inLanguage": "zh-CN",
-    "author": { "@type": "Person", "name": "晨星·路西法" }
+    "author": { "@id": "https://myaiwebdev.com/#person" },
+    "publisher": { "@id": "https://myaiwebdev.com/#person" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": "https://myaiwebdev.com/#profilepage",
+    "url": "https://myaiwebdev.com/",
+    "name": "晨星·路西法 · 成都 AI 研发系统架构师",
+    "description": "成都 AI 研发系统架构师晨星·路西法的个人主页:12 年前端架构与团队管理,用 Claude Code 与多 Agent 研发流水线构建 AllyOS、独立开发已盈利 AI 产品 TeacherCopilot。远程友好。",
+    "inLanguage": "zh-CN",
+    "dateModified": "2026-11-27",
+    "isPartOf": { "@id": "https://myaiwebdev.com/#website" },
+    "mainEntity": { "@id": "https://myaiwebdev.com/#person" },
+    "about": { "@id": "https://myaiwebdev.com/#person" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://myaiwebdev.com/#service",
+    "name": "晨星·路西法 · AI 研发系统架构师服务",
+    "url": "https://myaiwebdev.com/services.html",
+    "image": "https://myaiwebdev.com/og-image.png",
+    "description": "面向国内中小企业的 AI 辅助定制开发与 AI 研发流水线顾问:业务系统从 0 到 1(参照 AllyOS 118 天上线)、AI 产品交付(参照 TeacherCopilot 已盈利)、为技术团队搭建可控的 AI 多 Agent 研发流水线。成都,支持远程。",
+    "provider": { "@id": "https://myaiwebdev.com/#person" },
+    "serviceType": ["AI 研发流水线顾问", "AI 辅助业务系统开发", "AI 产品从 0 到 1 交付", "全职 AI 研发架构师"],
+    "areaServed": [
+      { "@type": "City", "name": "成都" },
+      { "@type": "Country", "name": "中国" }
+    ],
+    "address": { "@type": "PostalAddress", "addressLocality": "成都", "addressRegion": "四川省", "addressCountry": "CN" },
+    "geo": { "@type": "GeoCoordinates", "latitude": 30.5728, "longitude": 104.0668 },
+    "email": "307697527@qq.com",
+    "availableLanguage": ["zh-CN", "en"]
   }
   </script>
   <script type="application/ld+json">
@@ -320,7 +376,7 @@
         </header>
 
         <!-- 深度案例一:AllyOS(数字前置) -->
-        <article class="case study reveal">
+        <article class="case study reveal" id="allyos">
           <dl class="case-figures">
             <div><dt>118 天</dt><dd>搭起全链路，运行至今</dd></div>
             <div><dt>1,200</dt><dd>个需求走完同一条流水线</dd></div>
@@ -390,7 +446,7 @@
         </article>
 
         <!-- 深度案例二:TeacherCopilot -->
-        <article class="case study reveal">
+        <article class="case study reveal" id="teachercopilot">
           <dl class="case-figures">
             <div><dt>1 人</dt><dd>需求、开发、上线、收费全流程</dd></div>
             <div><dt>已盈利</dt><dd>上线收费，跑通商业闭环</dd></div>
@@ -463,6 +519,7 @@
 
     <!-- ==================== 05 合作(两条路径分流) ==================== -->
     <section class="section" id="work" aria-labelledby="workTitle">
+      <span id="cooperation" aria-hidden="true"></span>
       <div class="wrap">
         <header class="sec-head reveal">
           <span class="sec-no">05 · 合作</span>
