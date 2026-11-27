@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.myaiwebdev.com"
+        }
+      ],
+      "destination": "https://myaiwebdev.com/:path*",
+      "statusCode": 301
+    }
+  ]
+}

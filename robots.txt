@@ -4,7 +4,10 @@
 User-agent: *
 Allow: /
 
-# ===== 生成式引擎爬虫(GEO)明确放行 =====
+# ===== 搜索与生成式引擎爬虫(SEO / GEO)明确放行 =====
+User-agent: Googlebot
+Allow: /
+
 # OpenAI
 User-agent: GPTBot
 Allow: /

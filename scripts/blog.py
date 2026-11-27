@@ -1176,9 +1176,9 @@ def cmd_indexnow(args) -> int:
         print("FAIL: git diff 失败:" + diff.stderr.strip())
         return 1
     urls = [SITE + "/" + f[: -len("index.html")] for f in diff.stdout.split()
-            if re.fullmatch(r"(?:en/)?blog/(?:[a-z0-9\-]+/)?index\.html", f)]
+            if re.fullmatch(r"(?:(?:en/)?blog|notes)/(?:[a-z0-9\-]+/)?index\.html", f)]
     if not urls:
-        print("ok: 这次推送没有博客页面变化,不需要通知")
+        print("ok: 这次推送没有文章页面变化,不需要通知")
         return 0
     deadline = time.time() + args.wait
     while True:  # 等线上部署完成(新文章不再 404)再通知,否则 Bing 来抓会扑空
