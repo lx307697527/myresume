@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review | 晨星·路西法</title>
+  <meta name="description" content="面向中文技术决策者的 Claude Code 工程化拆解：AllyOS 如何把 986 份事故复盘沉淀为 18 条规则，再把规则变成 109 道机器守卫，覆盖规格、数据库、权限、接口与集成边界。" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="晨星·路西法 (Morningstar Lucifer)" />
+  <meta name="keywords" content="AI 写代码失控,AI 代码审查,Claude Code 工程化,机器守卫,pgTAP,RLS,事故复盘" />
+  <link rel="canonical" href="https://myaiwebdev.com/notes/ai-coding-guardrails-109/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/notes/ai-coding-guardrails-109/" />
+  <link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/notes/ai-coding-guardrails-109/" />
+  <link rel="alternate" type="application/rss+xml" title="晨星·路西法的博客" href="https://myaiwebdev.com/blog/feed.xml" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review" />
+  <meta property="og:description" content="从 986 份事故复盘到 18 条规则，再到 109 道机器守卫：拆解 AI 编程闭环、拦截边界与人的审查职责。" />
+  <meta property="og:url" content="https://myaiwebdev.com/notes/ai-coding-guardrails-109/" />
+  <meta property="og:image" content="https://myaiwebdev.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="AI 代码审查与 109 道机器守卫工程拆解" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="晨星·路西法 · AI 研发系统架构师" />
+  <meta property="article:published_time" content="2026-11-28T08:00:00+08:00" />
+  <meta property="article:modified_time" content="2026-11-28T08:00:00+08:00" />
+  <meta property="article:author" content="https://myaiwebdev.com/#person" />
+  <meta property="article:section" content="AI 工程化" />
+  <meta property="article:tag" content="AI 写代码失控" />
+  <meta property="article:tag" content="AI 代码审查" />
+  <meta property="article:tag" content="Claude Code 工程化" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review" />
+  <meta name="twitter:description" content="从 986 份事故复盘到 18 条规则，再到 109 道机器守卫：拆解 AI 编程闭环、拦截边界与人的审查职责。" />
+  <meta name="twitter:image" content="https://myaiwebdev.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://myaiwebdev.com/notes/ai-coding-guardrails-109/#article",
+      "headline": "AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review",
+      "description": "面向中文技术决策者的 Claude Code 工程化拆解：AllyOS 如何把 986 份事故复盘沉淀为 18 条规则，再把规则变成 109 道机器守卫，覆盖规格、数据库、权限、接口与集成边界。",
+      "abstract": "治理 AI 写代码的关键不是追加提示词，而是把事故复盘转成可执行、可重复、失败即拦截的机器检查，让人从逐行找错转向审查规格、风险与规则盲区。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-28T08:00:00+08:00",
+      "dateModified": "2026-11-28T08:00:00+08:00",
+      "author": {"@type": "Person", "@id": "https://myaiwebdev.com/#person", "name": "晨星·路西法", "alternateName": "Morningstar Lucifer", "url": "https://myaiwebdev.com/"},
+      "publisher": {"@id": "https://myaiwebdev.com/#person"},
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://myaiwebdev.com/notes/ai-coding-guardrails-109/"},
+      "url": "https://myaiwebdev.com/notes/ai-coding-guardrails-109/",
+      "image": "https://myaiwebdev.com/og-image.png",
+      "keywords": ["AI 写代码失控", "AI 代码审查", "Claude Code 工程化", "机器守卫", "pgTAP", "RLS"],
+      "articleSection": "AI 工程化",
+      "isPartOf": {"@type": "Blog", "@id": "https://myaiwebdev.com/notes/#blog", "name": "晨星·路西法的工程笔记"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://myaiwebdev.com/"},
+        {"@type": "ListItem", "position": 2, "name": "工程笔记", "item": "https://myaiwebdev.com/notes/"},
+        {"@type": "ListItem", "position": 3, "name": "AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review", "item": "https://myaiwebdev.com/notes/ai-coding-guardrails-109/"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://myaiwebdev.com/notes/ai-coding-guardrails-109/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "有了 109 道守卫，还需要人工代码审查吗？",
+          "acceptedAnswer": {"@type": "Answer", "text": "需要，但审查对象应上移。机器负责重复验证不变量，人负责需求是否理解正确、规则是否覆盖真实风险、失败是否值得豁免，以及新事故是否要沉淀成下一条守卫。逐行看语法不再是人的主要工作。"}
+        },
+        {
+          "@type": "Question",
+          "name": "109 道检查是否意味着任何团队都该照抄这个数量？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不意味着。109 是 AllyOS 在 2026-11-13 公开快照中的工程规模，不是通用目标。团队应从自己的事故与关键不变量出发，先让高风险规则可执行，再逐步增加检查；数量本身不代表治理质量。"}
+        },
+        {
+          "@type": "Question",
+          "name": "守卫全绿能否证明系统没有缺陷？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不能。全绿只说明这次改动通过了当前已经编码的检查。未覆盖的需求误解、规则盲区和上游环境变化仍需通过复盘、集成验证与发布审计处理，因此守卫必须与七步流程和发布机制配合。"}
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="nav" id="nav">
+    <div class="wrap nav-row">
+      <a href="../../index.html" class="brand" title="回到首页"><span class="seal" aria-hidden="true">晨<br />星</span><span class="brand-name">晨星·路西法<small>AI 研发系统架构师</small></span></a>
+      <nav class="nav-menu" id="navMenu" aria-label="主导航">
+        <a href="../../index.html#approach">方案</a><a href="../../index.html#proof">证据</a><a href="../../index.html#experience">经历</a><a href="../../index.html#work">合作</a><a href="../../services.html">服务</a><a href="../../notes/" aria-current="true">笔记</a><a href="../../index.html#faq">问答</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-cta" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟</a>
+        <button class="icon-btn" id="themeToggle" aria-label="切换深浅色"><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41 1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="icon-btn burger" id="burger" aria-label="打开菜单" data-label-open="打开菜单" data-label-close="关闭菜单" aria-expanded="false" aria-controls="navMenu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="post">
+      <div class="wrap narrow">
+        <nav class="crumbs" aria-label="面包屑"><a href="../../index.html">首页</a><span aria-hidden="true">/</span><a href="../">工程笔记</a><span aria-hidden="true">/</span><span>AI 工程化</span></nav>
+        <header class="post-head">
+          <p class="kicker">AI 工程化 · 机器守卫</p>
+          <h1 class="post-title">AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review</h1>
+          <p class="post-meta">作者 <a href="../../index.html" rel="author">晨星·路西法</a> · 发布 <time datetime="2026-11-28">2026-11-28</time> · 数据口径 <time datetime="2026-11-13">2026-11-13 公开快照</time></p>
+        </header>
+        <aside class="answer" aria-label="核心结论">
+          <p class="answer-label">核心结论</p>
+          <p>控制 AI 写代码，不是把“请小心”写进 Prompt，而是把每次事故变成可执行的不变量：先由规格明确意图，再由机器守卫在数据库、权限、接口和集成边界反复验证，失败就停止流转。109 道检查替代的是重复逐行找错，不是替代技术判断；人转向审查需求、风险、豁免和规则盲区。</p>
+        </aside>
+        <nav class="toc" aria-label="目录">
+          <p class="toc-label">目录</p>
+          <ol>
+            <li><a href="#s1">为什么不能靠 Prompt 约束 AI 不改错代码？</a></li>
+            <li><a href="#s2">986 份事故复盘怎样压缩成 18 条规则？</a></li>
+            <li><a href="#s3">109 道机器守卫究竟在哪些边界拦截？</a></li>
+            <li><a href="#s4">为什么守卫全绿仍不等于无条件上线？</a></li>
+            <li><a href="#s5">人工 Review 应该转向哪里？</a></li>
+            <li><a href="#checklist">可以照做的清单</a></li>
+            <li><a href="#faq">常见问题</a></li>
+          </ol>
+        </nav>
+        <div class="prose">
+          <h2 id="s1">为什么不能靠 Prompt 约束 AI 不改错代码？</h2>
+          <p>Prompt 表达的是期望，守卫验证的是结果。模型可以准确复述“不要破坏权限”，却仍可能在一次表结构调整中漏掉某条 RLS 策略；也可能让函数能够运行，却改变调用方依赖的返回结构。问题不一定是模型“不听话”，而是自然语言要求没有变成一个在每次改动后都必须成立、且能自动判定的命题。</p>
+          <p><a href="https://myaiwebdev.com/#allyos">AllyOS</a> 的七步流程是<strong>需求→追问→规格→实现→守卫→集成→上线</strong>。顺序很关键：先在追问阶段暴露歧义，再把共识写进规格；实现不是终点，只是待验证的候选变更；守卫通过后还要进入集成与上线，而不是把单次生成结果直接当成可交付产品。</p>
+          <p>对技术决策者而言，真正要采购或建设的不是“更会写代码的模型”，而是一条<strong>可拒绝不合格变更的流水线</strong>。模型、14 个技能与 6 个子 Agent 都可以提高产出并行度，但只有拒绝权属于确定性的工程机制，产能才不会同时放大缺陷扩散面。关于并行工作的上下文组织，可继续阅读<a href="../repo-map-vs-full-context/">《只给地图不给全文》</a>。</p>
+
+          <h2 id="s2">986 份事故复盘怎样压缩成 18 条规则？</h2>
+          <p>本文涉及的 AllyOS 规模数字统一采用 <strong>2026-11-13 公开快照</strong>：118 天、1,200 个需求、1,527 次数据库迁移、1,270 个 pgTAP 测试、109 道机器守卫、23 个业务模块、80 个边缘函数；另有 986 份复盘沉淀为 18 条规则。它们是同一时点的公开工程记录，不应被解释成缺陷下降比例或审查效率提升比例。</p>
+          <p>从复盘到规则，不是把 986 篇文档塞回上下文，而是做信息压缩。可操作的转换链是：<strong>事故现象→失效边界→可复用原则→机器可判定条件→失败处置</strong>。例如，一次“某角色看到不该看的数据”不能直接压缩成“以后注意权限”，而应继续追问：访问是否必须经过受治理 RPC？对应表是否启用 RLS？不同角色的允许与拒绝路径是否都有测试？直到答案能够被自动执行为止。</p>
+          <p>18 条规则解决跨事故复用，109 道守卫解决不同对象上的具体判定。一条数据访问原则可以落到多张表、多组角色和多个入口；一条接口稳定原则也可以落到多个 Deno Edge Functions。因此，规则数与检查数不是一一对应，更不能把两者相除得出“每条规则平均防住多少事故”。</p>
+          <p>复盘入库时还要保留证据链：原始失败是什么、哪个边界漏检、新增检查读什么输入、失败时阻断哪一步。这样后续维护者才能区分“这条守卫仍有必要”和“这段脚本只是历史上一直存在”。</p>
+
+          <h2 id="s3">109 道机器守卫究竟在哪些边界拦截？</h2>
+          <p>公开事实给出了守卫总量与技术栈，没有给出各分类的数量分布。下表因此是<strong>审阅拦截记录的分类框架</strong>，不是对 109 道守卫的官方分组或实测覆盖声明。它的用途是让决策者能问清：每类变更由谁判定、证据是什么、失败后停在哪里。</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>拦截面</th><th>要证明的不变量</th><th>可采用的检查方式</th><th>失败后的动作</th></tr></thead>
+            <tbody>
+              <tr><td>规格与变更范围</td><td>实现对象、约束和验收条件来自已确认规格</td><td>核对变更是否回应规格；检查禁止触碰的边界</td><td>退回追问或规格，不让实现自行补需求</td></tr>
+              <tr><td>数据库与迁移</td><td>结构变化不破坏既定数据语义</td><td>围绕 Supabase/Postgres 迁移运行 pgTAP 断言</td><td>阻止迁移继续流转，保留失败断言</td></tr>
+              <tr><td>访问控制</td><td>允许的路径可用，不允许的路径明确拒绝</td><td>检查 RLS 与受治理 RPC 的角色、输入和拒绝分支</td><td>按高风险变更处理，不用“页面能打开”替代权限验证</td></tr>
+              <tr><td>接口与边缘函数</td><td>调用约定和错误语义没有被静默改变</td><td>核对 Deno Edge Functions 的输入、输出及调用方契约</td><td>回到实现或同步修改明确版本化的契约</td></tr>
+              <tr><td>集成与关键路径</td><td>局部正确的改动组合后仍符合业务流程</td><td>用 Playwright 验证关键路径，并衔接集成门禁</td><td>隔离失败变更，不把多个问题混成一次上线</td></tr>
+            </tbody>
+          </table></div>
+          <p>一道合格守卫至少包含四部分：<strong>触发时机、只读或受控输入、确定判定、可见失败原因</strong>。如果脚本只在开发者记得时运行，它不是流程守卫；如果只输出“有异常”却不能指出哪个不变量失败，排查仍会退回人工翻日志；如果检查失败后仍能默认继续，它也只是提示。</p>
+          <p>拦截还应尽量靠近错误产生的边界，但最终门禁不能只信局部结果。数据库测试通过，不代表函数调用方已经适配；函数自测通过，也不代表浏览器里的关键路径完整。这就是七步流程把“守卫”和“集成”拆成两步的原因。</p>
+
+          <h2 id="s4">为什么守卫全绿仍不等于无条件上线？</h2>
+          <p>自动检查只能证明“已编码的命题在这次输入下成立”。它不能自动发现尚未被识别的风险，也不能替业务负责人判断一个合规但不受欢迎的变化。规格写错时，实现与测试甚至可能一起把错误执行得非常稳定。因此，全绿是<strong>进入下一决策点的资格</strong>，不是系统正确性的数学证明。</p>
+          <p>高频 AI 产出还会制造另一个问题：即使每份变更都有检查结果，只要合入顺序、发布时间和变更边界不清，线上异常仍难定位。解决这一半问题，需要把守卫结果绑定到确定的发布单元。AllyOS 的每日发布列车正是为此设置固定定格与发车窗口，详见<a href="../daily-release-train-ai/">《每天 11:11 定格、15:00 发车》</a>。</p>
+          <p>豁免也必须被治理。合理做法不是给守卫加一个永久跳过开关，而是记录哪条检查、哪次变更、由谁基于什么理由放行，以及何时重新验证。这里描述的是落地时应采用的治理设计，并非公开快照之外新增的效果数据。</p>
+
+          <h2 id="s5">人工 Review 应该转向哪里？</h2>
+          <p>机器接管重复判定后，人的工作不是消失，而是转向四类更难形式化的问题。第一，需求是否值得做，追问是否排除了错误假设；第二，规格中的业务语义是否完整，尤其是异常路径与不允许发生的事情；第三，现有守卫是否覆盖了本次变更的新边界；第四，失败或豁免是否符合组织的风险承受度。</p>
+          <p>代码仍然要读，但阅读目的从“逐行寻找所有问题”变为“理解设计、检查机器难以表达的语义、识别新不变量”。当同一类问题第二次由人眼发现时，管理者应追问的不是谁不够认真，而是为什么它还没有成为机器检查。这样，事故复盘才会改变系统，而不是只改变下一次 Prompt 的措辞。</p>
+          <p>对准备引入 Claude Code 工程化的团队，可以先选一条最关键的数据或权限不变量做穿透：从规格、实现、测试、拦截记录一路走到上线记录。能完整走通一条，比先复制一百条不了解语义的检查更有治理价值。</p>
+
+          <h2 id="checklist">可以照做的清单</h2>
+          <ol>
+            <li>把流程固定为需求、追问、规格、实现、守卫、集成、上线，明确每一步的进入条件与拒绝权。</li>
+            <li>建立复盘到守卫的转换记录：事故、失效边界、规则、可执行断言、失败动作必须能互相追溯。</li>
+            <li>优先形式化数据与权限不变量；围绕 Postgres 迁移、RLS 和受治理 RPC 同时验证允许与拒绝路径。</li>
+            <li>为接口与边缘函数核对调用契约，再用 Playwright 验证组合后的关键路径，避免以局部绿代替集成绿。</li>
+            <li>让失败输出指向具体不变量，禁止默认静默放行；豁免必须有范围、理由和后续处理记录。</li>
+            <li>把守卫结果绑定到可定位的发布单元，并定期复盘未覆盖问题，而不是追求检查数量本身。</li>
+          </ol>
+
+          <h2 id="faq">常见问题</h2>
+          <h3>有了 109 道守卫，还需要人工代码审查吗？</h3>
+          <p>需要，但审查对象应上移。机器负责重复验证不变量，人负责需求是否理解正确、规则是否覆盖真实风险、失败是否值得豁免，以及新事故是否要沉淀成下一条守卫。逐行看语法不再是人的主要工作。</p>
+          <h3>109 道检查是否意味着任何团队都该照抄这个数量？</h3>
+          <p>不意味着。109 是 AllyOS 在 2026-11-13 公开快照中的工程规模，不是通用目标。团队应从自己的事故与关键不变量出发，先让高风险规则可执行，再逐步增加检查；数量本身不代表治理质量。</p>
+          <h3>守卫全绿能否证明系统没有缺陷？</h3>
+          <p>不能。全绿只说明这次改动通过了当前已经编码的检查。未覆盖的需求误解、规则盲区和上游环境变化仍需通过复盘、集成验证与发布审计处理，因此守卫必须与七步流程和发布机制配合。</p>
+          <p>本组笔记还包括<a href="../repo-map-vs-full-context/">多 Agent 的代码地图架构</a>、<a href="../daily-release-train-ai/">每日发布列车</a>与<a href="../local-hybrid-rag-electron/">本地混合检索桌面应用</a>，可回到<a href="../">工程笔记索引</a>统一查看。</p>
+        </div>
+        <section class="author-card" aria-labelledby="authorTitle">
+          <h2 id="authorTitle">关于作者</h2>
+          <p><b>晨星·路西法</b>，AI 研发系统架构师，构建 AllyOS 与已上线盈利的 TeacherCopilot，关注多 Agent 研发流程、可执行守卫和本地 AI 应用。</p>
+          <p class="author-note">本文由作者与 AI 协作完成。AllyOS 规模数字均为 2026-11-13 公开快照；文中的分类框架与实施建议用于工程决策，不代表额外的受控效果测试。</p>
+        </section>
+        <div class="post-cta">
+          <a class="btn" href="https://myaiwebdev.com/services.html">为团队设计 AI 研发守卫与流程</a>
+          <a class="link-arrow" href="https://myaiwebdev.com/#allyos">查看 AllyOS 工程证据 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="wrap footer-row"><p>© <span id="year">2026</span> 晨星·路西法 · 成都</p><p class="footer-sub"><a href="../../index.html">首页</a> · <a href="../">工程笔记</a> · <a href="../../blog/">博客归档</a> · <a href="../../services.html">服务与流程</a> · <a href="../../blog/feed.xml">RSS</a> · 与 AI 协作构建 · 原生滚动，零框架</p></div></footer>
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

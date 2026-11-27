@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>只给地图不给全文：大型仓库下多 Agent 协作的上下文架构 | 晨星·路西法</title>
+  <meta name="description" content="大型仓库的多 Agent 编程为何需要根地图与模块子地图？定性比较整库全文和分层代码地图在任务定位、上下文更新、跨模块协作与失真风险上的差异，不虚构 token 或准确率基准。" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="晨星·路西法 (Morningstar Lucifer)" />
+  <meta name="keywords" content="多 Agent 编程,Claude Code 架构,代码地图,根地图,模块子地图,上下文工程,大型仓库" />
+  <link rel="canonical" href="https://myaiwebdev.com/notes/repo-map-vs-full-context/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/notes/repo-map-vs-full-context/" />
+  <link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/notes/repo-map-vs-full-context/" />
+  <link rel="alternate" type="application/rss+xml" title="晨星·路西法的博客" href="https://myaiwebdev.com/blog/feed.xml" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="只给地图不给全文：大型仓库下多 Agent 协作的上下文架构" />
+  <meta property="og:description" content="比较整库全文与根地图加模块子地图指针：讲清任务定位、上下文治理、并行协作和地图失真，不编造受控基准。" />
+  <meta property="og:url" content="https://myaiwebdev.com/notes/repo-map-vs-full-context/" />
+  <meta property="og:image" content="https://myaiwebdev.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="大型仓库多 Agent 代码地图与上下文架构" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="晨星·路西法 · AI 研发系统架构师" />
+  <meta property="article:published_time" content="2026-11-28T08:00:00+08:00" />
+  <meta property="article:modified_time" content="2026-11-28T08:00:00+08:00" />
+  <meta property="article:author" content="https://myaiwebdev.com/#person" />
+  <meta property="article:section" content="上下文架构" />
+  <meta property="article:tag" content="多 Agent 编程" />
+  <meta property="article:tag" content="Claude Code 架构" />
+  <meta property="article:tag" content="代码地图" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="只给地图不给全文：大型仓库下多 Agent 协作的上下文架构" />
+  <meta name="twitter:description" content="比较整库全文与根地图加模块子地图指针：讲清任务定位、上下文治理、并行协作和地图失真，不编造受控基准。" />
+  <meta name="twitter:image" content="https://myaiwebdev.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://myaiwebdev.com/notes/repo-map-vs-full-context/#article",
+      "headline": "只给地图不给全文：大型仓库下多 Agent 协作的上下文架构",
+      "description": "大型仓库的多 Agent 编程为何需要根地图与模块子地图？定性比较整库全文和分层代码地图在任务定位、上下文更新、跨模块协作与失真风险上的差异，不虚构 token 或准确率基准。",
+      "abstract": "代码地图的价值在于把导航信息与实现细节分层：根地图负责模块职责和指针，子地图负责局部契约，Agent 再按任务读取源码。本文只讨论工程机制与公开结果，不宣称未经受控基准验证的准确率、幻觉率或 token 收益。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-28T08:00:00+08:00",
+      "dateModified": "2026-11-28T08:00:00+08:00",
+      "author": {"@type": "Person", "@id": "https://myaiwebdev.com/#person", "name": "晨星·路西法", "alternateName": "Morningstar Lucifer", "url": "https://myaiwebdev.com/"},
+      "publisher": {"@id": "https://myaiwebdev.com/#person"},
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://myaiwebdev.com/notes/repo-map-vs-full-context/"},
+      "url": "https://myaiwebdev.com/notes/repo-map-vs-full-context/",
+      "image": "https://myaiwebdev.com/og-image.png",
+      "keywords": ["多 Agent 编程", "Claude Code 架构", "代码地图", "根地图", "模块子地图", "上下文工程"],
+      "articleSection": "上下文架构",
+      "isPartOf": {"@type": "Blog", "@id": "https://myaiwebdev.com/notes/#blog", "name": "晨星·路西法的工程笔记"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://myaiwebdev.com/"},
+        {"@type": "ListItem", "position": 2, "name": "工程笔记", "item": "https://myaiwebdev.com/notes/"},
+        {"@type": "ListItem", "position": 3, "name": "只给地图不给全文：大型仓库下多 Agent 协作的上下文架构", "item": "https://myaiwebdev.com/notes/repo-map-vs-full-context/"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://myaiwebdev.com/notes/repo-map-vs-full-context/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "代码地图是不是另一种全文摘要？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不是。全文摘要仍试图把实现内容压缩进当前上下文，代码地图则优先保存职责、边界、入口和指向源码的指针。Agent 只有在任务需要时才展开局部实现，地图不能替代对真实代码与测试的核对。"}
+        },
+        {
+          "@type": "Question",
+          "name": "根地图应该记录每个函数的实现细节吗？",
+          "acceptedAnswer": {"@type": "Answer", "text": "通常不应该。根地图应保持稳定，用于回答模块在哪里、谁负责什么、跨模块从哪里进入，以及下一步读取哪张子地图。易变的函数细节留在模块子地图或源码中，才能减少全局文档跟随每次实现变化的压力。"}
+        },
+        {
+          "@type": "Question",
+          "name": "能不能据此断言代码地图一定优于全文？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不能。目前没有本文可引用的受控基准来证明它在准确率、幻觉率或 token 消耗上必然更好。可以确定的是两种方案的信息组织与维护机制不同；技术选型应结合仓库规模、任务类型和地图维护能力，通过团队自己的对照实验验证。"}
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="nav" id="nav">
+    <div class="wrap nav-row">
+      <a href="../../index.html" class="brand" title="回到首页"><span class="seal" aria-hidden="true">晨<br />星</span><span class="brand-name">晨星·路西法<small>AI 研发系统架构师</small></span></a>
+      <nav class="nav-menu" id="navMenu" aria-label="主导航"><a href="../../index.html#approach">方案</a><a href="../../index.html#proof">证据</a><a href="../../index.html#experience">经历</a><a href="../../index.html#work">合作</a><a href="../../services.html">服务</a><a href="../../notes/" aria-current="true">笔记</a><a href="../../index.html#faq">问答</a></nav>
+      <div class="nav-actions">
+        <a class="nav-cta" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟</a>
+        <button class="icon-btn" id="themeToggle" aria-label="切换深浅色"><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41 1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="icon-btn burger" id="burger" aria-label="打开菜单" data-label-open="打开菜单" data-label-close="关闭菜单" aria-expanded="false" aria-controls="navMenu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="post">
+      <div class="wrap narrow">
+        <nav class="crumbs" aria-label="面包屑"><a href="../../index.html">首页</a><span aria-hidden="true">/</span><a href="../">工程笔记</a><span aria-hidden="true">/</span><span>上下文架构</span></nav>
+        <header class="post-head">
+          <p class="kicker">多 Agent 编程 · 上下文架构</p>
+          <h1 class="post-title">只给地图不给全文：大型仓库下多 Agent 协作的上下文架构</h1>
+          <p class="post-meta">作者 <a href="../../index.html" rel="author">晨星·路西法</a> · 发布 <time datetime="2026-11-28">2026-11-28</time> · 比较方式：工程机制定性分析</p>
+        </header>
+        <aside class="answer" aria-label="核心结论">
+          <p class="answer-label">核心结论</p>
+          <p>大型仓库里，多 Agent 不应各自吞下整库全文，而应先读根地图确定模块与边界，再沿指针读取模块子地图和必要源码。地图负责导航，代码负责事实，守卫负责验证。该架构能清楚界定阅读与维护职责，但目前只有工程机制和公开项目结果，没有做受控基准，不能据此宣称准确率、幻觉率或 token 消耗的确定收益。</p>
+        </aside>
+        <nav class="toc" aria-label="目录">
+          <p class="toc-label">目录</p>
+          <ol>
+            <li><a href="#s1">为什么大型仓库不该把全文平均塞给每个 Agent？</a></li>
+            <li><a href="#s2">根地图和模块子地图应该怎样分工？</a></li>
+            <li><a href="#s3">多 Agent 怎样沿指针协作而不丢失边界？</a></li>
+            <li><a href="#s4">代码地图会不会成为新的失真源？</a></li>
+            <li><a href="#s5">为什么本文不提供准确率提升数字？</a></li>
+            <li><a href="#checklist">可以照做的清单</a></li>
+            <li><a href="#faq">常见问题</a></li>
+          </ol>
+        </nav>
+        <div class="prose">
+          <h2 id="s1">为什么大型仓库不该把全文平均塞给每个 Agent？</h2>
+          <p>“让 Agent 看见所有代码”听起来最稳妥，实际却把导航、理解与决策混在同一个上下文里。一个只修改数据库访问边界任务，被迫同时面对界面、边缘函数和其他业务模块的实现；另一个处理界面任务的 Agent 也重复读取同一批无关内容。每个 Agent 都全知一点，不等于它们对当前任务知道得更清楚。</p>
+          <p>整库全文还有所有权问题：仓库持续变化时，谁负责刷新这份全文？多个 Agent 各自拿到不同时刻的快照时，哪一个才是协作共识？如果答案只是“每次全部重读”，上下文更新就与仓库变更耦合；如果答案是“尽量复用”，又必须说明过期信息如何被发现。</p>
+          <p><a href="https://myaiwebdev.com/#allyos">AllyOS</a> 在 <strong>2026-11-13 公开快照</strong>中有 23 个业务模块、80 个边缘函数，并采用 14 个技能与 6 个子 Agent 协作。这组公开规模说明导航与分工是必须正面处理的工程问题，但它不构成两种上下文方案的对照实验。118 天、1,200 个需求等项目结果同样属于该快照，不能单独归因于代码地图。</p>
+
+          <h2 id="s2">根地图和模块子地图应该怎样分工？</h2>
+          <p>根地图回答的是全局导航问题：系统有哪些业务模块，每个模块负责什么，不做什么，跨模块入口在哪里，下一步应该读取哪份子地图。它应像车站示意图，而不是把所有车厢里的零件画在一张图上。稳定、可定位、能拒绝越界，比“写得足够长”更重要。</p>
+          <p>模块子地图回答局部执行问题：本模块有哪些职责边界，数据库、受治理 RPC、Deno Edge Functions 或界面之间如何衔接，哪些规格与测试应当随任务一起阅读。子地图仍然不是源码替代品，而是带路径与语义的指针集合。Agent 最终修改前，必须打开真实实现；修改后，还要由测试与机器守卫验证，而不是让地图为正确性背书。</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>决策维度</th><th>整库全文进入上下文</th><th>根地图＋模块子地图＋源码指针</th></tr></thead>
+            <tbody>
+              <tr><td>初始任务</td><td>先承载广泛实现细节，再由 Agent 自行筛选</td><td>先判断职责与模块，再展开任务相关局部</td></tr>
+              <tr><td>信息层级</td><td>导航信息与实现细节容易混在同一层</td><td>全局导航、局部契约、真实代码分层保存</td></tr>
+              <tr><td>跨模块协作</td><td>依赖每个 Agent 从全文中自行发现边界</td><td>根地图显式声明模块职责和跨模块入口</td></tr>
+              <tr><td>变更后的维护</td><td>需要重新形成一致全文或处理多份快照</td><td>优先更新受影响子地图，再检查根指针是否变化</td></tr>
+              <tr><td>主要失真风险</td><td>无关细节干扰当前判断，快照之间可能不一致</td><td>地图漏改、指针失效或摘要偏离源码</td></tr>
+              <tr><td>正确性最终依据</td><td>仍需回到当前代码、规格与测试</td><td>同样以当前代码、规格与测试为准，地图不豁免验证</td></tr>
+              <tr><td>适用判断</td><td>便于概念验证，但治理成本随协作范围变得复杂</td><td>需要持续维护地图，换取明确的导航与责任边界</td></tr>
+            </tbody>
+          </table></div>
+          <p>这张表只比较机制，不给出性能排名。对于任何“更快”“更准”“更省”的结论，都需要另行定义任务集、模型、上下文窗口、地图版本、判定标准和重复试验；这些条件缺失时，精确百分比只会制造虚假确定性。</p>
+
+          <h2 id="s3">多 Agent 怎样沿指针协作而不丢失边界？</h2>
+          <p>一次任务的读取顺序可以固定为：<strong>任务规格→根地图→目标模块子地图→相关源码与测试→必要的相邻模块契约</strong>。根地图先限制搜索空间，子地图再提供局部入口，源码完成最后核实。若任务确实跨模块，扩展上下文的理由应来自规格或实际依赖，而不是一开始就默认读取全部模块。</p>
+          <p>分派时还要把“读什么”和“可以改什么”分开。一个 Agent 可以读取相邻模块的接口契约，却未必要修改对方实现；需要改契约时，应把它升级为跨模块任务并同步相关方。这样，指针不仅帮助找代码，也帮助表达变更所有权。</p>
+          <p>14 个技能与 6 个子 Agent 的角色可以沿同一套边界组织：技能提供可复用操作，子 Agent 承担明确任务，根地图提供共同导航。但任何并行方案都必须回到七步流程中的“守卫”和“集成”。局部 Agent 完成不等于系统完成，相关讨论可接读<a href="../ai-coding-guardrails-109/">《AI 写代码不失控》</a>。</p>
+          <p>交付物也应包含地图影响判断：本次是否改了模块职责、公开入口或局部契约？若只是模块内部实现且地图语义未变，就不必为了“文档看起来活跃”而重写根地图；若指针目标已经移动，则必须修正。地图维护跟随语义变化，而不是机械跟随每次保存。</p>
+
+          <h2 id="s4">代码地图会不会成为新的失真源？</h2>
+          <p>会，而且这是采用分层地图必须接受的维护责任。地图可能漏掉新模块，子地图可能保留旧入口，职责描述也可能把历史上的设计意图误写成当前事实。如果 Agent 只读地图不读代码，分层反而多了一层未经核实的中间表示。</p>
+          <p>治理原则是让地图<strong>可证伪</strong>。指针应能定位到真实对象；模块边界应在规格、接口或测试中找到对应证据；发现地图与代码不一致时，以当前代码和已确认规格为修正依据，并记录为何失真。不能让 Agent 为了让实现符合旧地图而拒绝必要的架构演进。</p>
+          <p>落地时可以为地图检查设计三类问题：指向的对象是否存在，声明的跨模块入口是否仍与实际调用一致，本次变更是否改变了地图表达的职责。这里是可实施的检查方向，不代表这些检查已在某个公开基准中取得了特定得分。</p>
+
+          <h2 id="s5">为什么本文不提供准确率提升数字？</h2>
+          <p>因为目前可公开支撑的是工程机制与 AllyOS 的项目结果，没有针对“整库全文”和“根地图加模块子地图”的受控基准。要测准确率，先要定义正确答案与评分者；要测幻觉率，先要区分仓库事实错误、需求理解错误和无效推断；要测 token，则必须固定模型、工具调用、缓存和阅读策略。缺一项，数字都难以复现。</p>
+          <p>项目结果也不能替代对照实验。AllyOS 的公开快照包含 118 天、1,200 个需求、1,527 次数据库迁移、1,270 个 pgTAP 测试和 109 道机器守卫；这些事实说明系统在高频变更中运行，却不能隔离出代码地图这一变量的贡献。把全部结果归因于地图，与把全部结果归因于模型，都缺少因果依据。</p>
+          <p>团队若要做自己的评估，可准备同一批真实任务、同一版本仓库和同一验收条件，分别执行两种上下文策略，记录任务完成、偏差类型、人工返工原因与上下文构成。这里给出的是实验设计建议，不是预先承诺哪一种方案会胜出。发布节奏会影响实验样本的切分，可参考<a href="../daily-release-train-ai/">每日发布列车机制</a>来固定变更单元。</p>
+
+          <h2 id="checklist">可以照做的清单</h2>
+          <ol>
+            <li>先画根地图：只写模块职责、非职责、跨模块入口和子地图指针，避免复制实现全文。</li>
+            <li>为重点模块建立子地图，把局部契约与真实源码、规格、测试的位置关联起来。</li>
+            <li>统一 Agent 阅读顺序：规格、根地图、子地图、必要源码；跨模块展开必须能说明理由。</li>
+            <li>在任务分派中分别声明读取范围、修改范围和契约变更所有权，避免“能读”被理解成“都能改”。</li>
+            <li>让当前代码、规格和测试保持最终事实地位；发现地图失真时修地图，不用旧地图约束新现实。</li>
+            <li>将地图变化纳入守卫与集成，另用固定发布单元保留变更证据。</li>
+            <li>若比较全文与地图方案，先设计可复现对照实验，不引用未经测量的准确率、幻觉率或 token 数字。</li>
+          </ol>
+          <p>配套参考：<a href="https://github.com/lx307697527/myresume/blob/main/examples/repo-map.template.md" target="_blank" rel="noopener">下载多 Agent Repo Map 公开模板</a>（通用公开模板，非客户内部文件）。</p>
+
+          <h2 id="faq">常见问题</h2>
+          <h3>代码地图是不是另一种全文摘要？</h3>
+          <p>不是。全文摘要仍试图把实现内容压缩进当前上下文，代码地图则优先保存职责、边界、入口和指向源码的指针。Agent 只有在任务需要时才展开局部实现，地图不能替代对真实代码与测试的核对。</p>
+          <h3>根地图应该记录每个函数的实现细节吗？</h3>
+          <p>通常不应该。根地图应保持稳定，用于回答模块在哪里、谁负责什么、跨模块从哪里进入，以及下一步读取哪张子地图。易变的函数细节留在模块子地图或源码中，才能减少全局文档跟随每次实现变化的压力。</p>
+          <h3>能不能据此断言代码地图一定优于全文？</h3>
+          <p>不能。目前没有本文可引用的受控基准来证明它在准确率、幻觉率或 token 消耗上必然更好。可以确定的是两种方案的信息组织与维护机制不同；技术选型应结合仓库规模、任务类型和地图维护能力，通过团队自己的对照实验验证。</p>
+          <p>继续阅读：<a href="../ai-coding-guardrails-109/">用机器守卫验证 Agent 产出</a>、<a href="../daily-release-train-ai/">用发布列车固定变更边界</a>，或回到<a href="../">工程笔记索引</a>。</p>
+        </div>
+        <section class="author-card" aria-labelledby="authorTitle">
+          <h2 id="authorTitle">关于作者</h2>
+          <p><b>晨星·路西法</b>，AI 研发系统架构师，构建 AllyOS 与已上线盈利的 TeacherCopilot，关注多 Agent 协作、上下文治理与可审计研发流程。</p>
+          <p class="author-note">本文由作者与 AI 协作完成。AllyOS 数字均为 2026-11-13 公开快照；全文与代码地图的比较为定性机制分析，未进行受控准确率、幻觉率或 token 基准测试。</p>
+        </section>
+        <div class="post-cta"><a class="btn" href="https://myaiwebdev.com/services.html">设计适合团队仓库的 Agent 协作流程</a><a class="link-arrow" href="https://myaiwebdev.com/#allyos">查看 AllyOS 工程证据 <span aria-hidden="true">→</span></a></div>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="wrap footer-row"><p>© <span id="year">2026</span> 晨星·路西法 · 成都</p><p class="footer-sub"><a href="../../index.html">首页</a> · <a href="../">工程笔记</a> · <a href="../../blog/">博客归档</a> · <a href="../../services.html">服务与流程</a> · <a href="../../blog/feed.xml">RSS</a> · 与 AI 协作构建 · 原生滚动，零框架</p></div></footer>
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

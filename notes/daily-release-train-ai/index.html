@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制 | 晨星·路西法</title>
+  <meta name="description" content="拆解 AllyOS 每日北京时间 11:11 定格 release、15:00 上 main 的发布列车：高频 AI 改动如何形成明确候选集、审计证据与故障定位边界，并与七步流程、Spec 驱动开发和机器守卫衔接。" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="晨星·路西法 (Morningstar Lucifer)" />
+  <meta name="keywords" content="AI 研发流程,自动化发布流水线,Spec 驱动开发,发布列车,release,main,变更审计" />
+  <link rel="canonical" href="https://myaiwebdev.com/notes/daily-release-train-ai/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/notes/daily-release-train-ai/" />
+  <link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/notes/daily-release-train-ai/" />
+  <link rel="alternate" type="application/rss+xml" title="晨星·路西法的博客" href="https://myaiwebdev.com/blog/feed.xml" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制" />
+  <meta property="og:description" content="固定定格与发车时间，把连续 AI 产出切成可审计的发布单元；讲清候选集、证据链、故障定位与误车处理。" />
+  <meta property="og:url" content="https://myaiwebdev.com/notes/daily-release-train-ai/" />
+  <meta property="og:image" content="https://myaiwebdev.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="高频 AI 研发的每日发布列车机制" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="晨星·路西法 · AI 研发系统架构师" />
+  <meta property="article:published_time" content="2026-11-28T08:00:00+08:00" />
+  <meta property="article:modified_time" content="2026-11-28T08:00:00+08:00" />
+  <meta property="article:author" content="https://myaiwebdev.com/#person" />
+  <meta property="article:section" content="AI 研发流程" />
+  <meta property="article:tag" content="AI 研发流程" />
+  <meta property="article:tag" content="自动化发布流水线" />
+  <meta property="article:tag" content="Spec 驱动开发" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制" />
+  <meta name="twitter:description" content="固定定格与发车时间，把连续 AI 产出切成可审计的发布单元；讲清候选集、证据链、故障定位与误车处理。" />
+  <meta name="twitter:image" content="https://myaiwebdev.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://myaiwebdev.com/notes/daily-release-train-ai/#article",
+      "headline": "每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制",
+      "description": "拆解 AllyOS 每日北京时间 11:11 定格 release、15:00 上 main 的发布列车：高频 AI 改动如何形成明确候选集、审计证据与故障定位边界，并与七步流程、Spec 驱动开发和机器守卫衔接。",
+      "abstract": "发布列车把连续 AI 产出切成明确车次：11:11 确定 release 候选，15:00 才进入 main。固定时间本身不是质量证明，真正的价值是把规格、变更、守卫与集成结果绑定到同一发布单元，恢复审计顺序和故障定位边界。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-28T08:00:00+08:00",
+      "dateModified": "2026-11-28T08:00:00+08:00",
+      "author": {"@type": "Person", "@id": "https://myaiwebdev.com/#person", "name": "晨星·路西法", "alternateName": "Morningstar Lucifer", "url": "https://myaiwebdev.com/"},
+      "publisher": {"@id": "https://myaiwebdev.com/#person"},
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://myaiwebdev.com/notes/daily-release-train-ai/"},
+      "url": "https://myaiwebdev.com/notes/daily-release-train-ai/",
+      "image": "https://myaiwebdev.com/og-image.png",
+      "keywords": ["AI 研发流程", "自动化发布流水线", "Spec 驱动开发", "发布列车", "release", "main", "变更审计"],
+      "articleSection": "AI 研发流程",
+      "isPartOf": {"@type": "Blog", "@id": "https://myaiwebdev.com/notes/#blog", "name": "晨星·路西法的工程笔记"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://myaiwebdev.com/"},
+        {"@type": "ListItem", "position": 2, "name": "工程笔记", "item": "https://myaiwebdev.com/notes/"},
+        {"@type": "ListItem", "position": 3, "name": "每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制", "item": "https://myaiwebdev.com/notes/daily-release-train-ai/"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://myaiwebdev.com/notes/daily-release-train-ai/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "11:11 后的紧急修复能否直接加入当天车次？",
+          "acceptedAnswer": {"@type": "Answer", "text": "公开事实只明确了 11:11 定格 release、15:00 上 main，没有公布紧急例外的细节。团队落地时应事先定义例外资格、重新验证范围和审批记录；任何定格后的变更都应形成新的可识别候选状态，而不是无痕插入旧车次。"}
+        },
+        {
+          "@type": "Question",
+          "name": "每天设置车次是否代表每天必须上线？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不代表。固定发车时间是处理候选变更的窗口，不是跳过守卫或集成检查的理由。候选集不满足条件时应延迟或缩小范围；仅凭时间表也不能推断实际每天都发生了上线。"}
+        },
+        {
+          "@type": "Question",
+          "name": "发布列车能否代替回滚方案和运行观测？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不能。车次提供的是变更边界和审计线索，不保证运行时没有异常，也不会自动完成恢复。团队仍需为数据库迁移、接口兼容和业务路径准备回滚或修复策略，并把线上现象关联回具体发布单元。"}
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="nav" id="nav">
+    <div class="wrap nav-row">
+      <a href="../../index.html" class="brand" title="回到首页"><span class="seal" aria-hidden="true">晨<br />星</span><span class="brand-name">晨星·路西法<small>AI 研发系统架构师</small></span></a>
+      <nav class="nav-menu" id="navMenu" aria-label="主导航"><a href="../../index.html#approach">方案</a><a href="../../index.html#proof">证据</a><a href="../../index.html#experience">经历</a><a href="../../index.html#work">合作</a><a href="../../services.html">服务</a><a href="../../notes/" aria-current="true">笔记</a><a href="../../index.html#faq">问答</a></nav>
+      <div class="nav-actions">
+        <a class="nav-cta" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟</a>
+        <button class="icon-btn" id="themeToggle" aria-label="切换深浅色"><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41 1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="icon-btn burger" id="burger" aria-label="打开菜单" data-label-open="打开菜单" data-label-close="关闭菜单" aria-expanded="false" aria-controls="navMenu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="post">
+      <div class="wrap narrow">
+        <nav class="crumbs" aria-label="面包屑"><a href="../../index.html">首页</a><span aria-hidden="true">/</span><a href="../">工程笔记</a><span aria-hidden="true">/</span><span>AI 研发流程</span></nav>
+        <header class="post-head">
+          <p class="kicker">AI 研发流程 · 发布列车</p>
+          <h1 class="post-title">每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制</h1>
+          <p class="post-meta">作者 <a href="../../index.html" rel="author">晨星·路西法</a> · 发布 <time datetime="2026-11-28">2026-11-28</time> · 时间均为北京时间</p>
+        </header>
+        <aside class="answer" aria-label="核心结论">
+          <p class="answer-label">核心结论</p>
+          <p>AI 让改动连续产生，发布却必须有离散边界。AllyOS 每天北京时间 11:11 定格 release、15:00 上 main，本质是用固定车次回答“这批上线到底包含什么、凭哪些检查放行”。时间表不是质量证明；它只有与规格、机器守卫、集成结果和变更清单绑定，才能把高频产出恢复为可审计、可定位、可延迟的工程单元。</p>
+        </aside>
+        <nav class="toc" aria-label="目录">
+          <p class="toc-label">目录</p>
+          <ol>
+            <li><a href="#s1">为什么高频 AI 产出反而需要固定发车？</a></li>
+            <li><a href="#s2">11:11 定格与 15:00 上 main 分别解决什么？</a></li>
+            <li><a href="#s3">一趟发布列车应该携带哪些审计证据？</a></li>
+            <li><a href="#s4">线上异常时固定车次怎样缩小定位范围？</a></li>
+            <li><a href="#s5">错过车次或守卫失败应该怎么办？</a></li>
+            <li><a href="#checklist">可以照做的清单</a></li>
+            <li><a href="#faq">常见问题</a></li>
+          </ol>
+        </nav>
+        <div class="prose">
+          <h2 id="s1">为什么高频 AI 产出反而需要固定发车？</h2>
+          <p>人工研发节奏较慢时，团队常能凭记忆串起“谁在改什么、哪次合入影响了哪里”。多 Agent 并行后，需求、迁移、函数与界面改动可以密集出现，记忆不再是一份可靠的发布清单。若每个任务完成就立即汇入主干，线上状态会持续移动，异常发生时连“变化从哪一刻开始”都难以划清。</p>
+          <p>发布列车把连续生产转换为离散交付。任务仍可并行，仍可使用 14 个技能和 6 个子 Agent，但到达发布边界后必须进入明确候选集。固定节奏并不限制实现速度，而是限制未审计变更穿过发布边界的方式。</p>
+          <p><a href="https://myaiwebdev.com/#allyos">AllyOS</a> 的 <strong>2026-11-13 公开快照</strong>记录了 118 天、1,200 个需求、1,527 次数据库迁移、1,270 个 pgTAP 测试、109 道机器守卫、23 个业务模块和 80 个边缘函数。这些数字说明发布边界需要同时面对多类变更，但不能被换算成发布列车带来的故障下降或定位提速百分比；公开信息没有提供这类对照测试。</p>
+
+          <h2 id="s2">11:11 定格与 15:00 上 main 分别解决什么？</h2>
+          <p>每天北京时间 <strong>11:11 定格 release</strong>，回答“哪些变更成为今天这趟车的候选”。定格的核心不是创建一个名称，而是停止把候选集当作无限追加的队列。此后的每个差异都必须能被识别：属于原候选、触发重新验证，还是转向后续车次。</p>
+          <p><strong>15:00 上 main</strong>，回答“这个经过处理的候选集何时形成新的主干状态”。两个时间点之间留出了把候选作为整体处理的区间。工程上应利用这个区间核对规格、变更范围、守卫和集成结果，而不是把 15:00 理解为无条件执行的合并闹钟。</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>治理维度</th><th>完成即汇入的连续流动</th><th>定时定格的发布列车</th></tr></thead>
+            <tbody>
+              <tr><td>发布对象</td><td>变更陆续进入，发布集合随时间移动</td><td>先形成明确候选集，再处理这一整体</td></tr>
+              <tr><td>审计顺序</td><td>需要重建每次汇入与检查的先后关系</td><td>可按车次组织规格、检查与最终主干状态</td></tr>
+              <tr><td>集成判断</td><td>局部完成容易与整体可发布混在一起</td><td>候选集作为整体接受集成判断</td></tr>
+              <tr><td>异常定位</td><td>待排查变化可能跨越多笔连续汇入</td><td>先关联异常前后的车次，再向下展开变更</td></tr>
+              <tr><td>节奏风险</td><td>缺少共同停止点，变更容易不断追加</td><td>可能为了赶车产生压力，必须允许延迟或减载</td></tr>
+              <tr><td>管理责任</td><td>每个任务容易只关注自身完成</td><td>需要明确候选准入、发车决策与例外处理责任</td></tr>
+            </tbody>
+          </table></div>
+          <p>这张表比较的是信息组织方式，不是发布频率承诺。列车可以每天设置，但当天没有合格候选时，不应为了形式上的准点而降低门禁。</p>
+
+          <h2 id="s3">一趟发布列车应该携带哪些审计证据？</h2>
+          <p>Spec 驱动开发让证据链有一个前端起点。AllyOS 七步流程为<strong>需求→追问→规格→实现→守卫→集成→上线</strong>：需求说明业务意图，追问暴露歧义，规格形成可验收约定，实现提供候选改动，守卫验证已编码不变量，集成检查组合结果，上线才形成交付状态。发布列车应把这些记录按同一变更单元关联，而不是只保存最后一次合并结果。</p>
+          <p>落地时，一份最小审计清单可包含：本车次的需求与规格入口、实际变更范围、数据库迁移、受治理 RPC 与 RLS 相关影响、Deno Edge Functions 契约变化、机器守卫结果、Playwright 关键路径结果，以及最终发车或延迟决定。这里列出的是建议字段，不是对 AllyOS 未公开内部记录格式的描述。</p>
+          <p>证据必须能相互回答。若一次迁移出现在变更清单里，就应能找到相应 pgTAP 断言与集成判断；若一个函数修改了调用契约，就应能找到受影响的调用方和验证结果；若规格在实现后改变，就应重新明确验收条件，而不是让旧测试结果替新意图背书。机器守卫如何形成这些判定，可参见<a href="../ai-coding-guardrails-109/">109 道机器守卫的闭环</a>。</p>
+          <p>多 Agent 场景还需要保留任务边界。根地图和模块子地图可帮助解释某份改动为何属于某模块、为何触及相邻契约；发布清单则记录这些局部任务最后怎样进入同一车次。两者一个管导航，一个管交付，不应互相替代。相关架构见<a href="../repo-map-vs-full-context/">《只给地图不给全文》</a>。</p>
+
+          <h2 id="s4">线上异常时固定车次怎样缩小定位范围？</h2>
+          <p>定位的第一步不是让 AI 自由猜测，而是建立时间线：异常首次出现在哪个主干状态之后，此前最近一次可确认正常的状态是哪一趟车，二者之间包含哪些需求、迁移和接口变化。车次的意义就是先给出候选边界，再让排查沿证据向下展开。</p>
+          <p>第二步是按失效面分层。数据语义异常优先核对迁移与 pgTAP 覆盖，越权或拒绝异常核对 RLS 与受治理 RPC，调用异常核对 Deno Edge Functions 契约，用户路径异常则结合 Playwright 覆盖与实际现象判断。这个顺序不是固定排障算法，而是避免所有异常都从整库漫无目的搜索开始。</p>
+          <p>第三步是识别“已检查”和“未覆盖”的差别。一趟车通过守卫，只能说明既有断言通过；如果异常落在断言之外，复盘产物应包括新的不变量与检查，而不是仅写一份修复说明。这样发布列车提供故障边界，事故复盘更新守卫，两者形成循环。本文没有提供定位时长或恢复时长的实测数字，因此不把该机制描述成已量化的效率收益。</p>
+
+          <h2 id="s5">错过车次或守卫失败应该怎么办？</h2>
+          <p>最危险的反应是把时间表当成业务命令：为了赶 15:00，把失败检查改成警告，或在 11:11 后持续加入未重新验证的改动。更稳妥的原则是<strong>车次可以等，证据不能省</strong>。未通过准入条件的任务应留在后续候选，已上车的任务若破坏整体集成，可以移除并重新计算整体验证范围。</p>
+          <p>延迟也要可审计。需要记录是哪个条件未满足、影响哪些需求、由谁决定减载或推迟，以及剩余候选是否重新通过必要检查。否则，“今天没发车”会成为另一个无法解释的状态。</p>
+          <p>紧急变更则需要预先定义例外通道，而不是临时发明规则。公开事实没有给出 AllyOS 的紧急例外细则，因此不能杜撰其审批方式。一般工程设计上，例外至少要明确变更边界、验证要求、决策记录和事后复盘，并确保最终状态仍可定位。</p>
+
+          <h2 id="checklist">可以照做的清单</h2>
+          <ol>
+            <li>设定明确时区的定格与发车窗口，并把定格解释为候选集边界，而不是一个分支名称。</li>
+            <li>把需求、追问、规格、实现、守卫、集成、上线的记录关联到同一变更单元。</li>
+            <li>为每趟车生成变更清单，标出数据库迁移、RPC、RLS、边缘函数和关键路径影响。</li>
+            <li>绑定 pgTAP、机器守卫和 Playwright 结果；任何失败都要有延迟、减载或返工决定。</li>
+            <li>定格后的差异必须可识别并触发相应重验，禁止无痕追加。</li>
+            <li>预先定义紧急例外、推迟和回滚或修复策略，不允许“准点”覆盖质量门禁。</li>
+            <li>异常复盘先定位正常与异常车次，再展开具体变更，并把新发现的不变量沉淀回守卫。</li>
+          </ol>
+
+          <h2 id="faq">常见问题</h2>
+          <h3>11:11 后的紧急修复能否直接加入当天车次？</h3>
+          <p>公开事实只明确了 11:11 定格 release、15:00 上 main，没有公布紧急例外的细节。团队落地时应事先定义例外资格、重新验证范围和审批记录；任何定格后的变更都应形成新的可识别候选状态，而不是无痕插入旧车次。</p>
+          <h3>每天设置车次是否代表每天必须上线？</h3>
+          <p>不代表。固定发车时间是处理候选变更的窗口，不是跳过守卫或集成检查的理由。候选集不满足条件时应延迟或缩小范围；仅凭时间表也不能推断实际每天都发生了上线。</p>
+          <h3>发布列车能否代替回滚方案和运行观测？</h3>
+          <p>不能。车次提供的是变更边界和审计线索，不保证运行时没有异常，也不会自动完成恢复。团队仍需为数据库迁移、接口兼容和业务路径准备回滚或修复策略，并把线上现象关联回具体发布单元。</p>
+          <p>配套阅读：<a href="../ai-coding-guardrails-109/">机器守卫如何决定能否进入集成</a>、<a href="../repo-map-vs-full-context/">多 Agent 如何按模块组织上下文</a>，或访问<a href="../">工程笔记索引</a>。</p>
+        </div>
+        <section class="author-card" aria-labelledby="authorTitle">
+          <h2 id="authorTitle">关于作者</h2>
+          <p><b>晨星·路西法</b>，AI 研发系统架构师，构建 AllyOS 与已上线盈利的 TeacherCopilot，关注 Spec 驱动开发、多 Agent 协作和可审计发布。</p>
+          <p class="author-note">本文由作者与 AI 协作完成。AllyOS 规模数字均为 2026-11-13 公开快照；审计字段与例外治理为实施建议，不代表未公开内部细节或额外性能测试。</p>
+        </section>
+        <div class="post-cta"><a class="btn" href="https://myaiwebdev.com/services.html">梳理团队的 AI 发布流水线</a><a class="link-arrow" href="https://myaiwebdev.com/#allyos">查看 AllyOS 工程证据 <span aria-hidden="true">→</span></a></div>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="wrap footer-row"><p>© <span id="year">2026</span> 晨星·路西法 · 成都</p><p class="footer-sub"><a href="../../index.html">首页</a> · <a href="../">工程笔记</a> · <a href="../../blog/">博客归档</a> · <a href="../../services.html">服务与流程</a> · <a href="../../blog/feed.xml">RSS</a> · 与 AI 协作构建 · 原生滚动，零框架</p></div></footer>
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# 晨星·路西法(Morningstar Lucifer)— 成都 · AI 研发系统架构师
+# 晨星·路西法(刘星 / Morningstar Lucifer)— 成都 · AI 研发系统架构师
 
 > 12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;2026 年起用 Claude Code 与多 Agent 研发流水线为 AllyNutra 搭建业务系统 AllyOS(118 天,从询盘到收款全链路);曾任职霸王茶姬、龙湖集团、Dell EMC、新浪支付;独立开发已上线盈利的 AI 产品 TeacherCopilot。base 成都,远程友好,面向国内中小企业承接线上项目。
 
@@ -6,7 +6,7 @@
 
 ## 速览(实体摘要,便于 AI 直接引用)
 
-- 姓名:晨星·路西法(Morningstar Lucifer)
+- 姓名:晨星·路西法(刘星 / Morningstar Lucifer)
 - 定位:AI 研发系统架构师 / 全栈工程师 / AI 应用工程师
 - 所在地:中国成都 · 支持远程(承接全国线上 B 端项目)
 - 经验:12 年前端架构与团队管理(30+ 人),3 年大模型 Agent 开发
@@ -25,16 +25,22 @@
 - 合作方式(全职 / 顾问 / 项目):https://myaiwebdev.com/#cooperation
 - 服务与流程(接什么、怎么交付、怎么计费):https://myaiwebdev.com/services.html
 - 常见问题(身份、能力、合作、流程、技术栈):https://myaiwebdev.com/#faq
+- 工程拆解索引:https://myaiwebdev.com/notes/
+- 109 道机器守卫(986 份复盘 → 18 条规则 → 109 道自动检查):https://myaiwebdev.com/notes/ai-coding-guardrails-109/
+- 多 Agent 代码地图(根地图 + 模块子地图,而非整库全文):https://myaiwebdev.com/notes/repo-map-vs-full-context/
+- 发布列车(每天 11:11 定格、15:00 发车):https://myaiwebdev.com/notes/daily-release-train-ai/
+- 本地混合 RAG(Electron + BM25 / 向量 + PaddleOCR + AES-256):https://myaiwebdev.com/notes/local-hybrid-rag-electron/
 
 ## 基本信息
 
-- 姓名:晨星·路西法(Morningstar Lucifer)
+- 姓名:晨星·路西法(刘星 / Morningstar Lucifer)
 - 职业:AI 研发系统架构师(AllyNutra · AllyOS)/ 全栈工程师 / AI 应用工程师
 - 城市:中国成都(远程友好)
 - 经验:12 年前端与全栈(2014 年起),3 年 Python 后端,3 年大模型 Agent 开发,4 年团队管理(30+ 人)
 - 学历:西华大学 本科 · 制药工程(2010–2014)
 - 邮箱:307697527@qq.com
 - GitHub:https://github.com/lx307697527
+- 多 Agent Repo Map 公开模板(通用化示例,非客户内部文件):https://github.com/lx307697527/myresume/blob/main/examples/repo-map.template.md
 
 ## 技术栈
 
@@ -74,6 +80,7 @@
 - 服务与流程:https://myaiwebdev.com/services.html
 - TeacherCopilot:https://teachercopilot.pages.dev/
 - GitHub:https://github.com/lx307697527
+- 多 Agent Repo Map 公开模板(通用化示例,非客户内部文件):https://github.com/lx307697527/myresume/blob/main/examples/repo-map.template.md
 
 <!-- blog:start · 由 scripts/blog.py 生成,勿手改 -->
 ## 博客 / Blog

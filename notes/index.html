@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 工程化笔记：机器守卫、代码地图、发布列车与本地 RAG | 晨星·路西法</title>
+  <meta name="description" content="四篇面向中文技术决策者的高信息密度工程拆解：109 道 AI 代码守卫、多 Agent 根地图与模块子地图、每日发布列车，以及 TeacherCopilot 的 Electron 本地混合检索知识库。" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="晨星·路西法 (Morningstar Lucifer)" />
+  <meta name="keywords" content="AI 工程化,Claude Code 工程化,多 Agent 编程,AI 研发流程,本地 RAG 检索,混合检索 BM25" />
+  <link rel="canonical" href="https://myaiwebdev.com/notes/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/notes/" />
+  <link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/notes/" />
+  <link rel="alternate" type="application/rss+xml" title="晨星·路西法的博客" href="https://myaiwebdev.com/blog/feed.xml" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI 工程化笔记：机器守卫、代码地图、发布列车与本地 RAG" />
+  <meta property="og:description" content="从生成、协作、集成到本地知识库，四篇工程拆解集中回答 AI 产出如何变得可验证、可审计、可定位。" />
+  <meta property="og:url" content="https://myaiwebdev.com/notes/" />
+  <meta property="og:image" content="https://myaiwebdev.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="晨星·路西法的 AI 工程化笔记索引" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="晨星·路西法 · AI 研发系统架构师" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI 工程化笔记：机器守卫、代码地图、发布列车与本地 RAG" />
+  <meta name="twitter:description" content="从生成、协作、集成到本地知识库，四篇工程拆解集中回答 AI 产出如何变得可验证、可审计、可定位。" />
+  <meta name="twitter:image" content="https://myaiwebdev.com/og-image.png" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Blog", "CollectionPage"],
+      "@id": "https://myaiwebdev.com/notes/#blog",
+      "name": "晨星·路西法的工程笔记",
+      "headline": "AI 工程化笔记：机器守卫、代码地图、发布列车与本地 RAG",
+      "description": "四篇面向中文技术决策者的高信息密度工程拆解：109 道 AI 代码守卫、多 Agent 根地图与模块子地图、每日发布列车，以及 TeacherCopilot 的 Electron 本地混合检索知识库。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-28T08:00:00+08:00",
+      "dateModified": "2026-11-28T08:00:00+08:00",
+      "author": {"@type": "Person", "@id": "https://myaiwebdev.com/#person", "name": "晨星·路西法", "alternateName": "Morningstar Lucifer", "url": "https://myaiwebdev.com/"},
+      "publisher": {"@id": "https://myaiwebdev.com/#person"},
+      "url": "https://myaiwebdev.com/notes/",
+      "image": "https://myaiwebdev.com/og-image.png",
+      "keywords": ["AI 工程化", "Claude Code 工程化", "多 Agent 编程", "AI 研发流程", "本地 RAG 检索", "混合检索 BM25"],
+      "isPartOf": {"@id": "https://myaiwebdev.com/#website"},
+      "blogPost": [
+        {"@id": "https://myaiwebdev.com/notes/ai-coding-guardrails-109/#article"},
+        {"@id": "https://myaiwebdev.com/notes/repo-map-vs-full-context/#article"},
+        {"@id": "https://myaiwebdev.com/notes/daily-release-train-ai/#article"},
+        {"@id": "https://myaiwebdev.com/notes/local-hybrid-rag-electron/#article"}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://myaiwebdev.com/"},
+        {"@type": "ListItem", "position": 2, "name": "工程笔记", "item": "https://myaiwebdev.com/notes/"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://myaiwebdev.com/notes/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这组工程笔记与原博客归档有什么区别？",
+          "acceptedAnswer": {"@type": "Answer", "text": "工程笔记集中承载四篇面向技术决策者的主题拆解，便于按守卫、上下文、发布和本地知识库连续阅读；原博客归档继续保留已有文章与 RSS。两类页面都使用相同的中文站点样式和作者信息。"}
+        },
+        {
+          "@type": "Question",
+          "name": "文章中的项目数字能否直接当成我的预期收益？",
+          "acceptedAnswer": {"@type": "Answer", "text": "不能。AllyOS 规模数字统一标注为 2026-11-13 公开快照，TeacherCopilot 只使用已公开架构与本地检索口径。文章没有把机制建议写成受控效果测试，团队仍需在自己的仓库、语料与设备上验证。"}
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="nav" id="nav">
+    <div class="wrap nav-row">
+      <a href="../index.html" class="brand" title="回到首页"><span class="seal" aria-hidden="true">晨<br />星</span><span class="brand-name">晨星·路西法<small>AI 研发系统架构师</small></span></a>
+      <nav class="nav-menu" id="navMenu" aria-label="主导航"><a href="../index.html#approach">方案</a><a href="../index.html#proof">证据</a><a href="../index.html#experience">经历</a><a href="../index.html#work">合作</a><a href="../services.html">服务</a><a href="./" aria-current="true">笔记</a><a href="../index.html#faq">问答</a></nav>
+      <div class="nav-actions">
+        <a class="nav-cta" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟</a>
+        <button class="icon-btn" id="themeToggle" aria-label="切换深浅色"><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41 1.41M17.66 6.34l1.41-1.41"/></svg><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="icon-btn burger" id="burger" aria-label="打开菜单" data-label-open="打开菜单" data-label-close="关闭菜单" aria-expanded="false" aria-controls="navMenu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <article class="post">
+      <div class="wrap narrow">
+        <nav class="crumbs" aria-label="面包屑"><a href="../index.html">首页</a><span aria-hidden="true">/</span><span>工程笔记</span></nav>
+        <header class="post-head">
+          <p class="kicker">工程笔记 · 四篇系统拆解</p>
+          <h1 class="post-title">AI 工程化笔记：从代码生成到可控交付</h1>
+          <p class="post-meta">作者 <a href="../index.html" rel="author">晨星·路西法</a> · 发布 <time datetime="2026-11-28">2026-11-28</time> · 面向中文技术决策者</p>
+        </header>
+        <aside class="answer" aria-label="核心结论">
+          <p class="answer-label">核心结论</p>
+          <p>这组笔记讨论的不是如何再提高一次生成的惊艳程度，而是如何建立长期可控的工程系统：用机器守卫拒绝不合格变更，用分层代码地图组织多 Agent 阅读，用发布列车固定审计边界，再在本地桌面知识库中明确数据、检索与加密责任。四篇都区分公开事实、机制判断和实施建议。</p>
+        </aside>
+        <nav class="toc" aria-label="目录"><p class="toc-label">目录</p><ol><li><a href="#articles">这些笔记分别解决哪些工程失控？</a></li><li><a href="#reading">为什么这四篇要放在一起读？</a></li><li><a href="#faq">常见问题</a></li></ol></nav>
+        <div class="prose">
+          <h2 id="articles">这些笔记分别解决哪些工程失控？</h2>
+          <p>每篇都可以独立阅读，也都包含核心结论、真实对比表、可执行清单与常见问题。下表提供文章摘要和直接入口。</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>工程拆解</th><th>简短摘要</th><th>主要决策问题</th></tr></thead>
+            <tbody>
+              <tr><td><a href="./ai-coding-guardrails-109/">AI 写代码不失控：如何用 109 道机器守卫替代人工逐行 Review</a></td><td>拆解 AllyOS 从 986 份事故复盘到 18 条规则、再到 109 道自动检查的闭环，以及规格、数据库、权限、接口与集成拦截面。</td><td>如何把 AI 代码审查从重复逐行找错，升级为可执行不变量与人的风险判断？</td></tr>
+              <tr><td><a href="./repo-map-vs-full-context/">只给地图不给全文：大型仓库下多 Agent 协作的上下文架构</a></td><td>定性比较整库全文与根地图加模块子地图指针，说明阅读顺序、模块边界、地图维护和失真的治理方式。</td><td>没有受控准确率、幻觉率或 token 基准时，如何仍能把上下文架构决策讲清楚？</td></tr>
+              <tr><td><a href="./daily-release-train-ai/">每天 11:11 定格、15:00 发车：高频 AI 产出的发布列车机制</a></td><td>拆解每日北京时间 11:11 定格 release、15:00 上 main 的公开节奏，解释候选集、证据链、延迟和故障定位。</td><td>高频改动下，怎样恢复“这批上线包含什么、凭什么放行”的审计顺序？</td></tr>
+              <tr><td><a href="./local-hybrid-rag-electron/">零云端外传：如何用 Electron + BM25/向量混合检索在 2 秒内跑通本地教研知识库</a></td><td>拆解 TeacherCopilot 的 Electron + React 18 + TypeScript、PaddleOCR、AES-256 与混合检索，并限定 2 秒口径。</td><td>本地 RAG 如何同时回答数据外传、OCR 文本化、检索互补和性能验收边界？</td></tr>
+            </tbody>
+          </table></div>
+
+          <h2 id="reading">为什么这四篇要放在一起读？</h2>
+          <p>生成能力进入真实组织后，问题会沿交付链连续出现。上下文过多，Agent 难以保持模块边界；产出过快，人工逐行审查无法成为唯一门禁；合入连续发生，异常时难以重建变化范围；资料一旦离开设备，检索质量再高也无法回答数据治理要求。四篇文章分别处理这些环节，但共同原则都是：<strong>让边界可见，让判断可执行，让证据能回到源头。</strong></p>
+          <p>公开案例分别来自 <a href="https://myaiwebdev.com/#allyos">AllyOS</a> 与 <a href="https://myaiwebdev.com/#teachercopilot">TeacherCopilot</a>。AllyOS 的规模数字统一采用 2026-11-13 公开快照；代码地图文章明确没有受控基准，TeacherCopilot 文章也不补写未公开依赖库、密钥管理、召回率或额外性能条件。</p>
+          <p>如果要把这些机制移入自己的团队，建议先选一个高风险边界做穿透验证，而不是同时复制所有做法。可从一次权限变更、一组真实仓库任务、一趟候选发布或一批本地教研资料开始，再查看<a href="https://myaiwebdev.com/services.html">服务与流程</a>确认适合的合作方式。</p>
+
+          <h2 id="faq">常见问题</h2>
+          <h3>这组工程笔记与原博客归档有什么区别？</h3>
+          <p>工程笔记集中承载四篇面向技术决策者的主题拆解，便于按守卫、上下文、发布和本地知识库连续阅读；原博客归档继续保留已有文章与 RSS。两类页面都使用相同的中文站点样式和作者信息。</p>
+          <h3>文章中的项目数字能否直接当成我的预期收益？</h3>
+          <p>不能。AllyOS 规模数字统一标注为 2026-11-13 公开快照，TeacherCopilot 只使用已公开架构与本地检索口径。文章没有把机制建议写成受控效果测试，团队仍需在自己的仓库、语料与设备上验证。</p>
+          <p>已有文章可前往<a href="../blog/">博客归档</a>，也可订阅 <a href="../blog/feed.xml">RSS</a>。</p>
+        </div>
+        <section class="author-card" aria-labelledby="authorTitle">
+          <h2 id="authorTitle">关于作者</h2>
+          <p><b>晨星·路西法</b>，AI 研发系统架构师，构建 AllyOS 与已上线盈利的 TeacherCopilot，关注多 Agent 研发、自动化发布和本地 AI 应用。</p>
+          <p class="author-note">本索引与四篇文章由作者与 AI 协作完成。公开快照、机制分析和实施建议分别标注，不以未经提供的基准或指标推导效果。</p>
+        </section>
+        <div class="post-cta"><a class="btn" href="../services.html">讨论团队 AI 工程化落地</a><a class="link-arrow" href="../blog/">浏览博客归档 <span aria-hidden="true">→</span></a></div>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="wrap footer-row"><p>© <span id="year">2026</span> 晨星·路西法 · 成都</p><p class="footer-sub"><a href="../index.html">首页</a> · <a href="./">工程笔记</a> · <a href="../blog/">博客归档</a> · <a href="../services.html">服务与流程</a> · <a href="../blog/feed.xml">RSS</a> · 与 AI 协作构建 · 原生滚动，零框架</p></div></footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
