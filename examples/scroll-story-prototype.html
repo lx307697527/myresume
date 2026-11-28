@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>滚动叙事原型 · 晨星·路西法</title>
+<style>
+/* ============================================================
+   滚动叙事原型 · 纸墨三幕
+   1. 动画只动 transform / opacity，不劫持滚动、不循环
+   2. 全部滚动驱动使用 CSS animation-timeline，无 scroll 监听
+   3. 不支持、减少动效、移动端：一律退回可读的静态版
+   ============================================================ */
+
+:root {
+  --paper: #f3efe6;
+  --paper-2: #e9e4d7;
+  --paper-3: #faf7ef;
+  --ink: #1b1d1f;
+  --ink-soft: #3a3d40;
+  --muted: #5f5a50;
+  --faint: #6f6a5f;
+  --line: #d7d1c2;
+  --line-2: #c3bcaa;
+  --seal: #a63a2b;
+  --mark: rgba(27, 29, 31, .10);
+  --serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --bar: 56px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.75 var(--sans);
+  overflow-x: hidden;
+}
+h1, h2, h3, p, dl, dd, dt, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--ink); color: var(--paper); }
+
+:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+.wrap {
+  width: min(1120px, 100% - 12vw);
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 顶栏 ---------- */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--bar);
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 6vw;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 0;
+  padding: 8px 0;
+}
+.brand-seal {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--seal);
+  color: var(--seal);
+  font: 600 13px/1 var(--serif);
+  border-radius: 3px;
+}
+.brand-name {
+  font: 500 14px/1.2 var(--sans);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.brand-name small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .12em;
+  margin-top: 3px;
+}
+.bar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: .08em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.bar-right .tag {
+  border: 1px solid var(--line-2);
+  color: var(--seal);
+  padding: 4px 7px;
+  border-radius: 2px;
+  font-size: 10px;
+}
+.bar-right a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding: 14px 0;
+}
+.bar-right a:hover { border-bottom-color: currentColor; }
+
+.page-progress {
+  position: fixed;
+  top: var(--bar);
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 51;
+  background: transparent;
+  pointer-events: none;
+}
+.page-progress i {
+  display: block;
+  height: 100%;
+  background: var(--seal);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* ---------- 右侧场记 ---------- */
+.rail {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.rail a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 128px;
+  height: 44px;
+  text-decoration: none;
+}
+.rail a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--faint);
+  box-shadow: 0 0 0 3px var(--paper);
+  transition: transform .18s var(--ease), background-color .18s var(--ease);
+}
+.rail a span {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translate(4px, -50%);
+  padding: 3px 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font: 500 10px/1.4 var(--mono);
+  letter-spacing: .06em;
+  color: var(--muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s var(--ease), transform .18s var(--ease);
+}
+.rail a:hover span,
+.rail a:focus-visible span,
+.rail a[aria-current="true"] span {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+.rail a:hover::before,
+.rail a[aria-current="true"]::before {
+  background: var(--seal);
+  transform: scale(1.5);
+}
+
+/* ---------- 通用场景 ---------- */
+main { display: block; }
+.scene {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding: calc(var(--bar) + 6vh) 0 12vh;
+  scroll-margin-top: var(--bar);
+}
+.eyebrow {
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: .16em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--seal);
+  border-radius: 50%;
+  flex: none;
+}
+h1, h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
+h1 {
+  font-size: clamp(2.7rem, 7.2vw, 5.3rem);
+  line-height: 1.08;
+}
+h2 {
+  font-size: clamp(1.9rem, 4.4vw, 3.3rem);
+  line-height: 1.2;
+}
+.lead {
+  margin-top: 26px;
+  max-width: 39em;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.15vw, 1.12rem);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  min-height: 46px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  text-decoration: none;
+  font: 500 15px/1.2 var(--sans);
+  transition: transform .18s var(--ease), opacity .18s var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.link-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 2px;
+  color: var(--seal);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  font: 500 15px/1.2 var(--sans);
+  transition: opacity .18s var(--ease);
+}
+.link-cta:hover { opacity: .7; }
+
+/* ---------- 第一幕 · 首屏 ---------- */
+.hero { overflow: hidden; }
+.sheets {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.sheet {
+  position: absolute;
+  background: var(--paper-2);
+  border: 1px solid var(--line-2);
+  opacity: .65;
+}
+.s1 { width: 44vw; height: 60vh; left: 54%; top: 14%; transform: rotate(3deg); }
+.s2 { width: 34vw; height: 50vh; left: 5%; top: 30%; transform: rotate(-2.5deg); }
+.s3 { width: 26vw; height: 34vh; left: 68%; top: 52%; transform: rotate(6deg); }
+
+.hero-inner { max-width: 900px; }
+.hero h1 { margin-bottom: 0; }
+.hero h1 .marked {
+  background: linear-gradient(transparent 64%, var(--mark) 64%);
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  margin-top: 40px;
+}
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 64px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  max-width: 900px;
+}
+.proof-strip dt {
+  font: 600 30px/1 var(--serif);
+  letter-spacing: -.02em;
+}
+.proof-strip dt span {
+  font: 400 13px/1 var(--sans);
+  color: var(--muted);
+  margin-left: 2px;
+}
+.proof-strip dd {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.scroll-cue {
+  position: absolute;
+  left: 6vw;
+  bottom: 26px;
+  font: 500 10px/1 var(--mono);
+  letter-spacing: .14em;
+  color: var(--faint);
+}
+.scroll-cue span { margin-left: 6px; }
+
+/* ---------- 01 失序 ---------- */
+.chaos { overflow: hidden; }
+.chaos .wrap { max-width: 1120px; }
+.scene-copy { max-width: 640px; }
+.pain-list {
+  margin-top: 34px;
+  display: grid;
+  gap: 16px;
+  max-width: 540px;
+}
+.pain-list li {
+  padding-left: 18px;
+  border-left: 2px solid var(--line-2);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.pain-list b {
+  display: block;
+  color: var(--ink);
+  font: 600 14px/1.4 var(--sans);
+  margin-bottom: 4px;
+}
+
+.notes { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.note {
+  position: absolute;
+  padding: 9px 13px;
+  background: var(--paper-3);
+  border: 1px solid var(--line-2);
+  border-left: 2px solid var(--ink);
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+  transform: rotate(var(--r));
+  white-space: nowrap;
+  opacity: .9;
+}
+.n1 { left: 2%;  top: 7%;    --r: -6deg;  --d: -1.2; }
+.n2 { right: 3%; top: 15%;   --r: 4deg;   --d: 1.1; }
+.n3 { left: 2%;  bottom: 6%; --r: 3deg;   --d: -0.8; }
+.n4 { right: 4%; top: 50%;   --r: -4deg;  --d: 1.4; }
+.n5 { left: 13%; bottom: 2%; --r: -2deg;  --d: 0.7; }
+.n6 { right: 14%; bottom: 7%; --r: 5deg;  --d: -1.5; }
+.n7 { right: 24%; top: 6%;   --r: -3deg;  --d: 0.9; }
+
+/* ---------- 02 收束 ---------- */
+.converge { text-align: center; overflow: hidden; }
+.converge .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.converge .eyebrow { justify-content: center; }
+.converge h2 { max-width: 14em; }
+.stream {
+  display: flex;
+  gap: 8px;
+  width: min(720px, 82vw);
+  margin: 38px 0 6px;
+}
+.stream i {
+  flex: 1;
+  height: 46px;
+  background: var(--paper-2);
+  border: 1px solid var(--line-2);
+  border-top: 2px solid var(--ink);
+}
+.converge .lead { margin-inline: auto; }
+
+/* ---------- 第二幕 · 暗场 ---------- */
+.act-dark {
+  background: #1b1d1f;
+  color: #f3efe6;
+  --paper: #f3efe6;
+  --paper-2: #26292c;
+  --paper-3: #2e3235;
+  --ink: #f0ece2;
+  --ink-soft: #d9d5ca;
+  --muted: #a5a49d;
+  --faint: #93948d;
+  --line: #34383b;
+  --line-2: #4a4e51;
+  --mark: rgba(240, 236, 226, .12);
+}
+.act-dark .eyebrow::before { border-color: var(--seal); }
+.act-dark ::selection { background: var(--paper); color: #1b1d1f; }
+
+/* ---------- 03 流水线(sticky) ---------- */
+.act-pipeline { scroll-margin-top: var(--bar); }
+.pin { position: relative; }
+.stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  padding: calc(var(--bar) + 5vh) 0 6vh;
+  scroll-margin-top: var(--bar);
+}
+.stage-head { width: min(1120px, 100% - 12vw); margin-inline: auto; }
+.stage-head h2 { max-width: 20em; }
+.pipe-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
+  max-width: 420px;
+  font: 500 10px/1 var(--mono);
+  letter-spacing: .12em;
+  color: var(--faint);
+}
+.pipe-progress .rail-track {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.pipe-progress .rail-track i {
+  display: block;
+  height: 100%;
+  background: var(--paper);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.track {
+  display: flex;
+  gap: 28px;
+  padding: 0 6vw 28px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.step {
+  flex: 0 0 min(420px, 76vw);
+  scroll-snap-align: center;
+  min-height: 250px;
+  padding: 26px 26px 30px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.step-n {
+  font: 500 12px/1 var(--mono);
+  letter-spacing: .12em;
+  color: var(--faint);
+}
+.step h3 {
+  font: 600 clamp(1.5rem, 2.2vw, 1.9rem)/1.2 var(--serif);
+  letter-spacing: -.01em;
+}
+.step p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 30em;
+}
+.step:last-child { border-top-color: var(--seal); }
+
+/* ---------- 04 守卫 ---------- */
+.guard .wrap {
+  display: grid;
+  grid-template-columns: 1.02fr .98fr;
+  gap: 6vw;
+  align-items: center;
+}
+.guard-panel {
+  border: 1px solid var(--line);
+  padding: 24px;
+  background: rgba(255, 255, 255, .025);
+}
+.guard-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  font: 500 10px/1 var(--mono);
+  letter-spacing: .1em;
+  color: var(--faint);
+}
+.guard-panel-head b { color: var(--paper); font-weight: 500; }
+.guard-grid {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 6px;
+}
+.guard-grid i {
+  aspect-ratio: 1;
+  background: var(--line);
+  border-radius: 1px;
+}
+.guard-foot {
+  margin-top: 18px;
+  font: 500 10px/1.4 var(--mono);
+  letter-spacing: .1em;
+  color: var(--faint);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.guard-count {
+  margin-top: 34px;
+  font: 500 12px/1.6 var(--mono);
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+.guard-count b { color: var(--paper); font-weight: 500; }
+
+/* ---------- 05 列车 ---------- */
+.train { text-align: left; }
+.train-line {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  margin-top: 54px;
+}
+.station { min-width: 92px; }
+.station b {
+  display: block;
+  font: 500 clamp(1.4rem, 2.4vw, 2rem)/1 var(--mono);
+  letter-spacing: -.02em;
+}
+.station span {
+  display: block;
+  margin-top: 8px;
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+.rail-line {
+  position: relative;
+  height: 1px;
+  background: var(--line-2);
+  container-type: inline-size;
+}
+.rail-line .rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+.train-car {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 44px;
+  height: 16px;
+  margin-top: -8px;
+  border: 1px solid var(--paper);
+  background: repeating-linear-gradient(90deg, transparent 0 9px, var(--paper) 9px 10px);
+}
+.train-note {
+  margin-top: 46px;
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 34em;
+}
+
+/* ---------- 06 证据 ---------- */
+.proof-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 54px;
+}
+.pcard {
+  padding: 26px 0 0;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pcard-meta {
+  font: 500 10px/1.4 var(--mono);
+  letter-spacing: .1em;
+  color: var(--faint);
+}
+.pcard h3 {
+  font: 600 1.6rem/1.2 var(--serif);
+  letter-spacing: -.01em;
+}
+.pcard p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.pcard-stat {
+  margin-top: auto;
+  padding-top: 12px;
+  font: 600 40px/1 var(--serif);
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+.pcard-stat span {
+  font: 400 12px/1 var(--sans);
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+/* ---------- 07 合作 ---------- */
+.fork { overflow: hidden; }
+.fork-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 50px;
+}
+.fork-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  border: 1px solid var(--line-2);
+  text-decoration: none;
+  transition: transform .2s var(--ease), border-color .2s var(--ease);
+}
+.fork-card:hover { transform: translateY(-3px); border-color: var(--seal); }
+.fork-tag {
+  font: 500 10px/1 var(--mono);
+  letter-spacing: .12em;
+  color: var(--seal);
+}
+.fork-card h3 {
+  font: 600 1.65rem/1.2 var(--serif);
+}
+.fork-card p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.fork-arrow {
+  margin-top: 16px;
+  font: 500 13px/1 var(--mono);
+  letter-spacing: .08em;
+}
+
+/* ---------- 08 落款 ---------- */
+.end { text-align: center; overflow: hidden; }
+.end .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.end .eyebrow { justify-content: center; }
+.end h2 { max-width: 13em; }
+.end .lead { margin-inline: auto; }
+.seal-big {
+  width: 128px;
+  height: 128px;
+  margin: 52px 0 12px;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--seal);
+  border-radius: 4px;
+  color: var(--seal);
+  font: 600 42px/1 var(--serif);
+  letter-spacing: .08em;
+  text-indent: .08em;
+  transform: rotate(-6deg);
+  box-shadow: inset 0 0 0 5px var(--paper), inset 0 0 0 6px var(--seal);
+  writing-mode: vertical-rl;
+  letter-spacing: .12em;
+}
+.seal-caption {
+  font: 500 10px/1.6 var(--mono);
+  letter-spacing: .16em;
+  color: var(--faint);
+}
+.end-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px 30px;
+  margin-top: 42px;
+}
+.foot {
+  width: 100%;
+  margin-top: 72px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font: 500 10.5px/1.6 var(--mono);
+  letter-spacing: .08em;
+  color: var(--faint);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.foot a { color: var(--muted); }
+
+/* ============================================================
+   动效：全部限定在"允许动效 + 支持滚动驱动"时才启用
+   ============================================================ */
+
+@keyframes hero-exit {
+  from { transform: translate3d(0, 0, 0); opacity: 1; }
+  to   { transform: translate3d(0, -7vh, 0); opacity: .5; }
+}
+@keyframes sheet-a {
+  from { transform: translate3d(0, 0, 0) rotate(3deg); }
+  to   { transform: translate3d(0, -13vh, 0) rotate(5deg); }
+}
+@keyframes sheet-b {
+  from { transform: translate3d(0, 0, 0) rotate(-2.5deg); }
+  to   { transform: translate3d(0, 9vh, 0) rotate(-4deg); }
+}
+@keyframes sheet-c {
+  from { transform: translate3d(0, 0, 0) rotate(6deg); }
+  to   { transform: translate3d(0, -6vh, 0) rotate(8deg); }
+}
+@keyframes note-drift {
+  from {
+    transform: translate3d(0, calc(var(--d) * 8vh), 0) rotate(var(--r));
+    opacity: .75;
+  }
+  to {
+    transform: translate3d(calc(var(--d) * 2vw), calc(var(--d) * -14vh), 0) rotate(calc(var(--r) * -.6));
+    opacity: 1;
+  }
+}
+@keyframes slip-in {
+  from {
+    transform: translate3d(var(--x), var(--y), 0) rotate(var(--r));
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes pipe-slide {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-100% + 100vw), 0, 0); }
+}
+@keyframes cell-lit {
+  from { background: var(--line); }
+  to   { background: var(--paper); }
+}
+@keyframes train-run {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(100cqw - 100%), 0, 0); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translate3d(0, 26px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes fork-in-left {
+  from { opacity: 0; transform: translate3d(-34px, 0, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes fork-in-right {
+  from { opacity: 0; transform: translate3d(34px, 0, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes seal-press {
+  0%   { opacity: 0; transform: scale(1.7) rotate(-18deg); }
+  70%  { opacity: 1; transform: scale(.96) rotate(-5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+}
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    html { scroll-behavior: smooth; }
+
+    .page-progress i {
+      animation: grow-x linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    .hero-inner {
+      animation: hero-exit linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 90vh;
+    }
+    .sheet.s1 { animation: sheet-a linear both; animation-timeline: scroll(root block); animation-range: 0 100vh; }
+    .sheet.s2 { animation: sheet-b linear both; animation-timeline: scroll(root block); animation-range: 0 100vh; }
+    .sheet.s3 { animation: sheet-c linear both; animation-timeline: scroll(root block); animation-range: 0 100vh; }
+  }
+
+  @supports (animation-timeline: view()) {
+    .chaos { view-timeline-name: --chaos; }
+    .chaos .note {
+      animation: note-drift linear both;
+      animation-timeline: --chaos;
+      animation-range: cover 0% cover 100%;
+    }
+
+    .converge { view-timeline-name: --converge; }
+    .converge .stream i {
+      animation: slip-in linear both;
+      animation-timeline: --converge;
+      animation-range: entry 5% entry 80%;
+    }
+    .converge .stream i:nth-child(1) { --x: -34vw; --y: -12vh; --r: -14deg; }
+    .converge .stream i:nth-child(2) { --x: 22vw;  --y: 16vh;  --r: 9deg; }
+    .converge .stream i:nth-child(3) { --x: -26vw; --y: 20vh;  --r: -7deg; }
+    .converge .stream i:nth-child(4) { --x: 30vw;  --y: -14vh; --r: 12deg; }
+    .converge .stream i:nth-child(5) { --x: -14vw; --y: 24vh;  --r: 16deg; }
+    .converge .stream i:nth-child(6) { --x: 18vw;  --y: -22vh; --r: -10deg; }
+    .converge .stream i:nth-child(7) { --x: -30vw; --y: -6vh;  --r: 6deg; }
+
+    .act-pipeline { min-height: 0; padding: 0; scroll-margin-top: var(--bar); }
+    .pin { height: 320vh; view-timeline-name: --pipe; }
+    .pin .stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+    }
+    .pin .track {
+      width: max-content;
+      overflow: visible;
+      scroll-snap-type: none;
+      animation: pipe-slide linear both;
+      animation-timeline: --pipe;
+      animation-range: contain 0% contain 100%;
+    }
+    .pipe-progress .rail-track i {
+      animation: grow-x linear both;
+      animation-timeline: --pipe;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .guard { view-timeline-name: --guard; }
+    .guard-grid i {
+      animation: cell-lit linear both;
+      animation-timeline: --guard;
+      animation-range: cover calc(16% + var(--i) * .52%) cover calc(19% + var(--i) * .52%);
+    }
+
+    .train { view-timeline-name: --train; }
+    .train-car {
+      animation: train-run linear both;
+      animation-timeline: --train;
+      animation-range: cover 18% cover 82%;
+    }
+    .rail-line .rail-fill {
+      animation: grow-x linear both;
+      animation-timeline: --train;
+      animation-range: cover 18% cover 82%;
+    }
+
+    .proof { view-timeline-name: --proof; }
+    .proof-cards .pcard {
+      animation: rise-in linear both;
+      animation-timeline: --proof;
+      animation-range: entry calc(8% + var(--d) * 7%) entry calc(70% + var(--d) * 7%);
+    }
+    .proof-cards .pcard:nth-child(1) { --d: 0; }
+    .proof-cards .pcard:nth-child(2) { --d: 1; }
+    .proof-cards .pcard:nth-child(3) { --d: 2; }
+
+    .fork { view-timeline-name: --fork; }
+    .fork-card:nth-child(1) {
+      animation: fork-in-left linear both;
+      animation-timeline: --fork;
+      animation-range: entry 10% entry 75%;
+    }
+    .fork-card:nth-child(2) {
+      animation: fork-in-right linear both;
+      animation-timeline: --fork;
+      animation-range: entry 10% entry 75%;
+    }
+
+    .end { view-timeline-name: --seal; }
+    .seal-big {
+      animation: seal-press linear both;
+      animation-timeline: --seal;
+      animation-range: cover 25% cover 62%;
+    }
+  }
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1100px) {
+  .rail { display: none; }
+  .guard .wrap { grid-template-columns: 1fr; gap: 48px; }
+  .proof-strip { grid-template-columns: repeat(2, 1fr); gap: 22px 28px; }
+  .proof-cards { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 1350px) {
+  .notes { display: none; }
+}
+
+/* 小屏不 pin：退回可横向滑动的步骤条 */
+@media (max-width: 900px) {
+  .pin { height: auto; }
+  .pin .stage {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+  .pin .track {
+    width: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    animation: none;
+    transform: none;
+  }
+  .pipe-progress .rail-track i {
+    animation: none;
+    transform: scaleX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .wrap { width: min(1120px, 100% - 10vw); }
+  .bar-right .tag { display: none; }
+  .brand-name small { display: none; }
+  .scene { padding: calc(var(--bar) + 5vh) 0 10vh; }
+  .sheets { opacity: .5; }
+  .s1 { width: 70vw; height: 44vh; left: 36%; top: 8%; }
+  .s2 { width: 60vw; height: 38vh; left: -12%; top: 46%; }
+  .s3 { display: none; }
+  .proof-strip { grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+  .proof-strip dt { font-size: 24px; }
+  .proof-strip dd { font-size: 11.5px; }
+  .scroll-cue { display: none; }
+  .hero-actions { margin-top: 32px; }
+  .stream { width: 100%; }
+  .stream i { height: 36px; }
+  .act-dark .stage { padding-top: calc(var(--bar) + 4vh); }
+  .step { flex-basis: 78vw; min-height: 220px; padding: 22px 20px 26px; }
+  .guard-grid { gap: 4px; }
+  .guard-panel { padding: 18px; }
+  .train-line { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rail-line { grid-column: 1 / -1; order: 3; }
+  .station:last-child { justify-self: end; text-align: right; }
+  .proof-cards { grid-template-columns: 1fr; }
+  .fork-grid { grid-template-columns: 1fr; }
+  .fork-card { padding: 24px; }
+  .seal-big { width: 108px; height: 108px; font-size: 35px; }
+  .foot { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">跳到主内容</a>
+
+<header class="topbar">
+  <a class="brand" href="#s00">
+    <span class="brand-seal" aria-hidden="true">晨</span>
+    <span class="brand-name">晨星·路西法<small>AI 研发系统架构师</small></span>
+  </a>
+  <div class="bar-right">
+    <span class="tag">原型</span>
+    <span id="sceneNo">01 / 09</span>
+    <a href="../index.html">返回官网 ↗</a>
+  </div>
+</header>
+<div class="page-progress" aria-hidden="true"><i></i></div>
+
+<nav class="rail" aria-label="场景索引">
+  <a href="#s00"><span>01 · 主张</span></a>
+  <a href="#s01"><span>02 · 失序</span></a>
+  <a href="#s02"><span>03 · 收束</span></a>
+  <a href="#s03"><span>04 · 流水</span></a>
+  <a href="#s04"><span>05 · 守卫</span></a>
+  <a href="#s05"><span>06 · 列车</span></a>
+  <a href="#s06"><span>07 · 证据</span></a>
+  <a href="#s07"><span>08 · 合作</span></a>
+  <a href="#s08"><span>09 · 落款</span></a>
+</nav>
+
+<main id="main">
+
+  <!-- 00 主张 -->
+  <section class="scene hero" id="s00" aria-labelledby="heroTitle">
+    <div class="sheets" aria-hidden="true">
+      <div class="sheet s1"></div>
+      <div class="sheet s2"></div>
+      <div class="sheet s3"></div>
+    </div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow">晨星·路西法 · 成都 / 远程</p>
+      <h1 id="heroTitle">让 AI 写代码，<br />而且<span class="marked">不失控</span>。</h1>
+      <p class="lead">我为中小企业构建 AI 辅助的定制系统——最近的一套，用 118 天、1,200 个需求、109 道守卫，撑起一家制造企业从询盘到收款的全业务，至今每天在跑。</p>
+      <div class="hero-actions">
+        <a class="btn" href="#s06">查看工程证据 <span aria-hidden="true">↓</span></a>
+        <a class="link-cta" href="#s08">有项目？预约 15 分钟通话 <span aria-hidden="true">→</span></a>
+      </div>
+      <dl class="proof-strip">
+        <div><dt>118<span>天</span></dt><dd>从第一行迁移到全链路上线</dd></div>
+        <div><dt>1,200</dt><dd>个需求走完同一条流水线</dd></div>
+        <div><dt>109</dt><dd>道自动检查，推送前全绿才放行</dd></div>
+        <div><dt>12<span>年</span></dt><dd>前端架构，带过 30+ 人团队</dd></div>
+      </dl>
+    </div>
+    <p class="scroll-cue">向下滚动 · 散纸的开始<span aria-hidden="true">↓</span></p>
+  </section>
+
+  <!-- 01 失序 -->
+  <section class="scene chaos" id="s01" aria-labelledby="chaosTitle">
+    <div class="notes" aria-hidden="true">
+      <div class="note n1">diff +412 −87</div>
+      <div class="note n2">TypeError: undefined</div>
+      <div class="note n3">需求 #1204</div>
+      <div class="note n4">测试失败 ×3</div>
+      <div class="note n5">文档过期</div>
+      <div class="note n6">谁来 review？</div>
+      <div class="note n7">hotfix / hotfix</div>
+    </div>
+    <div class="wrap scene-copy">
+      <p class="eyebrow">01 · 问题</p>
+      <h2 id="chaosTitle">它看不全，<br />就开始猜。</h2>
+      <p class="lead">仓库一大，模型读不完，只好凭印象改。改动越多，代码和文档越对不上，下一次猜得更离谱。</p>
+      <ul class="pain-list">
+        <li><b>没人把关</b>AI 一天能交几十个改动，人工逐行审查跟不上；靠“记得要检查”的规矩，迟早会漏。</li>
+        <li><b>交付没有节奏</b>改动随时合、随时发，出了问题说不清是哪一个改动、为什么这么做。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 收束 -->
+  <section class="scene converge" id="s02" aria-labelledby="convergeTitle">
+    <div class="wrap">
+      <p class="eyebrow">02 · 转场</p>
+      <h2 id="convergeTitle">把散落，收成一条线。</h2>
+      <div class="stream" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <p class="lead">不是让 AI 更聪明，是给每一步装上轨道——散纸被一条墨线串起来，进入下一幕。</p>
+    </div>
+  </section>
+
+  <div class="act-dark">
+
+    <!-- 03 流水线 -->
+    <section class="act-pipeline" id="s03" aria-labelledby="pipeTitle">
+      <div class="pin">
+        <div class="stage">
+          <div class="stage-head">
+            <p class="eyebrow">03 · 方案</p>
+            <h2 id="pipeTitle">把研发流程，写成机器能执行的规则。</h2>
+            <div class="pipe-progress">
+              <div class="rail-track" aria-hidden="true"><i></i></div>
+              <span>滚动推进 07 步</span>
+            </div>
+          </div>
+          <div class="track">
+            <article class="step">
+              <span class="step-n">STEP 01</span>
+              <h3>需求</h3>
+              <p>任何任务先认领 issue、分配编号，再开独立工作区。</p>
+            </article>
+            <article class="step">
+              <span class="step-n">STEP 02</span>
+              <h3>追问</h3>
+              <p>“产品经理 Agent” 逐条追问业务规则，定下的决定写回仓库。</p>
+            </article>
+            <article class="step">
+              <span class="step-n">STEP 03</span>
+              <h3>规格</h3>
+              <p>PRD · 设计 · 测试计划三件套，编号贯穿到上线记录。</p>
+            </article>
+            <article class="step">
+              <span class="step-n">STEP 04</span>
+              <h3>实现</h3>
+              <p>实现、测试、评审三个子 Agent 闭环，主 Agent 只看结构化报告。</p>
+            </article>
+            <article class="step">
+              <span class="step-n">STEP 05</span>
+              <h3>守卫</h3>
+              <p>109 道自测过的检查在推送前把关，缺前提就报错，绝不默默放行。</p>
+            </article>
+            <article class="step">
+              <span class="step-n">STEP 06</span>
+              <h3>集成</h3>
+              <p>做完自己开 PR、盯 CI、红了自己修；不许跳过测试换绿。</p>
+            </article>
+            <article class="step">
+              <span class="step-n">STEP 07</span>
+              <h3>上线</h3>
+              <p>每天 11:11 冒烟定格、15:00 合并上线，周末也不停。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 守卫 -->
+    <section class="scene guard" id="s04" aria-labelledby="guardTitle">
+      <div class="wrap">
+        <div class="scene-copy">
+          <p class="eyebrow">04 · 守卫</p>
+          <h2 id="guardTitle">109 道检查，<br />推送前全绿才放行。</h2>
+          <p class="lead">缺前提就报错，绝不默默放行。每一条都写清：哪条规则、缺什么前提、怎么修。</p>
+          <p class="guard-count"><b>109 / 109</b> · 今日守卫全绿</p>
+        </div>
+        <div class="guard-panel" aria-hidden="true">
+          <div class="guard-panel-head"><span>PRE-PUSH CHECKS</span><b>全部通过</b></div>
+          <div class="guard-grid" id="guardGrid"></div>
+          <div class="guard-foot"><span>缺前提即报错</span><span>可审计 · 可复现</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 列车 -->
+    <section class="scene train" id="s05" aria-labelledby="trainTitle">
+      <div class="wrap">
+        <p class="eyebrow">05 · 上线列车</p>
+        <h2 id="trainTitle">每天两班车，<br />周末也不停。</h2>
+        <div class="train-line">
+          <div class="station"><b>11:11</b><span>冒烟定格</span></div>
+          <div class="rail-line" aria-hidden="true">
+            <i class="rail-fill"></i>
+            <i class="train-car"></i>
+          </div>
+          <div class="station"><b>15:00</b><span>合并上线</span></div>
+        </div>
+        <p class="train-note">出了问题能定位到是哪一天、哪一趟车、为什么、当时谁拍的板——这就是节奏的价值。</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 06 证据 -->
+  <section class="scene proof" id="s06" aria-labelledby="proofTitle">
+    <div class="wrap">
+      <p class="eyebrow">06 · 工程证据</p>
+      <h2 id="proofTitle">不是演示，<br />是每天在跑的业务。</h2>
+      <div class="proof-cards">
+        <article class="pcard">
+          <p class="pcard-meta">ALLYNUTRA · 2026.07 至今</p>
+          <h3>AllyOS</h3>
+          <p>一个仓库、一个数据库，撑起询盘到收款的全业务：客户门户、供应商协同、内部运营。</p>
+          <p class="pcard-stat">118<span>天上线</span></p>
+        </article>
+        <article class="pcard">
+          <p class="pcard-meta">独立产品 · 已盈利</p>
+          <h3>TeacherCopilot</h3>
+          <p>从 0 到 1 独立设计并交付的 AI 教学工具，真实用户付费使用至今。</p>
+          <p class="pcard-stat">1,200<span>个需求</span></p>
+        </article>
+        <article class="pcard">
+          <p class="pcard-meta">流水线 · 沉淀</p>
+          <h3>机器守卫</h3>
+          <p>986 份复盘沉淀出 18 条规则，规则成熟就固化成守卫——系统越跑越难犯错。</p>
+          <p class="pcard-stat">109<span>道守卫</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 合作 -->
+  <section class="scene fork" id="s07" aria-labelledby="forkTitle">
+    <div class="wrap">
+      <p class="eyebrow">07 · 合作</p>
+      <h2 id="forkTitle">两条路，<br />都从这里开始。</h2>
+      <div class="fork-grid">
+        <a class="fork-card" href="#s06">
+          <span class="fork-tag">求职路径</span>
+          <h3>看工程证据</h3>
+          <p>2 个深度案例、109 道守卫、986 份复盘。适合 HR 与技术负责人快速判断。</p>
+          <span class="fork-arrow">回到证据 ↑</span>
+        </a>
+        <a class="fork-card" href="#s08">
+          <span class="fork-tag">合作路径</span>
+          <h3>聊 15 分钟</h3>
+          <p>说清你卡在哪：全职、顾问，还是从 0 到 1 的项目交付。先聊问题，再谈报价。</p>
+          <span class="fork-arrow">直接到落款 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 落款 -->
+  <section class="scene end" id="s08" aria-labelledby="endTitle">
+    <div class="wrap">
+      <p class="eyebrow">08 · 落款</p>
+      <h2 id="endTitle">纸可以散，<br />规矩不能散。</h2>
+      <p class="lead">如果你也在想“怎么让 AI 写代码不失控”，我们可以从一次 15 分钟的通话开始。</p>
+      <div class="seal-big" aria-hidden="true">晨星</div>
+      <p class="seal-caption">晨星·路西法 · 2026</p>
+      <div class="end-actions">
+        <a class="btn" href="mailto:307697527@qq.com?subject=%E9%A2%84%E7%BA%A6%2015%20%E5%88%86%E9%92%9F%E9%80%9A%E8%AF%9D">预约 15 分钟通话</a>
+        <a class="link-cta" href="../index.html">返回完整首页 <span aria-hidden="true">→</span></a>
+      </div>
+      <footer class="foot">
+        <span>滚动叙事原型 · 仅用于验证节奏与性能</span>
+        <span><a href="https://myaiwebdev.com/">myaiwebdev.com</a></span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* 109 道守卫格子 */
+  var grid = document.getElementById("guardGrid");
+  if (grid) {
+    for (var i = 0; i < 109; i++) {
+      var cell = document.createElement("i");
+      cell.style.setProperty("--i", String(i));
+      grid.appendChild(cell);
+    }
+  }
+
+  /* 场记高亮 + 场景序号（只观察，不监听滚动） */
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main section"));
+  var links = Array.prototype.slice.call(document.querySelectorAll(".rail a"));
+  var sceneNo = document.getElementById("sceneNo");
+
+  if ("IntersectionObserver" in window && sections.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var idx = sections.indexOf(entry.target);
+        links.forEach(function (a, i) {
+          if (i === idx) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
+        });
+        if (sceneNo) sceneNo.textContent = ("0" + (idx + 1)).slice(-2) + " / 09";
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
