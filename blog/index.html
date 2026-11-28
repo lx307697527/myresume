@@ -65,6 +65,13 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "@id": "https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/#article",
+          "headline": "AI 写的 Python 脚本一到中文 Windows 就乱码,怎么根治?",
+          "url": "https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/",
+          "datePublished": "2026-11-28T08:00:00+08:00"
+        },
+        {
+          "@type": "BlogPosting",
           "@id": "https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/#article",
           "headline": "Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?",
           "url": "https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/",
@@ -144,6 +151,11 @@
           <p class="post-meta"><a href="feed.xml">RSS 订阅</a> · <a href="../en/blog/" hreflang="en" lang="en">English</a></p>
         </header>
         <ul class="post-list">
+      <li>
+        <p class="case-meta">工具短文 · <time datetime="2026-11-28">2026-11-28</time></p>
+        <h2><a href="../blog/python-subprocess-utf8-windows-ai-scripts/">AI 写的 Python 脚本一到中文 Windows 就乱码,怎么根治?</a></h2>
+        <p>根因是 Python 在没写 encoding 时按系统代码页(中文 Windows 是 gbk)解码子进程输出、编码自己的 print。光在项目说明里叮嘱 AI 不够;我在 AllyOS 里加了两道 AST 静态检查:文本模式的 subprocess 调用必须写 encoding=&quot;utf-8&quot;,每个脚本的 main() 第一行必须把标准输出钉成 UTF-8。612 个文件扫一遍约 1.5 秒,过去 30 天拦下 7 次 AI 漏写。</p>
+      </li>
       <li>
         <p class="case-meta">事故复盘 · <time datetime="2026-11-27">2026-11-27</time></p>
         <h2><a href="../blog/claude-code-subagent-worktree-git-hooks/">Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?</a></h2>

@@ -48,7 +48,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/blog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://myaiwebdev.com/en/blog/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/blog/" />
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -57,9 +57,27 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/blog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://myaiwebdev.com/en/blog/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/blog/" />
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://myaiwebdev.com/en/blog/python-subprocess-utf8-windows-ai-scripts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/" />
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://myaiwebdev.com/en/blog/python-subprocess-utf8-windows-ai-scripts/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://myaiwebdev.com/en/blog/python-subprocess-utf8-windows-ai-scripts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/" />
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/</loc>
