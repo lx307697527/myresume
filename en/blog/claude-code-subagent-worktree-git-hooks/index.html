@@ -282,6 +282,16 @@ if cur and os.path.isabs(cur) and os.path.relpath(cur, main_root) == &quot;.gith
         <a class="btn" href="mailto:307697527@qq.com?subject=Hello%20from%20your%20blog">Want guardrails like this? Email me</a>
         <a class="link-arrow" href="../../../index.html#proof">The AllyOS case study (in Chinese) <span aria-hidden="true">→</span></a>
         </div>
+      <section class="related" aria-labelledby="relTitle">
+        <h2 id="relTitle">Related posts</h2>
+        <ul class="post-list">
+      <li>
+        <p class="case-meta">Tools &amp; Tips · <time datetime="2026-11-28">2026-11-28</time></p>
+        <h3><a href="../../../en/blog/python-subprocess-utf8-windows-ai-scripts/">Fix Python subprocess UnicodeDecodeError on Windows for good</a></h3>
+        <p>Without an explicit encoding, Python decodes subprocess output and encodes print() with the OS code page (gbk on Chinese Windows). Telling the AI in project instructions was not enough, so AllyOS runs two AST checks before every push - every text-mode subprocess call must pass encoding=&quot;utf-8&quot;, and every script&#x27;s main() must pin stdout to UTF-8. Scanning 612 files takes about 1.5 s, and the checks caught 7 AI misses in 30 days.</p>
+      </li>
+    </ul>
+      </section>
       </div>
     </article>
   </main>

@@ -663,6 +663,11 @@
         <div class="reveal">
     <ul class="post-list">
       <li>
+        <p class="case-meta">工具短文 · <time datetime="2026-11-28">2026-11-28</time></p>
+        <h3><a href="blog/python-subprocess-utf8-windows-ai-scripts/">AI 写的 Python 脚本一到中文 Windows 就乱码,怎么根治?</a></h3>
+        <p>根因是 Python 在没写 encoding 时按系统代码页(中文 Windows 是 gbk)解码子进程输出、编码自己的 print。光在项目说明里叮嘱 AI 不够;我在 AllyOS 里加了两道 AST 静态检查:文本模式的 subprocess 调用必须写 encoding=&quot;utf-8&quot;,每个脚本的 main() 第一行必须把标准输出钉成 UTF-8。612 个文件扫一遍约 1.5 秒,过去 30 天拦下 7 次 AI 漏写。</p>
+      </li>
+      <li>
         <p class="case-meta">事故复盘 · <time datetime="2026-11-27">2026-11-27</time></p>
         <h3><a href="blog/claude-code-subagent-worktree-git-hooks/">Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?</a></h3>
         <p>Claude Code 每次新建 worktree(包括子 Agent 的工作树隔离),都会把共享 <code>.git/config</code> 里相对写法的 <code>core.hooksPath</code> 改成主目录的绝对路径,之后没单独钉住配置的工作目录都会去跑主目录那份 Git 钩子。解法是把同一个&quot;改回相对路径&quot;的修复脚本同时挂到 SessionStart、PostToolUse(EnterWorktree)和 SubagentStart 三个入口,实测 68 毫秒内复原。</p>

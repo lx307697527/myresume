@@ -91,8 +91,10 @@
 - English blog: https://myaiwebdev.com/en/blog/ · RSS: https://myaiwebdev.com/en/blog/feed.xml
 
 ### 最新文章(中文)
+- [AI 写的 Python 脚本一到中文 Windows 就乱码,怎么根治?](https://myaiwebdev.com/blog/python-subprocess-utf8-windows-ai-scripts/)(2026-11-28 · 工具短文):根因是 Python 在没写 encoding 时按系统代码页(中文 Windows 是 gbk)解码子进程输出、编码自己的 print。光在项目说明里叮嘱 AI 不够;我在 AllyOS 里加了两道 AST 静态检查:文本模式的 subprocess 调用必须写 encoding="utf-8",每个脚本的 main() 第一行必须把标准输出钉成 UTF-8。612 个文件扫一遍约 1.5 秒,过去 30 天拦下 7 次 AI 漏写。
 - [Claude Code 子 Agent 一开 worktree,Git 钩子为什么就跑错了?](https://myaiwebdev.com/blog/claude-code-subagent-worktree-git-hooks/)(2026-11-27 · 事故复盘):Claude Code 每次新建 worktree(包括子 Agent 的工作树隔离),都会把共享 .git/config 里相对写法的 core.hooksPath 改成主目录的绝对路径,之后没单独钉住配置的工作目录都会去跑主目录那份 Git 钩子。解法是把同一个"改回相对路径"的修复脚本同时挂到 SessionStart、PostToolUse(EnterWorktree)和 SubagentStart 三个入口,实测 68 毫秒内复原。
 
 ### Latest posts (English)
+- [Fix Python subprocess UnicodeDecodeError on Windows for good](https://myaiwebdev.com/en/blog/python-subprocess-utf8-windows-ai-scripts/) (2026-11-28 · Tools & Tips): Without an explicit encoding, Python decodes subprocess output and encodes print() with the OS code page (gbk on Chinese Windows). Telling the AI in project instructions was not enough, so AllyOS runs two AST checks before every push - every text-mode subprocess call must pass encoding="utf-8", and every script's main() must pin stdout to UTF-8. Scanning 612 files takes about 1.5 s, and the checks caught 7 AI misses in 30 days.
 - [Why Claude Code Subagent Worktrees Silently Break Your Git Hooks](https://myaiwebdev.com/en/blog/claude-code-subagent-worktree-git-hooks/) (2026-11-27 · Incident Review): When Claude Code creates a worktree, including a subagent's isolated worktree, it rewrites the relative core.hooksPath in the shared .git/config to an absolute path, so every unpinned worktree runs the main checkout's hooks. Run one idempotent repair script from SessionStart, PostToolUse (EnterWorktree) and SubagentStart; we measured recovery in 68 ms.
 <!-- blog:end -->

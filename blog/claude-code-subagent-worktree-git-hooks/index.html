@@ -285,6 +285,16 @@ if cur and os.path.isabs(cur) and os.path.relpath(cur, main_root) == &quot;.gith
         <a class="btn" href="../../services.html">想给团队也装上守卫?看服务与流程</a>
         <a class="link-arrow" href="../../index.html#proof">看 AllyOS 工程证据 <span aria-hidden="true">→</span></a>
         </div>
+      <section class="related" aria-labelledby="relTitle">
+        <h2 id="relTitle">相关文章</h2>
+        <ul class="post-list">
+      <li>
+        <p class="case-meta">工具短文 · <time datetime="2026-11-28">2026-11-28</time></p>
+        <h3><a href="../../blog/python-subprocess-utf8-windows-ai-scripts/">AI 写的 Python 脚本一到中文 Windows 就乱码,怎么根治?</a></h3>
+        <p>根因是 Python 在没写 encoding 时按系统代码页(中文 Windows 是 gbk)解码子进程输出、编码自己的 print。光在项目说明里叮嘱 AI 不够;我在 AllyOS 里加了两道 AST 静态检查:文本模式的 subprocess 调用必须写 encoding=&quot;utf-8&quot;,每个脚本的 main() 第一行必须把标准输出钉成 UTF-8。612 个文件扫一遍约 1.5 秒,过去 30 天拦下 7 次 AI 漏写。</p>
+      </li>
+    </ul>
+      </section>
       </div>
     </article>
   </main>
