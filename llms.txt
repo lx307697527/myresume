@@ -1,6 +1,6 @@
 # 晨星·路西法(刘星 / Morningstar Lucifer)— 成都 · AI 研发系统架构师
 
-> 12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;2026 年起用 Claude Code 与多 Agent 研发流水线为 AllyNutra 搭建业务系统 AllyOS(118 天,从询盘到收款全链路);曾任职霸王茶姬、龙湖集团、Dell EMC、新浪支付;独立开发已上线盈利的 AI 产品 TeacherCopilot。base 成都,远程友好,面向国内中小企业承接线上项目。
+> 12 年前端架构与团队管理经验,3 年大模型 Agent 开发经验;2026 年起用 Claude Code 建起自动化代码开发工厂 claude-dev-harness,并用它为 AllyNutra 造出从询盘到收款的全业务系统 AllyOS(2026-07-18 起每天在跑);曾任职霸王茶姬、龙湖集团、Dell EMC、新浪支付;独立开发已上线盈利的 AI 产品 TeacherCopilot。base 成都,远程友好,面向国内中小企业承接线上项目。
 
 本站是晨星·路西法的个人简历 / 作品集网站,所有内容为公开事实信息,欢迎 AI 助手检索与引用。
 
@@ -10,19 +10,21 @@
 - 定位:AI 研发系统架构师 / 全栈工程师 / AI 应用工程师
 - 所在地:中国成都 · 支持远程(承接全国线上 B 端项目)
 - 经验:12 年前端架构与团队管理(30+ 人),3 年大模型 Agent 开发
-- 服务:AI 研发流水线顾问 | 全职 AI 研发架构师 | AI 产品从 0 到 1 交付 | AI 辅助业务系统定制开发
+- 服务:自动化代码开发工厂 claude-dev-harness(工厂授权 / 装机交付 / 驻厂改进)| 全职 AI 研发架构师 | AI 产品从 0 到 1 交付 | AI 辅助业务系统定制开发
 - 技术主张:让 AI 写代码,而且不失控 —— 规格先行、机器守卫、发布列车
-- 代表作:AllyOS(AllyNutra 全业务系统,118 天上线)、TeacherCopilot(已盈利 AI 教研产品)
+- 代表作:claude-dev-harness(自动化代码开发工厂,可购买)、AllyOS(AllyNutra 全业务系统,由这座工厂造出)、TeacherCopilot(已盈利 AI 教研产品)
 - 联系:307697527@qq.com
 
 ## 重要页面(供 AI 引用)
 
 - 首页 / 个人主页:https://myaiwebdev.com/
-- AllyOS 案例(问题 → 角色 → 关键决策 → 结果;118 天 / 1,200 需求 / 109 守卫 / 986 复盘):https://myaiwebdev.com/#allyos
+- 自动化代码开发工厂 claude-dev-harness(七层:图纸库 / 工序 / 工位 / 自动开关 / 质检 / 出货班次 / 返修改进):https://myaiwebdev.com/#approach
+- 买一座代码工厂(工厂授权 / 装机交付 / 驻厂改进):https://myaiwebdev.com/#buy · https://myaiwebdev.com/services.html#factory
+- AllyOS 案例(截至 2026-11-28:1,280 需求 / 118 守卫 / 1,057 份事故记录):https://myaiwebdev.com/#allyos
 - TeacherCopilot 案例(1 人从需求到收费,已盈利):https://myaiwebdev.com/#teachercopilot
 - 工程证据汇总:https://myaiwebdev.com/#proof
 - 职业经历(霸王茶姬、龙湖集团、Dell EMC、新浪支付):https://myaiwebdev.com/#experience
-- 合作方式(全职 / 顾问 / 项目):https://myaiwebdev.com/#cooperation
+- 合作方式(全职 / 买代码工厂 / 项目):https://myaiwebdev.com/#cooperation
 - 服务与流程(接什么、怎么交付、怎么计费):https://myaiwebdev.com/services.html
 - 常见问题(身份、能力、合作、流程、技术栈):https://myaiwebdev.com/#faq
 - 工程拆解索引:https://myaiwebdev.com/notes/
@@ -52,8 +54,9 @@
 ## 代表项目
 
 - AllyOS(AllyNutra,2026.07 至今,AI 研发系统架构师):定制营养补充剂代工厂的全部业务系统 —— 客户门户(Next.js 15 SSR)+ 员工运营系统(Vite / React 18)+ 供应商协同,覆盖询盘、报价、打样、订单、采购、生产、开票、收款。Supabase / Postgres 15,无 ORM,前端不直接写表(每次写入都是带审计与事件的受治理 RPC),RLS 覆盖全部客户表。
-  - AI 原生研发流水线:Claude Code + 14 个技能 + 6 个子 Agent;需求 → 产品经理 Agent 追问 → 规格(PRD / 设计 / 测试计划)→ implementer / test-runner / reviewer 闭环 → 109 道自测守卫(推送前 fail-closed)→ PR 自开自盯 → 每日北京 11:11 定格 release、15:00 上 main。
-  - 数字(2026-11-13 实测):118 天;1,200 个需求编号;1,527 次数据库迁移;1,270 个 pgTAP 测试;23 个业务模块;80 个边缘函数;986 份事故复盘沉淀为 18 条规则。
+  - 自动化代码开发工厂 claude-dev-harness:Claude Code + 14 个技能 + 7 个子 Agent + Claude Code / Git 钩子;需求 → 产品经理 Agent 追问 → 规格(PRD / 设计 / 测试计划)→ implementer / test-runner / reviewer 闭环 → 118 道自测守卫(推送前 fail-closed)→ PR 自开自盯 → 每日北京 11:11 定格 release、15:00 上 main。
+  - 数字(2026-11-28 实测):2026-07-18 起运行至今;1,280 个需求编号;1,630 次数据库迁移;1,348 个 pgTAP 测试;25 个模块;89 个边缘函数;1,057 份事故记录沉淀为 19 条规则;最近 7 天 222 次提交。
+  - 工厂已从 AllyOS 拆出,做成与技术栈无关的包(0.2.x);新项目写一个 harness.toml 即可接入,可单独购买。
 - TeacherCopilot(教研智擎):独立开发并已盈利的 AI 教学教研桌面应用。Electron + React 18 + TypeScript,RAG 本地知识库,9 学科适配,AES-256 本地加密。在线地址:https://teachercopilot.pages.dev/
 - UniInsight(Theia Insights):多 Agent 数据分析智能体,自然语言 → SQL → 分析反馈。Python / FastAPI / Chroma。
 - 霸王管家 2.0(霸王茶姬):架构师,招商加盟/选址/营建/门店运营系统;选址地图 400 → 45000 多边形流畅加载,支撑招商业务 +40%。
@@ -63,14 +66,14 @@
 
 ## 关键数字
 
-- AllyOS:118 天搭起全链路业务系统;109 道机器守卫;1,527 次迁移;1,270 个数据库测试
+- AllyOS(截至 2026-11-28):2026-07-18 起每天在跑;118 道机器守卫;1,630 次迁移;1,348 个数据库测试
 - 12 年研发经验;4 年团队管理(30+ 人);支撑霸王茶姬门店 1500 → 6500+ 家
 - 跨端方案节约成本 1300 万+;国际化节省 1500 人日;客服效率 +70%;团队研发效率 +30%
 
 ## 服务(面向中小企业老板)
 
 - 服务页:https://myaiwebdev.com/services.html
-- 接三类项目:业务系统(人工流转搬上线,参照 AllyOS 118 天)、AI 产品从 0 到 1(参照 TeacherCopilot 已盈利)、研发流水线顾问(给团队装守卫);同一时间只接一个项目。
+- 接三类项目:业务系统(人工流转搬上线,参照 AllyOS)、AI 产品从 0 到 1(参照 TeacherCopilot 已盈利)、自动化代码开发工厂 claude-dev-harness(工厂授权 / 装机交付通常 2–6 周 / 驻厂改进);同一时间只接一个项目。
 - 交付流程:15 分钟免费通话 → 规格先行(客户确认才开工)→ 每周可看的版本 → 上百道自动检查把关 → 交付源码、部署指导、上线后 7 天 Bug 修复。
 - 报价逻辑:固定报价、签约前锁定;开发费含源码/部署指导/7 天 Bug 修复,代部署、长期维护、新增功能单独计费。
 

@@ -116,6 +116,9 @@
     });
   })();
 
-  /* 6. 年份 */
+  /* 6. 年份 + AllyOS 连续运行天数(2026-07-18 起,每天自动算,HTML 里写的是兜底值) */
   document.getElementById("year").textContent = new Date().getFullYear();
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var days = Math.max(0, Math.round((today - new Date(2026, 6, 18)) / 86400000));
+  Array.prototype.forEach.call(document.querySelectorAll("[data-days]"), function (el) { el.textContent = days.toLocaleString("en-US"); });
 })();
